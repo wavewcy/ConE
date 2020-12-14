@@ -3016,158 +3016,158 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ///////////////////////////////////////////////////////////
 */
 .s-text1 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: white;
 	text-transform: uppercase;
 }
 
 .s-text2 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: #111111;
 	text-transform: uppercase;
 }
 
 .s-text3 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .s-text4 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
 
 .s-text5 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: #999999;
 	line-height: 1;
 }
 
 .s-text6 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #999999;
 	line-height: 1.8;
 }
 
 .s-text7 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #555555;
 	line-height: 1.8;
 }
 
 .s-text8, .s-text8 a {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text9 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #adadad;
 	line-height: 1.8;
 }
 
 .s-text10 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #cccccc;
 	line-height: 1.8;
 }
 
 .s-text11 {
-	font-family: Montserrat-Italic;
-	font-size: 13px;
+	font-family: Kanit-Italic;
+	font-size: 16px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text12 {
-	font-family: Montserrat-Bold;
-	font-size: 15px;
+	font-family: Kanit-Bold;
+	font-size: 18px;
 	color: #222222;
 	line-height: 1.5;
 	text-transform: uppercase;
 }
 
 .s-text13 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text14 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: white;
 	text-transform: uppercase;
 }
 
 .s-text15 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #666666;
 	line-height: 1.8;
 }
 
 .s-text16 {
-	font-family: Montserrat-Regular;
-	font-size: 12px;
+	font-family: Kanit-Regular;
+	font-size: 15px;
 	color: #555555;
 	line-height: 1.8;
 }
 
 .s-text17 {
-	font-family: Montserrat-Regular;
-	font-size: 12px;
+	font-family: Kanit-Regular;
+	font-size: 15px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text18 {
-	font-family: Montserrat-Bold;
-	font-size: 15px;
+	font-family: Kanit-Bold;
+	font-size: 18px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .s-text19 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: #555555;
 	line-height: 1.8;
 	text-transform: uppercase;
 }
 
 .s-text20 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: Kanit-Regular;
+	font-size: 18px;
 	color: #555555;
 	line-height: 1.2;
 }
 
 .s-text21 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: white;
 	line-height: 1.8;
 }
 
 .s-text22 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: Kanit-Regular;
+	font-size: 16px;
 	color: white;
 	line-height: 1.8;
 	text-decoration: underline;
@@ -3177,197 +3177,197 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ///////////////////////////////////////////////////////////
 */
 .m-text1 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: white;
 	line-height: 1.5;
 	letter-spacing: 2px;
 }
 
 .m-text2 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
+	font-family: Kanit-Regular;
+	font-size: 19px;
 	color: #333333;
 	text-transform: uppercase;
 }
 
 .m-text3 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
+	font-family: Kanit-Regular;
+	font-size: 19px;
 	color: white;
 	text-transform: uppercase;
 }
 
 .m-text4 {
-	font-family: Montserrat-Medium;
-	font-size: 30px;
+	font-family: Kanit-Medium;
+	font-size: 33px;
 	color: #111111;
 	line-height: 1.2;
 	text-transform: uppercase;
 }
 
 .m-text5 {
-	font-family: Montserrat-Bold;
-	font-size: 30px;
+	font-family: Kanit-Bold;
+	font-size: 33px;
 	color: #222222;
 	line-height: 1.2;
 	text-transform: uppercase;
 }
 
 .m-text6 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
+	font-family: Kanit-Regular;
+	font-size: 19px;
 	color: #555555;
 	text-transform: uppercase;
 }
 
 .m-text7 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
+	font-family: Kanit-Regular;
+	font-size: 19px;
 	color: #555555;
 	text-transform: uppercase;
 	text-decoration: line-through;
 }
 
 .m-text8 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
-	color: #e65540;
+	font-family: Kanit-Regular;
+	font-size: 19px;
+	color: #fcc404;
 	text-transform: uppercase;
 }
 
 .m-text9 {
-	font-family: Montserrat-Bold;
-	font-size: 30px;
+	font-family: Kanit-Bold;
+	font-size: 33px;
 	color: white;
 	line-height: 1.2;
 	letter-spacing: 2px;
 }
 
 .m-text10 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: #555555;
 	line-height: 1;
 }
 
 .m-text11 {
-	font-family: Montserrat-Medium;
-	font-size: 16px;
+	font-family: Kanit-Medium;
+	font-size: 19px;
 	color: #333333;
 	line-height: 1.5;
 }
 
 .m-text12 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .m-text13 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: white;
 	line-height: 1.8;
 }
 
 .m-text14 {
-	font-family: Montserrat-Black;
-	font-size: 18px;
+	font-family: Kanit-Black;
+	font-size: 21px;
 	color: #333333;
 	line-height: 1.5;
 }
 
 .m-text15 {
-	font-family: Montserrat-Medium;
-	font-size: 18px;
+	font-family: Kanit-Medium;
+	font-size: 21px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .m-text16 {
-	font-family: Montserrat-Regular;
-	font-size: 24px;
+	font-family: Kanit-Regular;
+	font-size: 27px;
 	color: #222222;
 	line-height: 1.5;
 }
 
 .m-text17 {
-	font-family: Montserrat-Regular;
-	font-size: 30px;
+	font-family: Kanit-Regular;
+	font-size: 33px;
 	color: #555555;
 	line-height: 1.2;
 }
 
 .m-text18 {
-	font-family: Montserrat-Regular;
-	font-size: 16px;
+	font-family: Kanit-Regular;
+	font-size: 19px;
 	color: #666666;
 	line-height: 1.2;
 }
 
 .m-text19 {
-	font-family: Montserrat-Medium;
-	font-size: 16px;
+	font-family: Kanit-Medium;
+	font-size: 19px;
 	color: #222222;
 	line-height: 1.5;
 }
 
 .m-text20 {
-	font-family: Montserrat-Bold;
-	font-size: 20px;
+	font-family: Kanit-Bold;
+	font-size: 23px;
 	color: #333333;
 	line-height: 1.5;
 	text-transform: uppercase;
 }
 
 .m-text21 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: #888888;
 	line-height: 1.5;
 }
 
 .m-text22 {
-	font-family: Montserrat-Bold;
-	font-size: 18px;
+	font-family: Kanit-Bold;
+	font-size: 21px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .m-text23 {
-	font-family: Montserrat-Black;
-	font-size: 22px;
+	font-family: Kanit-Black;
+	font-size: 25px;
 	color: #333333;
 	line-height: 1.2;
 }
 
 .m-text24 {
-	font-family: Montserrat-Medium;
-	font-size: 26px;
+	font-family: Kanit-Medium;
+	font-size: 29px;
 	color: #333333;
 	line-height: 1.3;
 }
 
 .m-text25 {
-	font-family: Montserrat-Bold;
-	font-size: 21px;
+	font-family: Kanit-Bold;
+	font-size: 24px;
 	color: #333333;
 	line-height: 1.3;
 	text-transform: uppercase;
 }
 
 .m-text26 {
-	font-family: Montserrat-Regular;
-	font-size: 25px;
+	font-family: Kanit-Regular;
+	font-size: 28px;
 	color: #333333;
 	line-height: 1.2;
 }
 
 .m-text27 {
-	font-family: Montserrat-Regular;
-	font-size: 18px;
+	font-family: Kanit-Regular;
+	font-size: 21px;
 	color: #888888;
 	line-height: 1.5;
 	letter-spacing: 2px;
@@ -3377,8 +3377,8 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ///////////////////////////////////////////////////////////
 */
 .l-text1 {
-	font-family: Montserrat-Bold;
-	font-size: 50px;
+	font-family: Kanit-Bold;
+	font-size: 53px;
 	color: white;
 	line-height: 1.2;
 	text-transform: uppercase;
@@ -3386,8 +3386,8 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .l-text2 {
-	font-family: Montserrat-Bold;
-	font-size: 50px;
+	font-family: Kanit-Bold;
+	font-size: 53px;
 	color: white;
 	line-height: 1.2;
 	text-transform: uppercase;
@@ -3428,7 +3428,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ///////////////////////////////////////////////////////////
 */
 .colorwhite {color: #fff;}
-.color0 {color: #e65540;}
+.color0 {color: #fcc404;}
 .color1 {color: #888888;}
 .color2 {color: #333333;}
 
@@ -3436,7 +3436,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 /*[  ]
 -----------------------------------------------------------
 */
-.color0-hov:hover {color: #e65540;}
+.color0-hov:hover {color: #fcc404;}
 
 
 
@@ -3708,7 +3708,7 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 /*[ Background ]
 ///////////////////////////////////////////////////////////
 */
-.bg0 {background-color: #e65540;}
+.bg0 {background-color: #fcc404;}
 .bg1 {background-color: #222222;}
 .bg3 {background-color: rgba(255,255,255,0.95);}
 .bg4 {background-color: #111111;}
@@ -3727,7 +3727,7 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 /*[  ]
 -----------------------------------------------------------
 */
-.bg0-hov:hover {background-color: #e65540;}
+.bg0-hov:hover {background-color: #fcc404;}
 
 
 
@@ -3869,7 +3869,7 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 	position: absolute;
 	width: 0;
 	height: 1px;
-	background-color: #e65540;
+	background-color: #fcc404;
 	left: 0;
 	bottom: -1px;
 	-webkit-transition: all 0.3s;
@@ -3886,7 +3886,7 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 -----------------------------------------------------------
 */
 .eff2:active {
-	background-color: #e65540;
+	background-color: #fcc404;
 	color: white;
 }
 
@@ -3963,7 +3963,7 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 ///////////////////////////////////////////////////////////
 */
 .hov1:hover {
-    background-color: #e65540;
+    background-color: #fcc404;
   	color: white;
 }
 
