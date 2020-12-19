@@ -25,6 +25,5 @@ Route::get('/product-detail', function () {
     return view('product-detail');
 });
 
-Route::get('/product', function () {
-    return view('product');
-});
+Route::get('/product','App\Http\Controllers\productController@showProduct');
+Route::post('/search','App\Http\Controllers\productController@searchProduct');
