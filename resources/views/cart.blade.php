@@ -17,80 +17,59 @@
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
-							<th class="column-5">Total</th>
+							<th class="column-2"></th>
+							<th class="column-3"></th>
+							<th class="column-4 p-l-70"></th>
+							<th class="column-5"></th>
 						</tr>
 
-						<tr class="table-row">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
-								</div>
-							</td>
-							<td class="column-2">Men Tshirt</td>
-							<td class="column-3">$36.00</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
+						@if(session('cart'))
+           					@foreach(session('cart') as $id => $product)
+							<tr class="table-row">
+								<td class="column-1">
+									<div class="cart-img-product b-rad-4 o-f-hidden">
+										<img src="images/{{$product['tImg']}}" alt="IMG-PRODUCT">
+									</div>
+								</td>
+								<td class="column-2">
+									<p class="head-cart">{{$product['tName']}}</p>
+									<p>รหัสสินค้า : {{$product['pID']}}</p>
+									<p>แบรนด์ : {{$product['pBrand']}}</p>
+									<p>ขนาด : {{$product['pSize']}}</p>
+									<p>ความหนา : {{$product['pThick']}}</p>
+								</td>
+								<td class="column-3">
+									<div class="flex-w bo5 of-hidden w-size17">
+										<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+											<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+										</button>
+										<input class="size8 m-text18 t-center num-product" type="number" id="qty" name="qty" value="{{$product['dQuantity']}}">
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
-
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-							</td>
-							<td class="column-5">$36.00</td>
-						</tr>
-
-						<tr class="table-row">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure</td>
-							<td class="column-3">$16.00</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-							</td>
-							<td class="column-5">$16.00</td>
-						</tr>
+										<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+											<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+										</button>
+									</div>
+								</td>
+								
+								<td class="column-4">
+									<div class="rs2-select2 rs3-select2 rs4-select2  of-hidden w-size21 m-t-8 m-b-12">
+										<p>{{$product['pUnit']}}</p>
+									</div>
+								</td>
+								<td class="column-5" ><a href="" class="fa fa-trash fa-2x"></a></td>
+							</tr>
+							@endforeach
+						@endif
+						
 					</table>
 				</div>
 			</div>
 
 			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
-				<div class="flex-w flex-m w-full-sm">
-					<div class="size11 bo4 m-r-10">
-						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Coupon Code">
-					</div>
-
-					<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
-						<!-- Button -->
-						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-							Apply coupon
-						</button>
-					</div>
-				</div>
-
+				<div class="flex-w flex-m w-full-sm"></div>
 				<div class="size10 trans-0-4 m-t-10 m-b-10">
 					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="">
 						Update Cart
 					</button>
 				</div>
@@ -196,6 +175,24 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
+
+		function fncAction0(pID){
+		swal({
+			title: "ยืนยันการลบสินค้า",
+			text: "คุณต้องการลบสินค้าออกจากตะกร้าใช่หรือไม่",
+			icon: "warning",
+			buttons: true,
+			successMode: true,
+			})
+			.then((willDelete) => {
+			if (willDelete) {
+				swal("ลบสินค้าเรียบร้อยแล้ว", {icon: "success"});
+				setTimeout(function(){
+					window.location.assign("{{URL::to('/cart/delete?pID=')}}"+pID);
+				},2000);
+			}
+		});
+		}
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

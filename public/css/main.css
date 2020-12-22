@@ -2085,12 +2085,12 @@ li.sale-noti > a {
   padding-right: 30px;
 }
 .table-shopping-cart .column-3 {
-  width: 133px;
+  width: 200px;
   padding-right: 30px;
 }
 .table-shopping-cart .column-4 {
-  width: 355px;
-  padding-right: 30px;
+  width: 150px;
+  padding-right: 180px;
 }
 .table-shopping-cart .column-5 {
   padding-right: 30px;
@@ -2103,7 +2103,15 @@ li.sale-noti > a {
   line-height: 1.5;
   text-transform: uppercase;
   padding-top: 16px;
-  padding-bottom: 16px;
+  padding-bottom: 35px;
+}
+
+.head-cart {
+  font-family: Kanit-Bold;
+  font-size: 16px;
+  color: #555555;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 .table-shopping-cart td {
