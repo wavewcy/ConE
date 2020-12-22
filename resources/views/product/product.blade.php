@@ -6,9 +6,6 @@
 		<h2 class="l-text3 t-center" style="color:#888888">
 			CHIANGMAI CENTER STEEL
 		</h2>
-		<p class="m-text13 t-center">
-			
-		</p>
 	</section>
 
 
@@ -85,23 +82,25 @@
 										<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
 
 										<div class="block2-overlay trans-0-4">
-											<div class="block2-btn-addcart w-size1 trans-0-4">
+											<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
 												<!-- Button -->
-												<button onclick="window.location.href='/Project492-Web-based-E-commerce/public/product-detail';" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												@csrf
+												<input type="hidden" name="tID" value="{{$pro->tID}}"/>
+												<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 													ดูรายละเอียด
 												</button>
-											</div>
+											</form>
 										</div>
 									</div>
 
 									<div class="block2-txt p-t-20">
-										<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+										<a class="block2-name dis-block s-text3 m-text8 p-b-5">
 											{{$pro->tName}}
 										</a>
 
-										<span class="block2-price m-text6 p-r-5">
+										<!-- <span class="block2-price m-text6 p-r-5">
 											Brand
-										</span>
+										</span> -->
 									</div>
 								</div>
 							</div>
@@ -118,12 +117,14 @@
 										<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
 
 										<div class="block2-overlay trans-0-4">
-											<div class="block2-btn-addcart w-size1 trans-0-4">
+											<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
 												<!-- Button -->
+												@csrf
+												<input type="hidden" name="tID" value="{{$pro->tID}}"/>
 												<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 													ดูรายละเอียด
 												</button>
-											</div>
+											</form>
 										</div>
 									</div>
 

@@ -24,4 +24,20 @@ class productController extends Controller
         return view('product/product',['products' => $products, 
             'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID]);
     }
+
+    public function productDetail(request $request){
+        $tID = $request->Input('tID');
+        $manu = DB::table('type')->join('catagories','type.caID','=','catagories.caID')
+        ->join('group','catagories.gID','=','group.gID')->where(['type.tID'=>$tID])->get();
+        $data = DB::table('type')->where(['type.tID'=>$tID])->get();
+
+        $products = DB::table('products')->where(['products.tID'=>$tID])->get();
+        $proSize = $products->groupBy('pSize');
+        $proThick = $products->groupBy('pThick');
+        $proBrand = $products->groupBy('pBrand');
+        $proUnit = $products->groupBy('pUnit');
+
+        return view('product/product-detail',['manu' => $manu, 'data' => $data, 'proSize' => $proSize,
+        'proThick' =>$proThick, 'proBrand' =>$proBrand, 'proUnit' =>$proUnit]);
+    }
 }
