@@ -21,11 +21,16 @@ Route::get('/cart', function () {
     return view('cart');
 });
 
-// Route::post('/product-detail', function () {
-//     return view('product/product-detail');
-// });
+Route::get('/login', function () {
+    return view('login');
+});
 
 // Product
 Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');
+
+// ต้อง login ก่อน ถึงจะเข้าได้
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
