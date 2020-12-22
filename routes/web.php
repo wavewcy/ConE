@@ -27,3 +27,12 @@ Route::get('/product', function () {
 
 Route::get('/cart','App\Http\Controllers\ordersController@cart');
 Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');
+
+// Route::post('/product-detail', function () {
+//     return view('product/product-detail');
+// });
+
+// Product
+Route::get('/product','App\Http\Controllers\productController@showProduct');
+Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
+Route::post('/search','App\Http\Controllers\productController@searchProduct');
