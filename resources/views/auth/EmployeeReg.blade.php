@@ -37,65 +37,58 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
-				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
+				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ URL::to('/EmpCheck') }}">
 				@csrf	
 					<span class="login100-form-title p-b-32">
-						Login
+						Employee Register
+                    </span>
+                    
+                    <span class="txt1 p-b-11">
+						First Name
 					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
+						<input class="input80 form-control" type="text" name="Fname" >
+						<span class="focus-input80"></span>
+					</div>
+
+					<span class="txt1 p-b-11">
+						Last Name
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
+						<input class="input80 form-control" type="text" name="Lname" >
+						<span class="focus-input80"></span>
+                    </div>
+                    
+                    <span class="txt1 p-b-11">
+						Status
+					</span>
+					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
+                        <select class="input100 selection" name="status">
+                            <option>Admin</option>
+                            <option>พนักงานขาย</option>
+                            <option>พนักงานบัญชี</option>
+                        </select>
+					</div>
 
 					<span class="txt1 p-b-11">
 						E-mall Address
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input100 form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" >
-						<span class="focus-input100"></span>
-						@error('email')
-							<script type="text/javascript">
-								Swal.fire({
-									icon: 'error',
-									title: 'Oops...',
-									text: 'Pleass try agian'
-									})
-							</script>
-						@enderror
+						<input class="input80 form-control" type="email" name="email">
+						<span class="focus-input80"></span>
 					</div>
 					
 					<span class="txt1 p-b-11">
 						Password
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "โปรดกรอก Password">
-						<!-- <span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span> -->
-						<input class="input100 form-control @error('password') is-invalid @enderror" type="password" name="password" >
-						<span class="focus-input100"></span>
-						@error('password')
-							<script type="text/javascript">
-								swal("Oops!", "Pleass try agin", "error");
-							</script>
-						@enderror
-					</div>
-					
-					<div class="flex-sb-m w-full p-b-48">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-						@if (Route::has('password.request'))
-							<a href="{{ route('password.request') }}" class="txt3">
-								Forgot Password?
-							</a>
-						@endif
-						</div>
+						<input class="input80 form-control" type="password" name="pass" >
+						<span class="focus-input80"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Login
+							Register
 						</button>
 					</div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,24 +14,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home-02');
-});
-
 Route::get('/cart', function () {
     return view('cart');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('auth/login');
+// });
 
 // Product
 Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');
 
-// ต้อง login ก่อน ถึงจะเข้าได้
-// Auth::routes();
+// register
+Route::get('/CustomerReg', function () {
+    return view('auth/CustomerReg');
+});
+
+Route::get('/EmployeeReg', function () {
+    return view('auth/EmployeeReg');
+});
+
+Route::get('/register', function () {
+    return view('auth/register');
+});
+
+Route::post('/CustomerCheck','App\Http\Controllers\registerController@CustomerReg');
+Route::post('/EmpCheck','App\Http\Controllers\registerController@EmpReg');
+
+
+Route::get('/', function () {
+    return view('home-02');
+});
+
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
