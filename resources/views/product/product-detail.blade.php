@@ -28,6 +28,7 @@
 	<!-- Product Detail -->
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
+		
 			@foreach($data as $info)
 			<div class="w-size13 p-t-30 respon5">
 				<div class="wrap-slick3 flex-sb flex-w">
@@ -42,13 +43,13 @@
 					</div>
 				</div>
 			</div>
-
+			
 			<div class="w-size14 p-t-30 respon5">
 				<h4 class="product-detail-name m-text16 p-b-13">
 					{{$info->tName}}
 				</h4>
-
-				<!--  -->
+				<form class="container" action="{{ URL::to('/product-detail/addToCart') }}" method="post" >
+				{{ csrf_field() }}
 				<div class="p-t-33 p-b-60">
 					<div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
@@ -113,7 +114,9 @@
 									<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 								</button>
 
-								<input class="size8 m-text18 t-center num-product" type="number" name="num-product" value="1">
+								
+								<input class="size8 m-text18 t-center num-product" type="number" name="qty" value="1">
+								
 
 								<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 									<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -122,13 +125,17 @@
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<!-- <a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="{{ url('/product-detail/addToCart/'.$tID) }}" >
 									เพิ่มไปยังตะกร้า
-								</button>
+								</a> -->
+								<input type="hidden" name="tID" value="{{$tID}}">
+								<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
 							</div>
+							
 						</div>
 					</div>
 				</div>
+				</form>
 
 				<!--  -->
 				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
@@ -158,9 +165,12 @@
 						</p>
 					</div>
 				</div>
+				
 
 			</div>
+			
 			@endforeach
+		
 		</div>
 	</div>
 
@@ -214,7 +224,7 @@
 		$('.btn-addcart-product-detail').each(function(){
 			var nameProduct = $('.product-detail-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "เพิ่มไปยังตะกร้าแล้ว", "success");
 			});
 		});
 	</script>

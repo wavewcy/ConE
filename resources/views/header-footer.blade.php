@@ -33,6 +33,7 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -94,7 +95,7 @@
 
 			<div class="header-wrapicon2">
 				<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-				<span class="header-icons-noti">0</span>
+				<span class="header-icons-noti">{{$items_in_cart}}</span>
 
 				<!-- Header cart noti -->
 				<div class="header-cart header-dropdown">
@@ -211,7 +212,7 @@
 
 				<div class="header-wrapicon2 m-r-13">
 					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-					<span class="header-icons-noti">0</span>
+					<span class="header-icons-noti">{{$items_in_cart}}</span>
 
 					<!-- Header cart noti -->
 					<div class="header-cart header-dropdown">
