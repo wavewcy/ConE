@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('home-02');
 });
 
-Route::get('/product-detail', function () {
-    return view('product-detail');
-});
 
 Route::get('/product', function () {
     return view('product');
@@ -35,4 +32,5 @@ Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');
 // Product
 Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
+Route::post('/product-detail/addToCart','App\Http\Controllers\ordersController@addToCart');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');

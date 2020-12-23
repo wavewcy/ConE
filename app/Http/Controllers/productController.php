@@ -11,22 +11,25 @@ class productController extends Controller
         $products = DB::table('type')->get();
         $groups = DB :: table('group')->get();
         $catagories = DB :: table('catagories')->get();
+        $items_in_cart = count(session()->get('cart'));
         $caID = null;
         return view('product/product',['products' => $products, 
-            'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID]);
+            'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID, 'items_in_cart'=>$items_in_cart]);
     }
 
     public function searchProduct(request $request){
         $products = DB::table('type')->get();
         $groups = DB :: table('group')->get();
         $catagories = DB :: table('catagories')->get();
+        $items_in_cart = count(session()->get('cart'));
         $caID = $request->Input('caID');
         return view('product/product',['products' => $products, 
-            'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID]);
+            'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID, 'items_in_cart'=>$items_in_cart]);
     }
 
     public function productDetail(request $request){
         $tID = $request->Input('tID');
+        $items_in_cart = count(session()->get('cart'));
         $manu = DB::table('type')->join('catagories','type.caID','=','catagories.caID')
         ->join('group','catagories.gID','=','group.gID')->where(['type.tID'=>$tID])->get();
         $data = DB::table('type')->where(['type.tID'=>$tID])->get();
@@ -38,6 +41,6 @@ class productController extends Controller
         $proUnit = $products->groupBy('pUnit');
 
         return view('product/product-detail',['manu' => $manu, 'data' => $data, 'proSize' => $proSize,
-        'proThick' =>$proThick, 'proBrand' =>$proBrand, 'proUnit' =>$proUnit]);
+        'proThick' =>$proThick, 'proBrand' =>$proBrand, 'proUnit' =>$proUnit, 'tID'=>$tID, 'items_in_cart'=>$items_in_cart]);
     }
 }

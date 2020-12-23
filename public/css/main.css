@@ -172,6 +172,11 @@ button:hover {
 	cursor: pointer;
 }
 
+
+.button:hover {
+	cursor: pointer;
+}
+
 iframe {
 	border: none !important;
 }
