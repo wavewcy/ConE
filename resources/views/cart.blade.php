@@ -28,11 +28,11 @@
 							<tr class="table-row">
 								<td class="column-1">
 									<div class="cart-img-product b-rad-4 o-f-hidden">
-										<img src="images/{{$product['tImg']}}" alt="IMG-PRODUCT">
+										<img src="images/{{$product['pImg']}}" alt="IMG-PRODUCT">
 									</div>
 								</td>
 								<td class="column-2">
-									<p class="head-cart">{{$product['tName']}}</p>
+									<p class="head-cart">{{$product['pName']}}</p>
 									<p>รหัสสินค้า : {{$product['pID']}}</p>
 									<p>แบรนด์ : {{$product['pBrand']}}</p>
 									<p>ขนาด : {{$product['pSize']}}</p>
@@ -43,7 +43,7 @@
 										<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
 											<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 										</button>
-										<input class="size8 m-text18 t-center num-product" type="number" id="qty" name="qty" value="{{$product['dQuantity']}}">
+										<input class="size8 m-text18 t-center num-product" type="number" id="qty" name="qty" value="{{$product['quantity']}}">
 
 										<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 											<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
