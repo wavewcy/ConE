@@ -17,7 +17,11 @@ class ordersController extends Controller
         // $cID=Auth::id();
         $cID=1;
         $products = DB::Select('Select * From orders join details using (oID) join products using (pID) join type using (tID) where ?=cID and oStatus="อยู่ในตะกร้า"',[$cID]);
-        $items_in_cart = count(session()->get('cart'));
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
         return view('cart',['products' => $products, 'items_in_cart'=>$items_in_cart]);
     }
 
@@ -52,11 +56,15 @@ class ordersController extends Controller
         $pBrand = $product[0]->pBrand;
         $pSize = $product[0]->pSize;
         $pThick = $product[0]->pThick;
+        $pImg = $product[0]->tImg;
+        $pUnit = $product[0]->pUnit;
+
 
         if(!$product) {
             abort(404);
         }
         $cart = session()->get('cart');
+        $request->session()->forget('cart');
         print_r($cart);
         // if cart is empty then this the first product
         if(!$cart) {
@@ -67,7 +75,9 @@ class ordersController extends Controller
                         "quantity" => $qty,
                         "pBrand" => $pBrand,
                         "pSize" => $pSize,
-                        "pThick" => $pThick
+                        "pThick" => $pThick,
+                        "pImg" => $pImg,
+                        "pUnit" => $pUnit
                     ]
             ];
             session()->put('cart', $cart);
@@ -79,16 +89,16 @@ class ordersController extends Controller
             session()->put('cart', $cart);
             return redirect('/product');
         }
-        $cart = [
-            $pID => [
+        $cart[$pID] = [
                 "pID" => $pID,
                 "pName" => $pName,
                 "quantity" => $qty,
                 "pBrand" => $pBrand,
                 "pSize" => $pSize,
-                "pThick" => $pThick
-            ]
-         ];
+                "pThick" => $pThick,
+                "pImg" => $pImg,
+                "pUnit" => $pUnit
+            ];
         session()->put('cart', $cart);
         return redirect('/product');
     }

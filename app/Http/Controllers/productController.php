@@ -11,7 +11,11 @@ class productController extends Controller
         $products = DB::table('type')->get();
         $groups = DB :: table('group')->get();
         $catagories = DB :: table('catagories')->get();
-        $items_in_cart = count(session()->get('cart'));
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
         $caID = null;
         return view('product/product',['products' => $products, 
             'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID, 'items_in_cart'=>$items_in_cart]);
@@ -21,7 +25,11 @@ class productController extends Controller
         $products = DB::table('type')->get();
         $groups = DB :: table('group')->get();
         $catagories = DB :: table('catagories')->get();
-        $items_in_cart = count(session()->get('cart'));
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
         $caID = $request->Input('caID');
         return view('product/product',['products' => $products, 
             'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID, 'items_in_cart'=>$items_in_cart]);
@@ -29,7 +37,11 @@ class productController extends Controller
 
     public function productDetail(request $request){
         $tID = $request->Input('tID');
-        $items_in_cart = count(session()->get('cart'));
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
         $manu = DB::table('type')->join('catagories','type.caID','=','catagories.caID')
         ->join('group','catagories.gID','=','group.gID')->where(['type.tID'=>$tID])->get();
         $data = DB::table('type')->where(['type.tID'=>$tID])->get();
