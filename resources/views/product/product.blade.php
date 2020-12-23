@@ -129,7 +129,7 @@
 									</div>
 
 									<div class="block2-txt p-t-20">
-										<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+										<a class="block2-name dis-block s-text3 p-b-5">
 											{{$pro->tName}}
 										</a>
 
