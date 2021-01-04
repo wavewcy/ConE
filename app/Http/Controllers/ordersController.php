@@ -97,8 +97,20 @@ class ordersController extends Controller
             ];
         session()->put('cart', $cart);
         return redirect('/product');
-    }
 
+    }
+    
+    public function cartDelivery(request $request)
+    {
+        $oShipName = $request->input('name');
+        $oShipAddress = $request->input('addr');
+        $oShipPhone = $request->input('phone');  
+        $cart = session()->get('cart');
+
+        print_r($cart);
+
+
+    }
 
 
 

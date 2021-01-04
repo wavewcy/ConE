@@ -60,13 +60,42 @@
 				</div>
 			</div>
 			<!-- Total -->
-			<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
-				<div class="size15 trans-0-4">
-					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-						Proceed to Checkout
-					</button>
+			<div class=" w-size18 p-l-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+				<div class="forms">
+					<ul class="tab-group">
+						<li class="tab active"><a href="#จัดส่ง">จัดส่ง</a></li>
+						<li class="tab"><a href="#รับเอง">รับเอง</a></li>
+					</ul>
+					<form action="{{ URL::to('/cart/delivery') }}" id="จัดส่ง">
+						<div class="input-field">
+							<label for="name">ชื่อ</label>
+							<input type="text" name="name" required />
+							<label for="addr">ที่อยู่</label> 
+							<input type="text" name="addr" required/>
+							<label for="phone">เบอร์โทร</label> 
+							<input type="tel" name="phone" required/>
+							
+							<div style="margin-top:30px;" class="size15 trans-0-4">				
+								<!-- Button -->
+								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+									ยืนยันขอใบเสนอราคา
+								</button>
+							</div>
+						</div>
+					</form>
+					<form action="#" id="รับเอง">
+						<div class="input-field">
+							<input id="prodId" name="prodId" type="hidden" value="xm234jq">
+							<div class="size15 trans-0-4">				
+								<!-- Button -->
+								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+									ยืนยันขอใบเสนอราคา
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
+
 			</div>
 
 			@else
@@ -99,7 +128,21 @@
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.tab a').on('click', function (e) {
+			e.preventDefault();
+			
+			$(this).parent().addClass('active');
+			$(this).parent().siblings().removeClass('active');
+			
+			var href = $(this).attr('href');
+			$('.forms > form').hide();
+			$(href).fadeIn(500);
+			});
+		});
+
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect1')
