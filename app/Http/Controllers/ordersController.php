@@ -15,31 +15,26 @@ class ordersController extends Controller
     public function cart(request $request)
     {
         // $cID=Auth::id();
-        $cID=1;
-        $products = DB::Select('Select * From orders join details using (oID) join products using (pID) join type using (tID) where ?=cID and oStatus="อยู่ในตะกร้า"',[$cID]);
+        $cID=1;        
         if(session()->has('cart')){
             $items_in_cart = count(session()->get('cart'));
         }else {
             $items_in_cart = 0 ;
         }
-        return view('cart',['products' => $products, 'items_in_cart'=>$items_in_cart]);
+        return view('cart',['items_in_cart'=>$items_in_cart]);
     }
 
     public function cartDelete(request $request)
     {
-        // $cID=Auth::id();
-        $cID=1;
-        $pID = $_GET['pID'];
-        DB::table('details')
-        ->join('orders', 'details.oID', '=', 'orders.oID')
-        ->where(['pID'=>$pID, 'cID'=>$cID, 'oStatus'=>"อยู่ในตะกร้า"])->delete();
-
-        return redirect()->back();
-    }
-
-    public function cartUpdate(request $request)
-    {
-
+        $pID = $request->input('pID');
+        if($pID) {
+            $cart = session()->get('cart');
+            if(isset($cart[$pID])) {
+                unset($cart[$pID]);
+                session()->put('cart', $cart);
+            }
+            return redirect('/cart');
+        }
     }
 
     public function addToCart(request $request)
@@ -70,6 +65,7 @@ class ordersController extends Controller
         if(!$cart) {
             $cart = [
                     $pID => [
+                        "tID" => $tID,
                         "pID" => $pID,
                         "pName" => $pName,
                         "quantity" => $qty,
