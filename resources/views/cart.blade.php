@@ -83,10 +83,13 @@
 							</div>
 						</div>
 					</form>
-					<form action="#" id="รับเอง">
+					<form action="{{ URL::to('/cart/self') }}" id="รับเอง">
 						<div class="input-field">
-							<input id="prodId" name="prodId" type="hidden" value="xm234jq">
-							<div class="size15 trans-0-4">				
+							<label for="name">ชื่อ</label>
+							<input type="text" name="name" required />
+							<label for="phone">เบอร์โทร</label> 
+							<input type="tel" name="phone" required/>
+							<div style="margin-top:30px;" class="size15 trans-0-4">				
 								<!-- Button -->
 								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 									ยืนยันขอใบเสนอราคา

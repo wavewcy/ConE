@@ -12,6 +12,30 @@ use strtotime;
 
 class ordersController extends Controller
 {
+    function getTotalOrders() {
+        $orders = DB::select('SELECT * FROM orders');
+        $num = count($orders);
+        ++$num; // add 1;
+        $len = strlen($num);
+        for($i=$len; $i< 4; ++$i) {
+            $num = '0'.$num;
+        }
+        $oID = 'QT'.$num;
+        return $oID;
+    }    
+
+    function getTotalOrdersDetails() {
+        $details = DB::select('SELECT * FROM details');
+        $num = count($details);
+        ++$num; // add 1;
+        $len = strlen($num);
+        for($i=$len; $i< 4; ++$i) {
+            $num = '0'.$num;
+        }
+        $dID = 'DT'.$num;
+        return $dID;
+    } 
+
     public function cart(request $request)
     {
         // $cID=Auth::id();
@@ -106,10 +130,70 @@ class ordersController extends Controller
         $oShipAddress = $request->input('addr');
         $oShipPhone = $request->input('phone');  
         $cart = session()->get('cart');
+        //$cID=Auth::id();
+        $cID=3;
+        $today = Carbon::today();        
+        $oID=$this->getTotalOrders();
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        
+        DB::table('orders')->insert(
+            ['oID' =>$oID,
+            'cID' =>$cID,
+            'oDate' =>$today,
+            'oShipName' =>$oShipName,
+            'oShipAddress' =>$oShipAddress,
+            'oShipPhone' =>$oShipPhone,
+            'oStatus' =>$oStatus]
+        );
 
-        print_r($cart);
+        foreach($cart as $item){
+            $dID=$this->getTotalOrdersDetails();
+            DB::table('details')->insert(
+                ['dID' =>$dID,
+                'oID' =>$oID,
+                'pID' =>$item['pID'],
+                'dQuantity' =>$item['quantity'],
+                'dOutOfStock'=>0]
+            );
+        }
+        $request->session()->flush();
+        return redirect('/product');
+    }
 
+    public function cartSelf(request $request)
+    {
+        $oShipName = $request->input('name');
+        $oShipAddress = "รับเอง";
+        $oShipPhone = $request->input('phone');  
+        $cart = session()->get('cart');
+        //$cID=Auth::id();
+        $cID=3;
+        $today = Carbon::today();        
+        $oID=$this->getTotalOrders();
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        
+        DB::table('orders')->insert(
+            ['oID' =>$oID,
+            'cID' =>$cID,
+            'oDate' =>$today,
+            'oShipName' =>$oShipName,
+            'oShipAddress' =>$oShipAddress,
+            'oShipPhone' =>$oShipPhone,
+            'oStatus' =>$oStatus]
+        );
 
+        foreach($cart as $item){
+            $dID=$this->getTotalOrdersDetails();
+            DB::table('details')->insert(
+                ['dID' =>$dID,
+                'oID' =>$oID,
+                'pID' =>$item['pID'],
+                'dQuantity' =>$item['quantity'],
+                'dOutOfStock'=>0]
+            );
+        }
+        $request->session()->flush();
+        return redirect('/product');
     }
 
 
