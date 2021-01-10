@@ -77,7 +77,7 @@
 							
 							<div style="margin-top:30px;" class="size15 trans-0-4">				
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="btn-submit" name="btn-submit">
 									ยืนยันขอใบเสนอราคา
 								</button>
 							</div>
@@ -91,7 +91,7 @@
 							<input type="tel" name="phone" required/>
 							<div style="margin-top:30px;" class="size15 trans-0-4">				
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 									ยืนยันขอใบเสนอราคา
 								</button>
 							</div>
@@ -156,6 +156,23 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 
+		$("#btn-submit").on('click',function(e){ //also can use on submit
+			e.preventDefault(); //prevent submit
+			swal({
+				title: "Are you sure?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes!",
+				cancelButtonText: "Cancel",
+				closeOnConfirm: true
+			}
+			}).then(function(value) {
+				if (value) {
+				$('#จัดส่ง').submit();
+				}
+		});
+
 		function fncAction1(pID){
 		swal({
 			title: "ยืนยันการลบสินค้า",
@@ -173,6 +190,7 @@
 			}
 		});
 		}
+
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
