@@ -34,6 +34,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -129,77 +130,53 @@
 				<span class="header-icons-noti">{{$items_in_cart}}</span>
 
 				<!-- Header cart noti -->
-				<div class="header-cart header-dropdown">
+				<div class="header-cart header-dropdown">							
 					<ul class="header-cart-wrapitem">
-						<li class="header-cart-item">
-							<div class="header-cart-item-img">
-								<img src="images/item-cart-01.jpg" alt="IMG">
-							</div>
-
-							<div class="header-cart-item-txt">
-								<a href="#" class="header-cart-item-name">
-									White Shirt With Pleat Detail Back
+						@if(session('cart'))				
+							@foreach(session('cart') as $id => $product)
+								<li class="header-cart-item">
+									<div class="header-cart-item-img">
+										<img src="images/{{$product['pImg']}}" alt="IMG">
+									</div>
+									<div class="header-cart-item-txt">
+										<a href="#" class="header-cart-item-name">
+											{{$product['pName']}}
+										</a>
+										<span class="header-cart-item-info">
+											รหัสสินค้า : {{$product['pID']}}
+											แบรนด์ : {{$product['pBrand']}}
+											ขนาด : {{$product['pSize']}}
+											ความหนา : {{$product['pThick']}}
+											จำนวน : {{$product['quantity']}}
+										</span>
+									</div>
+								</li>
+							@endforeach							
+						@else							
+							<li class="header-cart-item">
+								<div class="header-cart-item-txt">
+									<span class="header-cart-item-info">
+										ยังไม่มีสินค้าในตะกร้า
+									</span>
+								</div>
+							</li>	
+						@endif
+						<div class="header-cart-buttons">
+							<div class="header-cart-wrapbtn">
+								<!-- Button -->
+								<a href="{{ url('/cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									ดูตะกร้า
 								</a>
-
-								<span class="header-cart-item-info">
-									1 x $19.00
-								</span>
 							</div>
-						</li>
-
-						<li class="header-cart-item">
-							<div class="header-cart-item-img">
-								<img src="images/item-cart-02.jpg" alt="IMG">
-							</div>
-
-							<div class="header-cart-item-txt">
-								<a href="#" class="header-cart-item-name">
-									Converse All Star Hi Black Canvas
+							<div class="header-cart-wrapbtn">
+								<!-- Button -->
+								<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									Check Out
 								</a>
-
-								<span class="header-cart-item-info">
-									1 x $39.00
-								</span>
 							</div>
-						</li>
-
-						<li class="header-cart-item">
-							<div class="header-cart-item-img">
-								<img src="images/item-cart-03.jpg" alt="IMG">
-							</div>
-
-							<div class="header-cart-item-txt">
-								<a href="#" class="header-cart-item-name">
-									Nixon Porter Leather Watch In Tan
-								</a>
-
-								<span class="header-cart-item-info">
-									1 x $17.00
-								</span>
-							</div>
-						</li>
-					</ul>
-
-					<div class="header-cart-total">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons">
-						<div class="header-cart-wrapbtn">
-							<!-- Button -->
-							<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-								View Cart
-							</a>
-						</div>
-
-						<div class="header-cart-wrapbtn">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-								Check Out
-							</a>
-						</div>
-					</div>
-				</div>
+						</div>	
+					</ul>	
+				</div>	
 			</div>
 		</div>
 	</div>
@@ -272,76 +249,49 @@
 					<span class="header-icons-noti">{{$items_in_cart}}</span>
 
 					<!-- Header cart noti -->
-					<div class="header-cart header-dropdown">
+					<div class="header-cart header-dropdown">							
 						<ul class="header-cart-wrapitem">
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="images/item-cart-01.jpg" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										White Shirt With Pleat Detail Back
+							@if(session('cart'))				
+								@foreach(session('cart') as $id => $product)
+									<li class="header-cart-item">
+										<div class="header-cart-item-img">
+											<img src="images/{{$product['pImg']}}" alt="IMG">
+										</div>
+										<div class="header-cart-item-txt">
+											<a href="#" class="header-cart-item-name">
+												{{$product['pName']}}<br />												
+												{{$product['pBrand']}} {{$product['pSize']}} {{$product['pThick']}}
+											</a>
+											<span class="header-cart-item-info">
+												จำนวน : {{$product['quantity']}} {{$product['pUnit']}}<br />
+											</span>
+										</div>
+									</li>
+								@endforeach					
+							@else					
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<span class="header-cart-item-info">
+											ยังไม่มีสินค้าในตะกร้า
+										</span>
+									</div>
+								</li>	
+							@endif
+							<div class="header-cart-buttons">
+								<div class="header-cart-wrapbtn">
+									<!-- Button -->
+									<a href="{{ url('/cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										ดูตะกร้า
 									</a>
-
-									<span class="header-cart-item-info">
-										1 x $19.00
-									</span>
 								</div>
-							</li>
-
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="images/item-cart-02.jpg" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										Converse All Star Hi Black Canvas
+								<div class="header-cart-wrapbtn">
+									<!-- Button -->
+									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										Check Out
 									</a>
-
-									<span class="header-cart-item-info">
-										1 x $39.00
-									</span>
 								</div>
-							</li>
-
-							<li class="header-cart-item">
-								<div class="header-cart-item-img">
-									<img src="images/item-cart-03.jpg" alt="IMG">
-								</div>
-
-								<div class="header-cart-item-txt">
-									<a href="#" class="header-cart-item-name">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="header-cart-item-info">
-										1 x $17.00
-									</span>
-								</div>
-							</li>
-						</ul>
-
-						<div class="header-cart-total">
-							Total: $75.00
-						</div>
-
-						<div class="header-cart-buttons">
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									View Cart
-								</a>
-							</div>
-
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									Check Out
-								</a>
-							</div>
-						</div>
+							</div>	
+						</ul>	
 					</div>
 				</div>
 			</div>

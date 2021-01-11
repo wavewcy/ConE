@@ -12,34 +12,53 @@ use strtotime;
 
 class ordersController extends Controller
 {
+    function getTotalOrders() {
+        $orders = DB::select('SELECT * FROM orders');
+        $num = count($orders);
+        ++$num; // add 1;
+        $len = strlen($num);
+        for($i=$len; $i< 4; ++$i) {
+            $num = '0'.$num;
+        }
+        $oID = 'QT'.$num;
+        return $oID;
+    }    
+
+    function getTotalOrdersDetails() {
+        $details = DB::select('SELECT * FROM details');
+        $num = count($details);
+        ++$num; // add 1;
+        $len = strlen($num);
+        for($i=$len; $i< 4; ++$i) {
+            $num = '0'.$num;
+        }
+        $dID = 'DT'.$num;
+        return $dID;
+    } 
+
     public function cart(request $request)
     {
         // $cID=Auth::id();
-        $cID=1;
-        $products = DB::Select('Select * From orders join details using (oID) join products using (pID) join type using (tID) where ?=cID and oStatus="อยู่ในตะกร้า"',[$cID]);
+        $cID=1;        
         if(session()->has('cart')){
             $items_in_cart = count(session()->get('cart'));
         }else {
             $items_in_cart = 0 ;
         }
-        return view('cart',['products' => $products, 'items_in_cart'=>$items_in_cart]);
+        return view('cart',['items_in_cart'=>$items_in_cart]);
     }
 
     public function cartDelete(request $request)
     {
-        // $cID=Auth::id();
-        $cID=1;
-        $pID = $_GET['pID'];
-        DB::table('details')
-        ->join('orders', 'details.oID', '=', 'orders.oID')
-        ->where(['pID'=>$pID, 'cID'=>$cID, 'oStatus'=>"อยู่ในตะกร้า"])->delete();
-
-        return redirect()->back();
-    }
-
-    public function cartUpdate(request $request)
-    {
-
+        $pID = $request->input('pID');
+        if($pID) {
+            $cart = session()->get('cart');
+            if(isset($cart[$pID])) {
+                unset($cart[$pID]);
+                session()->put('cart', $cart);
+            }
+            return redirect('/cart');
+        }
     }
 
     public function addToCart(request $request)
@@ -70,6 +89,7 @@ class ordersController extends Controller
         if(!$cart) {
             $cart = [
                     $pID => [
+                        "tID" => $tID,
                         "pID" => $pID,
                         "pName" => $pName,
                         "quantity" => $qty,
@@ -101,8 +121,80 @@ class ordersController extends Controller
             ];
         session()->put('cart', $cart);
         return redirect('/product');
+
+    }
+    
+    public function cartDelivery(request $request)
+    {
+        $oShipName = $request->input('name');
+        $oShipAddress = $request->input('addr');
+        $oShipPhone = $request->input('phone');  
+        $cart = session()->get('cart');
+        //$cID=Auth::id();
+        $cID=3;
+        $today = Carbon::today();        
+        $oID=$this->getTotalOrders();
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        
+        DB::table('orders')->insert(
+            ['oID' =>$oID,
+            'cID' =>$cID,
+            'oDate' =>$today,
+            'oShipName' =>$oShipName,
+            'oShipAddress' =>$oShipAddress,
+            'oShipPhone' =>$oShipPhone,
+            'oStatus' =>$oStatus]
+        );
+
+        foreach($cart as $item){
+            $dID=$this->getTotalOrdersDetails();
+            DB::table('details')->insert(
+                ['dID' =>$dID,
+                'oID' =>$oID,
+                'pID' =>$item['pID'],
+                'dQuantity' =>$item['quantity'],
+                'dOutOfStock'=>0]
+            );
+        }
+        $request->session()->flush();
+        return redirect('/product');
     }
 
+    public function cartSelf(request $request)
+    {
+        $oShipName = $request->input('name');
+        $oShipAddress = "รับเอง";
+        $oShipPhone = $request->input('phone');  
+        $cart = session()->get('cart');
+        //$cID=Auth::id();
+        $cID=3;
+        $today = Carbon::today();        
+        $oID=$this->getTotalOrders();
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        
+        DB::table('orders')->insert(
+            ['oID' =>$oID,
+            'cID' =>$cID,
+            'oDate' =>$today,
+            'oShipName' =>$oShipName,
+            'oShipAddress' =>$oShipAddress,
+            'oShipPhone' =>$oShipPhone,
+            'oStatus' =>$oStatus]
+        );
+
+        foreach($cart as $item){
+            $dID=$this->getTotalOrdersDetails();
+            DB::table('details')->insert(
+                ['dID' =>$dID,
+                'oID' =>$oID,
+                'pID' =>$item['pID'],
+                'dQuantity' =>$item['quantity'],
+                'dOutOfStock'=>0]
+            );
+        }
+        $request->session()->flush();
+        return redirect('/product');
+    }
 
 
 

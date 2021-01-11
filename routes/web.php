@@ -32,6 +32,9 @@ Route::post('/search','App\Http\Controllers\productController@searchProduct');
 //order
 Route::get('/cart','App\Http\Controllers\ordersController@cart');
 Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');
+Route::get('/cart/update','App\Http\Controllers\ordersController@cartUpdate');
+Route::get('/cart/delivery','App\Http\Controllers\ordersController@cartDelivery');
+Route::get('/cart/self','App\Http\Controllers\ordersController@cartSelf');
 
 // test
 Route::get('/test', function () {
