@@ -166,11 +166,11 @@
 				confirmButtonText: "Yes!",
 				cancelButtonText: "Cancel",
 				closeOnConfirm: true
-			}
+			
 			}).then(function(value) {
 				if (value) {
 				$('#จัดส่ง').submit();
-				}
+				}});
 		});
 
 		function fncAction1(pID){
