@@ -10,9 +10,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //login
 Auth::routes();
-// Route::get('/login', function () {
-//     return view('auth/login');
-// });
 
 // register
 Route::get('/CustomerReg', function () {
@@ -32,7 +29,6 @@ Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
 Route::post('/product-detail/addToCart','App\Http\Controllers\ordersController@addToCart');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');
-
 //order
 Route::get('/cart','App\Http\Controllers\ordersController@cart');
 Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');
@@ -40,3 +36,7 @@ Route::get('/cart/update','App\Http\Controllers\ordersController@cartUpdate');
 Route::get('/cart/delivery','App\Http\Controllers\ordersController@cartDelivery');
 Route::get('/cart/self','App\Http\Controllers\ordersController@cartSelf');
 
+// test
+Route::get('/test', function () {
+    return view('product/test');
+});

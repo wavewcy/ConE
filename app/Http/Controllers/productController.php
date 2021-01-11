@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class productController extends Controller
 {
     public function showProduct(){
@@ -48,11 +49,8 @@ class productController extends Controller
 
         $products = DB::table('products')->where(['products.tID'=>$tID])->get();
         $proSize = $products->groupBy('pSize');
-        $proThick = $products->groupBy('pThick');
-        $proBrand = $products->groupBy('pBrand');
-        $proUnit = $products->groupBy('pUnit');
 
         return view('product/product-detail',['manu' => $manu, 'data' => $data, 'proSize' => $proSize,
-        'proThick' =>$proThick, 'proBrand' =>$proBrand, 'proUnit' =>$proUnit, 'tID'=>$tID, 'items_in_cart'=>$items_in_cart]);
+        'tID'=>$tID, 'items_in_cart'=>$items_in_cart, 'products'=>$products]);
     }
 }

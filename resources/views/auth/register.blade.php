@@ -49,7 +49,7 @@
 						</a>
 					</div>
 
-					<span class="txt1 p-b-50" >
+					<span style="margin-top:10px;" class="txt1 p-b-50" >
 						OR
 					</span>
 

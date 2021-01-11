@@ -88,9 +88,40 @@
 
 		<!-- Header Icon -->
 		<div class="header-icons">
-			<a href="#" class="header-wrapicon1 dis-block">
-				<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-			</a>
+		@if (Auth::check())
+					<ul class="main_menu">
+						<li>
+							<a href="#" class="header-wrapicon1 dis-block m-l-30">
+							<span class="topbar-email" >
+								{{Auth::user()->email}}
+								&nbsp; &nbsp;</span>
+								<span class="topbar-email">
+								<i class="fa fa-user-circle-o fa-2x"></i>
+								&nbsp;
+								<i class="fa fa-caret-down fa-2x"></i>
+							</span>
+							</a>
+								<ul class="sub_menu">
+									<li><a href="index.html">manu 1</a></li>
+									<li><a href="home-02.html">manu 2</a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                     		document.getElementById('logout-form').submit();">Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                           @csrf
+										</form>
+									</li>
+								</ul>
+						</li>
+					</ul>
+				@else
+				
+					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
+						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						/
+						<a href="{{URL::to('/register')}}" class="">Register</a>
+					</span>
+				@endif
 
 			<span class="linedivide1"></span>
 
@@ -167,23 +198,49 @@
 			<a href="index.html" class="logo2">
 				<img src="images/icons/logo.png" alt="IMG-LOGO">
 			</a>
-
+		
 			<div class="topbar-child2">
-				<span class="topbar-email">
+				<!-- <span class="topbar-email">
 					fashe@example.com
-				</span>
-
-				<div class="topbar-language rs1-select2">
-					<select class="selection-1" name="time">
-						<option>USD</option>
-						<option>EUR</option>
-					</select>
-				</div>
+				</span> -->
 
 				<!--  -->
-				<a href="#" class="header-wrapicon1 dis-block m-l-30">
-					<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-				</a>
+				<div class="topbar-language rs1-select2">
+				@if (Auth::check())
+					<ul class="main_menu">
+						<li>
+							<a href="#" class="header-wrapicon1 dis-block m-l-30">
+							<span class="topbar-email" >
+								{{Auth:: user()->email}}
+								&nbsp; &nbsp;</span>
+								<span class="topbar-email">
+								<i class="fa fa-user-circle-o fa-2x"></i>
+								&nbsp;
+								<i class="fa fa-caret-down fa-2x"></i>
+							</span>
+							</a>
+								<ul class="sub_menu">
+									<li><a href="index.html">manu 1</a></li>
+									<li><a href="home-02.html">manu 2</a></li>
+									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                     		document.getElementById('logout-form').submit();">Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                           @csrf
+										</form>
+									</li>
+								</ul>
+						</li>
+					</ul>
+				@else
+				
+					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
+						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						/
+						<a href="{{URL::to('/register')}}" class="">Register</a>
+					</span>
+				@endif
+				</div>
 
 				<span class="linedivide1"></span>
 

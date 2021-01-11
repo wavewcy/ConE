@@ -40,11 +40,11 @@
 				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
 				@csrf	
 					<span class="login100-form-title p-b-32">
-						Login
+						เข้าสู่ระบบ
 					</span>
 
 					<span class="txt1 p-b-11">
-						E-mall Address
+						อีเมล
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
 						<input class="input100 form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ old('email') }}" >
@@ -53,15 +53,15 @@
 							<script type="text/javascript">
 								Swal.fire({
 									icon: 'error',
-									title: 'Oops...',
-									text: 'Pleass try agian'
+									title: 'ผิดพลาด',
+									text: 'โปรดลองเข้าสู่ระบบอีกครั้ง'
 									})
 							</script>
 						@enderror
 					</div>
 					
 					<span class="txt1 p-b-11">
-						Password
+						รหัสผ่าน
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "โปรดกรอก Password">
 						<!-- <span class="btn-show-pass">
@@ -71,23 +71,19 @@
 						<span class="focus-input100"></span>
 						@error('password')
 							<script type="text/javascript">
-								swal("Oops!", "Pleass try agin", "error");
+								swal("Oops!", "Please try agin", "error");
 							</script>
 						@enderror
 					</div>
 					
 					<div class="flex-sb-m w-full p-b-48">
 						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
 						</div>
 
-						<div>
+						<div style="margin-top: 30px;">
 						@if (Route::has('password.request'))
 							<a href="{{ route('password.request') }}" class="txt3">
-								Forgot Password?
+								ลืมรหัสผ่าน?
 							</a>
 						@endif
 						</div>
@@ -95,9 +91,15 @@
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Login
+							เข้าสู่ระบบ
 						</button>
 					</div>
+					<span style="margin-left: 90px;margin-top: 10px;">
+						ยังไม่เป็นสมาชิก?
+						<a href="{{URL::to('/register')}}" class="txt3">
+							สมัครสมาชิก
+						</a>
+					</span>	
 
 				</form>
 			</div>
