@@ -1,6 +1,8 @@
 @extends('header-footer')
 
 @section('header')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 	<!-- breadcrumb -->
 	@foreach($manu as $head)
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
@@ -49,17 +51,20 @@
 					{{$info->tName}}
 				</h4>
 				<form class="container" action="{{ URL::to('/product-detail/addToCart') }}" method="post" >
-				{{ csrf_field() }}
+				@csrf
 				<div class="p-t-33 p-b-60">
+
 					<div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
 							ขนาด
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="size">
+							<select class="selection-2 form-control dynamic" name="size" id="size" 
+								data-dependent="thick" onchange="FunctionSize(this)">
+							<option value="" selected disabled>กรุณาเลือกขนาด</option>
 								@foreach($proSize as $size)
-								<option>{{$size[0]->pSize}}</option>
+								<option value="{{$size[0]->pSize}}">{{$size[0]->pSize}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -71,24 +76,8 @@
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="thick">
-								@foreach($proThick as $thick)
-								<option>{{$thick[0]->pThick}}</option>
-								@endforeach
-							</select>
-						</div>
-					</div>
-
-					<div class="flex-m flex-w p-b-10">
-						<div class="s-text15 w-size15 t-center">
-							แบรนด์
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="brand">
-								@foreach($proBrand as $brand)
-								<option>{{$brand[0]->pBrand}}</option>
-								@endforeach
+							<select class="selection-2 form-control dynamic" name="thick" id="thick" 
+							data-dependent="unit" onchange="FunctionThick(this)">
 							</select>
 						</div>
 					</div>
@@ -99,14 +88,25 @@
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="unit">
-								@foreach($proUnit as $unit)
-								<option>{{$unit[0]->pUnit}}  (จำนวนต่อหน่วย: {{$unit[0]->pPerUnit}})</option>
-								@endforeach
+							<select class="selection-2 form-control" name="unit" id="unit"
+							data-dependent="unit" onchange="FunctionUnit(this)">
+							</select>
+						</div>
+					</div>
+					
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							แบรนด์
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<select class="selection-2 form-control dynamic" name="brand" id="brand" 
+							data-dependent="brand">
 							</select>
 						</div>
 					</div>
 
+					
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
 							<div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
@@ -165,8 +165,6 @@
 						</p>
 					</div>
 				</div>
-				
-
 			</div>
 			
 			@endforeach
@@ -176,11 +174,98 @@
 
 
 	<!-- Relate Product -->
+
+
 	
-	</section>
 @endsection
 
 @section('footer')
+
+<script src="https://www.goragod.com/ajax/gajax.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+// แก้ไขฐานข้อมูลให้ default เป็น ไม่มี....
+
+	function FunctionSize(obj){
+		var select = obj.value;
+		var products = <?php echo json_encode($products); ?>;
+		var resul = [];
+
+		for (var i=0; i< products.length; i++){
+			if(select == products[i].pSize){
+				resul.push(products[i].pThick);
+			}
+		}
+
+		var r_thick = Array.from(new Set(resul));
+		var t;
+		document.getElementById("thick").innerHTML = '<option value="" selected disabled>กรุณาเลือกความหนา</option>'
+		for (t of r_thick){
+			document.getElementById("thick").innerHTML += '<option value="' + t +'">' + t + '</option>';
+		}
+	}
+
+	function FunctionThick(obj){
+		var select = obj.value;
+		var I_size = document.getElementById("size").value;
+		var products = <?php echo json_encode($products); ?>;
+		var resul = [];
+		var p_unit = [];
+		var unit = [];
+		
+		for(var i=0;i< products.length; i++ ){
+			if(I_size == products[i].pSize){
+				if(select == products[i].pThick){
+					resul.push(products[i].pUnit);
+					p_unit.push(products[i].pPerUnit);
+				}
+			}
+		}
+
+		for(var i=0;i< resul.length; i++){
+			unit.push(resul[i]+" (จำนวนต่อหน่วย :"+p_unit[i]+")");
+		}
+
+			var r_unit = Array.from(new Set(unit));
+			var u;
+			document.getElementById("unit").innerHTML = '<option value="" selected disabled>กรุณาเลือกหน่วย</option>'
+			for (u of r_unit){
+				document.getElementById("unit").innerHTML += '<option value="' + u +'">' + u + '</option>';
+			}
+	}
+
+	function FunctionUnit(obj){
+		var select = obj.value;
+		var I_size = document.getElementById("size").value;
+		var I_thick = document.getElementById("thick").value;
+		var products = <?php echo json_encode($products); ?>;
+		var resul = [];
+		var unit = [];
+
+		for(var i=0;i< products.length; i++){
+			unit.push(products[i].pUnit+" (จำนวนต่อหน่วย :"+products[i].pPerUnit+")");
+		}
+
+		for(var i=0;i< products.length; i++ ){
+			if(I_size == products[i].pSize){
+				if(I_thick == products[i].pThick){
+					if(select == unit[i]){
+						resul.push(products[i].pBrand);
+					}
+				}
+			}
+		}
+
+		var r_brand = Array.from(new Set(resul));
+		var b;
+		document.getElementById("brand").innerHTML = '<option value="" selected disabled>กรุณาเลือกแบรนด์</option>'
+		for (b of r_brand){
+			document.getElementById("brand").innerHTML += '<option value="' + b +'">' + b + '</option>';
+		}
+	}
+
+</script>
+
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -231,4 +316,11 @@
 
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+<!-- =============================================================================================== -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- =============================================================================================== -->
+
+
 @endsection
+
