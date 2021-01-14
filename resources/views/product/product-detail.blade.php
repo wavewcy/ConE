@@ -96,7 +96,7 @@
 					
 					<div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
-							แบรนด์
+							ยี่ห้อ
 						</div>
 
 						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">

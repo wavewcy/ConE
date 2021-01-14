@@ -38,7 +38,7 @@ class ordersController extends Controller
 
     public function cart(request $request)
     {
-        $cID=Auth::id();
+        $cID=Auth::id(); 
         if(session()->has('cart')){
             $items_in_cart = count(session()->get('cart'));
         }else {
@@ -130,9 +130,10 @@ class ordersController extends Controller
         $oShipPhone = $request->input('phone');  
         $cart = session()->get('cart');
         $cID=Auth::id();
+        $cID=DB::table('customers')->where('cID', '=', $cID)->value('cID');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
-        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
         
         DB::table('orders')->insert(
             ['oID' =>$oID,
@@ -151,7 +152,7 @@ class ordersController extends Controller
                 'oID' =>$oID,
                 'pID' =>$item['pID'],
                 'dQuantity' =>$item['quantity'],
-                'dOutOfStock'=>0]
+                'dInStock'=>1]
             );
         }
         // $request->session()->flush();
@@ -165,9 +166,10 @@ class ordersController extends Controller
         $oShipPhone = $request->input('phone');  
         $cart = session()->get('cart');
         $cID=Auth::id();
+        $cID=DB::table('customers')->where('cID', '=', $cID)->value('cID');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
-        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
         
         DB::table('orders')->insert(
             ['oID' =>$oID,
@@ -186,7 +188,7 @@ class ordersController extends Controller
                 'oID' =>$oID,
                 'pID' =>$item['pID'],
                 'dQuantity' =>$item['quantity'],
-                'dOutOfStock'=>0]
+                'dInStock'=>1]
             );
         }
         // $request->session()->flush();
