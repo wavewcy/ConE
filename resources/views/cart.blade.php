@@ -159,12 +159,12 @@
 		$("#btn-submit").on('click',function(e){ //also can use on submit
 			e.preventDefault(); //prevent submit
 			swal({
-				title: "Are you sure?",
+				title: "ยืนยันขอใบเสนอราคา",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yes!",
-				cancelButtonText: "Cancel",
+				confirmButtonText: "ยืนยัน",
+				cancelButtonText: "ยกเลิก",
 				closeOnConfirm: true
 			
 			}).then(function(value) {
