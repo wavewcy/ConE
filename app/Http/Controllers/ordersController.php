@@ -154,7 +154,7 @@ class ordersController extends Controller
                 'dOutOfStock'=>0]
             );
         }
-        $request->session()->flush();
+        // $request->session()->flush();
         return redirect('/product');
     }
 
@@ -189,7 +189,7 @@ class ordersController extends Controller
                 'dOutOfStock'=>0]
             );
         }
-        $request->session()->flush();
+        // $request->session()->flush();
         return redirect('/product');
     }
 
