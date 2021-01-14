@@ -123,7 +123,7 @@ h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
-p {
+p,li {
 	font-family: Kanit-Regular;
 	font-size: 15px;
 	line-height: 1.7;
@@ -2125,6 +2125,7 @@ li.sale-noti > a {
   text-transform: uppercase;
 }
 
+
 .table-shopping-cart td {
   font-family: Kanit-Regular;
   font-size: 16px;
@@ -2683,31 +2684,30 @@ input.num-product::-webkit-inner-spin-button {
   border: 1px solid #d3d3d3;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: .25rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   margin-bottom:25px;
+  padding-top: 2rem;
+  margin-top:25px;
+  padding-right:5rem;
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.contentCard {
-  padding: 15px;
+
+.head-card {
+  font-family: Kanit-Bold;
+  font-size: 16px;
+  color: #555555;  
+  line-height: 1.5;
+  padding-top:10px;
+  text-transform: uppercase;
 }
 
-.card2 {
-  border: 1px solid #d3d3d3;
-  width:300px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: .25rem;
-  padding-bottom: 1rem;
-  margin-bottom:25px;
 
-}
 
-.card2:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
+
 
 button.manu-noti {
   color: black;
