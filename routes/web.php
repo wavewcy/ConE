@@ -37,8 +37,5 @@ Route::get('/cart/delivery','App\Http\Controllers\ordersController@cartDelivery'
 Route::get('/cart/self','App\Http\Controllers\ordersController@cartSelf');
 //admin
 Route::get('/admin','App\Http\Controllers\adminController@adminMenu');
-
-// test
-Route::get('/test', function () {
-    return view('product/test');
-});
+// customer
+Route::get('/customer','App\Http\Controllers\QuotationController@Qconfirm');

@@ -13,6 +13,6 @@ class adminController extends Controller
         }else {
             $items_in_cart = 0 ;
         }
-        return view('admin',['items_in_cart'=>$items_in_cart]);
+        return view('admin/admin',['items_in_cart'=>$items_in_cart]);
     }
 }

@@ -102,8 +102,11 @@
 							</span>
 							</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">manu 1</a></li>
-									<li><a href="home-02.html">manu 2</a></li>
+								@if( Auth::user()->status == 'ลูกค้า')
+									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+								@endif
+									<li><a href="#">manu 1</a></li>
+									<li><a href="#">manu 2</a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>
 
@@ -220,8 +223,11 @@
 							</span>
 							</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">manu 1</a></li>
-									<li><a href="home-02.html">manu 2</a></li>
+								@if( Auth::user()->status == 'ลูกค้า')
+									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+								@endif
+									<li><a href="#">manu 1</a></li>
+									<li><a href="#">manu 2</a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>
 

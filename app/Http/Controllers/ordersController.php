@@ -38,8 +38,7 @@ class ordersController extends Controller
 
     public function cart(request $request)
     {
-        // $cID=Auth::id();
-        $cID=1;        
+        $cID=Auth::id();
         if(session()->has('cart')){
             $items_in_cart = count(session()->get('cart'));
         }else {
@@ -130,8 +129,7 @@ class ordersController extends Controller
         $oShipAddress = $request->input('addr');
         $oShipPhone = $request->input('phone');  
         $cart = session()->get('cart');
-        //$cID=Auth::id();
-        $cID=3;
+        $cID=Auth::id();
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
         $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
@@ -166,8 +164,7 @@ class ordersController extends Controller
         $oShipAddress = "รับเอง";
         $oShipPhone = $request->input('phone');  
         $cart = session()->get('cart');
-        //$cID=Auth::id();
-        $cID=3;
+        $cID=Auth::id();
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
         $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');;
