@@ -155,7 +155,7 @@ class ordersController extends Controller
                 'dInStock'=>1]
             );
         }
-        $request->session()->flush();
+        // $request->session()->flush();
         return redirect('/product');
     }
 
@@ -191,7 +191,7 @@ class ordersController extends Controller
                 'dInStock'=>1]
             );
         }
-        $request->session()->flush();
+        // $request->session()->flush();
         return redirect('/product');
     }
 
