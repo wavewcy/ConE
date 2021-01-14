@@ -44,3 +44,5 @@ Route::get('/adminQuotation/created','App\Http\Controllers\adminController@creat
 Route::get('/test', function () {
     return view('product/test');
 });
+// customer
+Route::get('/customer','App\Http\Controllers\QuotationController@Qconfirm');

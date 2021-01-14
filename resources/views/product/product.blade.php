@@ -59,91 +59,160 @@
 						</h2>
 
 						<div class="s-text8 p-t-5 p-b-5">
-							<div class="search-product pos-relative bo4 of-hidden">
-								<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="ค้นหาสินค้า...">
+							<form action="product" method="get">
+								<div class="search-product pos-relative bo4 of-hidden">
+									<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search" placeholder="ค้นหาสินค้า...">
 
-								<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-									<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-								</button>
-							</div>
+									<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+										<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+									</button>
+								</div>
+							</form>
 						</div>
 					</div>
 
 					<!-- Product -->
-					<div class="row">
-						@if($caID == null)
-							@foreach($products as $pro)
-							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-								<!-- Block2 -->
-								<!-- block2-labelnew block2-labelsale -->
-								<!-- photo size 720x960 -->
-								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative">
-										<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
+					@if(isset($_GET['search']))
+					<?php
+						$search = $_GET['search'];
+						$servername = "localhost";
+						$username = "root";
+						$password = "";
+						$dbname = "cone";
 
-										<div class="block2-overlay trans-0-4">
-											<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
-												<!-- Button -->
-												@csrf
-												<input type="hidden" name="tID" value="{{$pro->tID}}"/>
-												<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-													ดูรายละเอียด
-												</button>
-											</form>
-										</div>
-									</div>
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+						// Check connection
+						if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+						}
 
-									<div class="block2-txt p-t-20">
-										<a class="block2-name dis-block s-text3 m-text8 p-b-5">
-											{{$pro->tName}}
-										</a>
-
-										<!-- <span class="block2-price m-text6 p-r-5">
-											Brand
-										</span> -->
-									</div>
-								</div>
-							</div>
-							@endforeach
-						@else
-							@foreach($products as $pro)
-							@if($caID == $pro->caID)
-							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-								<!-- Block2 -->
-								<!-- block2-labelnew block2-labelsale -->
-								<!-- photo size 720x960 -->
-								<div class="block2">
-									<div class="block2-img wrap-pic-w of-hidden pos-relative">
-										<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
-
-										<div class="block2-overlay trans-0-4">
-											<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
-												<!-- Button -->
-												@csrf
-												<input type="hidden" name="tID" value="{{$pro->tID}}"/>
-												<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-													ดูรายละเอียด
-												</button>
-											</form>
-										</div>
-									</div>
-
-									<div class="block2-txt p-t-20">
-										<a class="block2-name dis-block s-text3 p-b-5">
-											{{$pro->tName}}
-										</a>
-
-										<span class="block2-price m-text6 p-r-5">
-											Brand
-										</span>
-									</div>
-								</div>
-							</div>
-							@endif
-							@endforeach
-						@endif
+						$sql = "SELECT * FROM type WHERE tName LIKE '%$search%'";
+						$result = mysqli_query($conn, $sql);
+						  
+						mysqli_close($conn);
+					?>
 						
-					</div>
+						@if(mysqli_num_rows($result) > 0)
+						<span class="block2-price m-text6 p-r-5">
+							ค้นหา &nbsp;&nbsp;" {{$search}} "<br>
+						</span>
+						<div>
+							<br>
+						</div>
+						<div class="row">
+							@while($row = mysqli_fetch_assoc($result))
+								@foreach($products as $pro)
+									@if($row['tID'] == $pro->tID)
+									<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+										<!-- Block2 -->
+										<!-- block2-labelnew block2-labelsale -->
+										<!-- photo size 720x960 -->
+										<div class="block2">
+											<div class="block2-img wrap-pic-w of-hidden pos-relative">
+												<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
+
+												<div class="block2-overlay trans-0-4">
+													<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
+														<!-- Button -->
+														@csrf
+														<input type="hidden" name="tID" value="{{$pro->tID}}"/>
+														<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+															ดูรายละเอียด
+														</button>
+													</form>
+												</div>
+											</div>
+
+											<div class="block2-txt p-t-20">
+												<a class="block2-name dis-block s-text3 m-text8 p-b-5">
+													{{$pro->tName}}
+												</a>
+											</div>
+										</div>
+									</div>
+									@endif
+								@endforeach
+							@endwhile
+						</div>
+						@else
+						<span class="block2-price m-text6 p-r-5">
+							ค้นหา &nbsp;&nbsp;" {{$search}} "<br>
+						</span>
+
+						<br>
+						<h4 style="color: #BEBEBE;" align="center">ไม่พบผลลัพธ์</h4>
+						<br>
+						@endif  
+					@else
+						<div class="row">
+							@if($caID == null)
+								@foreach($products as $pro)
+								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+									<!-- Block2 -->
+									<!-- block2-labelnew block2-labelsale -->
+									<!-- photo size 720x960 -->
+									<div class="block2">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative">
+											<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
+
+											<div class="block2-overlay trans-0-4">
+												<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
+													<!-- Button -->
+													@csrf
+													<input type="hidden" name="tID" value="{{$pro->tID}}"/>
+													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+														ดูรายละเอียด
+													</button>
+												</form>
+											</div>
+										</div>
+
+										<div class="block2-txt p-t-20">
+											<a class="block2-name dis-block s-text3 m-text8 p-b-5">
+												{{$pro->tName}}
+											</a>
+										</div>
+									</div>
+								</div>
+								@endforeach
+							@else
+								@foreach($products as $pro)
+								@if($caID == $pro->caID)
+								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+									<!-- Block2 -->
+									<!-- block2-labelnew block2-labelsale -->
+									<!-- photo size 720x960 -->
+									<div class="block2">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative">
+											<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
+
+											<div class="block2-overlay trans-0-4">
+												<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
+													<!-- Button -->
+													@csrf
+													<input type="hidden" name="tID" value="{{$pro->tID}}"/>
+													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+														ดูรายละเอียด
+													</button>
+												</form>
+											</div>
+										</div>
+
+										<div class="block2-txt p-t-20">
+											<a class="block2-name dis-block s-text3 p-b-5">
+												{{$pro->tName}}
+											</a>
+										</div>
+									</div>
+								</div>
+								@endif
+								@endforeach
+							@endif
+							
+						</div>
+					@endif
+					
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
