@@ -2683,12 +2683,9 @@ input.num-product::-webkit-inner-spin-button {
 .card {
   border: 1px solid #d3d3d3;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: .25rem;
-  padding-bottom: 2rem;
-  margin-bottom:25px;
-  padding-top: 2rem;
+  border-radius: .25rem;  
+  margin-bottom:25px;  
   margin-top:25px;
-  padding-right:5rem;
 }
 
 .card:hover {
@@ -2706,10 +2703,34 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
+.contentCard{
+  padding-top:30px;
+  padding-bottom:30px;
+  padding-left:50px;
+  padding-right:10px;
+}
 
+.contentCardStatus{
+  background-color:  #d3d3d3;
+  box-align:center;
+}
 
+.contentCardOrder{
+  border-left: 6px solid #fcc404;
+  border-right: 1px solid #dadada;
+}
 
 button.manu-noti {
   color: black;
   background-color:  #fcc404;
 }
+
+div.center {
+  position: relative }
+div.center p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) }

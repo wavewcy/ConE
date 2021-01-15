@@ -94,30 +94,27 @@
 		@if($count1 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการขอใบเสนอราคา')
-				<div class="card col-md-12">
-					<div class="contentCard">
-						<div class="row">
-									<div class="col-md-3" align="center">
-										<p class="head-cart">ออเดอร์เลขที่ {{$order[0]->oID}}</p>
-										<p>วันที่: {{$order[0]->oDate}}</p>
-									</div>
-									<div class="col-md-6">
-										<p class="head-cart">รายการสินค้า</p>
-										<ol>
-										@foreach($order as $product)
-											@foreach($products as $pro)
-												@if($product->pID == $pro->pID)
-													<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
-												@endif
-											@endforeach
-										@endforeach
-										</ol>
-									</div>
+				<div class="card col-md-12 ">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-cart">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-cart">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
 
-									<div class="col-md-3" align="center">
-										<p class="head-card"style="background-color:#d3d3d3;">สถานะ</p>
-										<p style="color: #383838;background-color:#d3d3d3;padding-bottom:10px;" >{{$order[0]->oStatus}}</p>
-									</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}</p>
 						</div>
 					</div>
 				</div>
@@ -139,45 +136,29 @@
 		@if($count2 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'รอยืนยันใบเสนอราคา')
-				<div class="card col-md-14">
-					<div class="contentCard">
-						<table class="table-shopping-cart">
-							<tr>
-								<td>
-									<div class="col-md-9" align="center">
-										<p class="head-cart">ออเดอร์เลขที่ {{$order[0]->oID}}</p>
-										<p>วันที่: {{$order[0]->oDate}}</p>
-									</div>
-								</td>
-
-								<td>
-									<div class="col-md-13">
-										<p class="head-cart">รายการสินค้า</p>
-										<ol>
-										@foreach($order as $product)
-											@foreach($products as $pro)
-												@if($product->pID == $pro->pID)
-													<li>{{$pro->tName}} ({{$pro->pBrand}}) <b>ขนาด: </b> {{$pro->pSize}} <b>หนา: </b>{{$pro->pThick}}  
-														<b>จำนวน: </b>{{$product->dQuantity}} {{$pro->pUnit}}</li>
-												@endif
-											@endforeach
-										@endforeach
-										</ol>
-									</div>
-								</td>
-
-								<td style="background-color: #D3D3D3;">
-									<div class="col-md-12" align="center">
-										<h5>สถานะ</h5>
-										<p class="head-cart">{{$order[0]->oStatus}}</p>
-									</div>
-									<br>
-									<a href="#"  role="button" class="btn btn-success" style="margin-left: 75px;" >	
-										ดูใบเสนอราคา
-									</a>
-								</td>
-							</tr>
-						</table>
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}<br><a href="#"  role="button" class="btn btn-success" style="margin-left: 12px; margin-top:8px;" >ดูใบเสนอราคา</a></p>							
+						
+						</div>
+						<br>
 					</div>
 				</div>
 				@endif
@@ -198,41 +179,27 @@
 		@if($count3 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการต่อรองราคา')
-				<div class="card col-md-14">
-					<div class="contentCard">
-						<table class="table-shopping-cart">
-							<tr>
-								<td>
-									<div class="col-md-9" align="center">
-										<p class="head-cart">ออเดอร์เลขที่ {{$order[0]->oID}}</p>
-										<p>วันที่: {{$order[0]->oDate}}</p>
-									</div>
-								</td>
-
-								<td>
-									<div class="col-md-13">
-										<p class="head-cart">รายการสินค้า</p>
-										<ol>
-										@foreach($order as $product)
-											@foreach($products as $pro)
-												@if($product->pID == $pro->pID)
-													<li>{{$pro->tName}} ({{$pro->pBrand}}) <b>ขนาด: </b> {{$pro->pSize}} <b>หนา: </b>{{$pro->pThick}}  
-														<b>จำนวน: </b>{{$product->dQuantity}} {{$pro->pUnit}}</li>
-												@endif
-											@endforeach
-										@endforeach
-										</ol>
-									</div>
-								</td>
-
-								<td style="background-color: #D3D3D3;">
-									<div class="col-md-12" align="center">
-										<h5>สถานะ</h5>
-										<p class="head-cart">{{$order[0]->oStatus}}</p>
-									</div>
-								</td>
-							</tr>
-						</table>
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}</p>
+						</div>
 					</div>
 				</div>
 				@endif
@@ -252,42 +219,53 @@
 	<div class="container">
 		@if($count > 0)
 			@foreach($orders as $order)
-				@if($order[0]->oStatus == 'รอชำระเงิน' || $order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
-				<div class="card col-md-14">
-					<div class="contentCard">
-						<table class="table-shopping-cart">
-							<tr>
-								<td>
-									<div class="col-md-9" align="center">
-										<p class="head-cart">ออเดอร์เลขที่ {{$order[0]->oID}}</p>
-										<p>วันที่: {{$order[0]->oDate}}</p>
-									</div>
-								</td>
-
-								<td>
-									<div class="col-md-13">
-										<p class="head-cart">รายการสินค้า</p>
-										<ol>
-										@foreach($order as $product)
-											@foreach($products as $pro)
-												@if($product->pID == $pro->pID)
-													<li>{{$pro->tName}} ({{$pro->pBrand}}) <b>ขนาด: </b> {{$pro->pSize}} <b>หนา: </b>{{$pro->pThick}}  
-														<b>จำนวน: </b>{{$product->dQuantity}} {{$pro->pUnit}}</li>
-												@endif
-											@endforeach
-										@endforeach
-										</ol>
-									</div>
-								</td>
-
-								<td style="background-color: #D3D3D3;">
-									<div class="col-md-12" align="center">
-										<h5>สถานะ</h5>
-										<p class="head-cart">{{$order[0]->oStatus}}</p>
-									</div>
-								</td>
-							</tr>
-						</table>
+				@if($order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}</p>
+						</div>
+					</div>
+				</div>
+				@endif
+				@if($order[0]->oStatus == 'รอชำระเงิน')
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card " style="text-align:center;">{{$order[0]->oStatus}}<br><a href="#"  role="button" class="btn btn-success" style="margin-left: 12px;margin-top:8px;" >ส่งหลักฐานการชำระเงิน</a></p>
+						</div>
 					</div>
 				</div>
 				@endif
@@ -309,41 +287,27 @@
 		@if($count1 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการขอใบเสนอราคา')
-				<div class="card col-md-14">
-					<div class="contentCard">
-						<table class="table-shopping-cart">
-							<tr>
-								<td>
-									<div class="col-md-9" align="center">
-										<p class="head-cart">ออเดอร์เลขที่ {{$order[0]->oID}}</p>
-										<p>วันที่: {{$order[0]->oDate}}</p>
-									</div>
-								</td>
-
-								<td>
-									<div class="col-md-13">
-										<p class="head-cart">รายการสินค้า</p>
-										<ol>
-										@foreach($order as $product)
-											@foreach($products as $pro)
-												@if($product->pID == $pro->pID)
-													<li>{{$pro->tName}} ({{$pro->pBrand}}) <b>ขนาด: </b> {{$pro->pSize}} <b>หนา: </b>{{$pro->pThick}}  
-														<b>จำนวน: </b>{{$product->dQuantity}} {{$pro->pUnit}}</li>
-												@endif
-											@endforeach
-										@endforeach
-										</ol>
-									</div>
-								</td>
-
-								<td style="background-color: #D3D3D3;">
-									<div class="col-md-12" align="center">
-										<h5>สถานะ</h5>
-										<p class="head-cart">{{$order[0]->oStatus}}</p>
-									</div>
-								</td>
-							</tr>
-						</table>
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p>{{$order[0]->oDate}}</p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}</p>
+						</div>
 					</div>
 				</div>
 				@endif
