@@ -416,12 +416,12 @@ iframe {
 
 .select2-container .select2-results__option[aria-selected="true"] {
   background-color: #fcc404;
-  color: white;
+  color: black;
 }
 
 .select2-container .select2-results__option--highlighted[aria-selected] {
   background-color: #fcc404;
-  color: white;
+  color: black;
 }
 
 .select2-results__options {
@@ -1581,7 +1581,7 @@ li.sale-noti > a {
     background-color: #fcc404;
     font-family: Kanit-Regular;
     font-size: 15px;
-    color: white;
+    color: black;
     text-transform: uppercase;
     font-weight: unset;
     border-radius: 20px;
@@ -2692,6 +2692,12 @@ input.num-product::-webkit-inner-spin-button {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.card2 {
+  border: 1px solid #d3d3d3;
+  border-radius: .25rem;  
+  margin-bottom:25px;  
+  margin-top:25px;
+}
 
 .head-card {
   font-family: Kanit-Bold;
@@ -2734,3 +2740,5 @@ div.center p {
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%) }
+
+

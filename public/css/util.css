@@ -3176,6 +3176,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 /*[ M-Text 16 - 30 ]
 ///////////////////////////////////////////////////////////
 */
+
 .m-text1 {
 	font-family: Kanit-Regular;
 	font-size: 21px;
@@ -3372,6 +3373,13 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	line-height: 1.5;
 	letter-spacing: 2px;
 }
+
+.m-text28 {
+	font-family: Kanit-Bold;
+	font-size: 21px;
+	color: #333333;
+}
+
 
 /*[ L-Text 31 - 50 ]
 ///////////////////////////////////////////////////////////
@@ -3962,9 +3970,10 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 /*[ Hover ]
 ///////////////////////////////////////////////////////////
 */
+
 .hov1:hover {
     background-color: #fcc404;
-  	color: white;
+  	color: rgb(0, 0, 0);
 }
 
 .hov2:hover {
@@ -3994,6 +4003,19 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 	text-decoration: underline;
 }
 
+.hov7:hover {
+    background-color: #fca504;
+  	color: black;
+}
+
+.hov8:hover {
+    background-color: rgb(104, 104, 104);
+  	color: white;
+}
+
+.hov9:hover {
+  	color: #fca504;
+}
 /*[ Active ]
 ///////////////////////////////////////////////////////////
 */

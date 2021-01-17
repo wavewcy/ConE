@@ -1,4 +1,10 @@
 @extends('header-footer')
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
 @section('header')
 	<!-- Title Page -->
@@ -53,7 +59,7 @@
 										<p>{{$product['pUnit']}}</p>
 									</div>
 								</td>
-								<td class="column-5" ><a onClick="fncAction1({{$product['pID']}})" class="fa fa-trash fa-2x"></a></td>
+								<td class="column-5 hov9" ><a onClick="fncAction1({{$product['pID']}})" class="fa fa-trash fa-2x "></a></td>
 							</tr>
 						@endforeach				
 					</table>					
@@ -158,19 +164,44 @@
 
 		$("#btn-submit").on('click',function(e){ //also can use on submit
 			e.preventDefault(); //prevent submit
-			swal({
-				title: "ยืนยันขอใบเสนอราคา",
-				type: "warning",
+			Swal.fire({
+				title: 'ยืนยันขอใบเสนอราคา',
+				text: "คุณต้องการขอใบเสนอราคาใช่หรือไม่",
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "ยืนยัน",
-				cancelButtonText: "ยกเลิก",
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน',
+				cancelButtonText: 'ยกเลิก',
 				closeOnConfirm: true
+				})
+				// .then(function(value) {
+				// 	if (value) {
+				// 		Swal.fire(
+				// 		'สำเร็จ!',
+				// 		'ขอใบเสนอราคาเรียบร้อยแล้ว',
+				// 		'success'
+				// 		)
+				// 		$('#จัดส่ง').submit();
+				// 	}
+				// }
+			);
+				
 			
-			}).then(function(value) {
-				if (value) {
-				$('#จัดส่ง').submit();
-				}});
+			// swal({
+			// 	title: "ยืนยันขอใบเสนอราคา",
+			// 	type: "warning",
+			// 	showCancelButton: true,
+			// 	confirmButtonColor: "#DD6B55",
+			// 	confirmButtonText: "ยืนยัน",
+			// 	cancelButtonColor: "#000000",
+			// 	cancelButtonText: "ยกเลิก",
+			// 	closeOnConfirm: true
+			
+			// }).then(function(value) {
+			// 	if (value) {
+			// 	$('#จัดส่ง').submit();
+			// 	}});
 		});
 
 		function fncAction1(pID){

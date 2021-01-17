@@ -31,12 +31,12 @@ class adminController extends Controller
         }
         //$oID=$request->input('oID');
         $oID="QT0002";
-        $cID=Auth::id(); 
+        //$customer=DB::table('orders')->join('customers','orders.cID','=','customers.cID')->where('oID','=',$oID)->get();
+        $order=DB::table('orders')->where('oID','=',$oID)->get();
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
-        //print_r($details);
+        //print_r($order);
 
-
-        return view('admin/quotation',['items_in_cart'=>$items_in_cart,'details'=>$details,'oID'=>$oID]);
+        return view('admin/quotation',['items_in_cart'=>$items_in_cart,'details'=>$details,'order'=>$order]);
           
     }
 
@@ -49,16 +49,18 @@ class adminController extends Controller
         $cost = $request->input('cost');
         $inStock = $request->input('inStock');   
         $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
-        $amount = 0;
+        $amountVat = 0;
 
         print_r($inStock);
         
         for($i = 0; $i < count($pID); $i++){
             DB::table('details')->where('pID', $pID[$i])->where('oID',$oID)->update(['dPrice' => $price[$i], 'dInStock'=>$inStock[$i]]);
-            $amount += $qty[$i]*$price[$i];
+            $amountVat += $qty[$i]*$price[$i];
         }
-        $amount += $cost;
-        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmount'=>$amount,'oStatus'=>$oStatus]);
+        $amountVat += $cost;
+        $vat = ($amountVat*7)/107;
+        $amount = $amountVat-$vat;
+        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat]);
         
           
     }
