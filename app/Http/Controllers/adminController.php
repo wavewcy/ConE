@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\App;
+use PDF;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Carbon\Carbon;
 use strtotime;
@@ -63,6 +65,22 @@ class adminController extends Controller
         DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat]);
         
           
+    }
+
+    public function generatePdf(request $request)
+    {
+        // จะใส่หมายเหตุ??
+        // จะเพิ่มเบอร์คนขาย??
+        // วันที่ในใบเสนอราคาเหมือนกันหมด??
+        
+        // $oID=$request->input('oID');
+        $oID = "QT0005";
+        $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+                    ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
+        $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders]);
+
+        return $pdf->stream();
     }
 
 }

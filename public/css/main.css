@@ -1182,6 +1182,15 @@ li.sale-noti > a {
   max-height: 60px;
 }
 
+.logopdf {
+  display: block;
+}
+
+.logopdf img {
+  max-height: 120px;
+  /* margin: 30px; */
+}
+
 .fixed-header2 {
   z-index: 1300;
   position: fixed;
@@ -2717,8 +2726,8 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .contentCardStatus{
-  background-color:  #d3d3d3;
   box-align:center;
+  background-color:  #bdbaba;
 }
 
 .contentCardOrder{
@@ -2742,3 +2751,121 @@ div.center p {
   transform: translate(-50%, -50%) }
 
 
+.contentPdf{
+  border: 1px solid black;
+  margin-left: 2%;
+  border-radius: 50%;
+  padding-left: 10px;
+  float: left;
+  width: 61%;
+  font-size:20px;
+}
+
+.contentPdfDate{
+  border: 1px solid black;
+  margin-right: 2%;
+  border-radius: 50%;
+  padding-left: 10px;
+  float: right;
+  width: 31.5%;
+  font-size:20px;
+}
+
+.contentUnder1{
+  border: 1px solid black;
+  margin-left: 2%;
+  margin-top: 0.2%;
+  border-radius: 50%;
+  padding-left: 10px;
+  float: left;
+  width: 53%;
+  font-size:17px;
+}
+
+.contentUnder2{
+  border: 1px solid black;
+  margin-right: 2%;
+  margin-top: 0.1%;
+  border-radius: 50%;
+  padding-left: 15px;
+  padding-right: 5px;
+  float: right;
+  width: 38.5%;
+  font-size: 19px;
+  text-align: right;
+}
+
+.contentUnder3{
+  clear: both;
+  border: 1px solid black;
+  margin-left: 2%;
+  margin-top: 1.7%;
+  border-radius: 50%;
+  padding-left: 10px;
+  float: left;
+  width: 53%;
+  font-size:18px;
+}
+
+.contentUnder4{
+  clear: both;
+  border: 1px solid black;
+  margin-right: 22.7%;
+  margin-top: 6.7%;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: right;
+  width: 19%;
+  /* height: 22%; */
+  font-size:17px;
+  text-align: center;
+}
+
+.contentUnder5{
+  clear: both;
+  border: 1px solid black;
+  margin-right: 2%;
+  margin-top: 0.1%;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: right;
+  width: 19%;
+  /* height: 22%; */
+  font-size:17px;
+  text-align: center;
+}
+
+table.quotation{
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  width: 96%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.quotation th{
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  background-color: #bdbaba;
+  font-size: 19px;
+}
+
+.quotation td {
+  border-left: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 18px;
+} 
+
+table.total{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.total td {
+  text-align: right;
+} 
