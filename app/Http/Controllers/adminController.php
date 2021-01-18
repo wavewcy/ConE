@@ -32,7 +32,7 @@ class adminController extends Controller
             $items_in_cart = 0 ;
         }
         //$oID=$request->input('oID');
-        $oID="QT0003";
+        $oID="QT0002";
         //$customer=DB::table('orders')->join('customers','orders.cID','=','customers.cID')->where('oID','=',$oID)->get();
         $order=DB::table('orders')->where('oID','=',$oID)->get();
         $oShipAddress=DB::table('orders')->where('oID','=',$oID)->value('oShipAddress');
@@ -57,6 +57,7 @@ class adminController extends Controller
         $cost = $request->input('cost');
         $inStock = $request->input('inStock'); 
         $note = $request->input('note'); 
+        $today = Carbon::today();    
         $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
         $amountVat = 0;
         
@@ -67,7 +68,7 @@ class adminController extends Controller
         $amountVat += $cost;
         $vat = ($amountVat*7)/107;
         $amount = $amountVat-$vat;
-        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat,'oNote'=>$note]);
+        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat,'oNote'=>$note,'oDateQ'=>$today]);
         
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
         ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',1)->get();

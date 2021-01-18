@@ -76,9 +76,9 @@
                 </div>
 
                 <div class="contentPdfDate">
-                    <span><b>วันที่/Date: </b>&nbsp;&nbsp;{{$order->oDate}}</span><br>
+                    <span><b>วันที่/Date: </b>&nbsp;&nbsp;{{$order->oDateQ}}</span><br>
                     <span><b>เลขที่เอกสาร/No: </b>&nbsp;&nbsp;{{$order->oID}}</span><br>
-                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{Auth::user()->name}} (0818812454)</span>
+                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{Auth::user()->name}}</span>
                 </div>
             </div>
             @endforeach
@@ -115,19 +115,19 @@
                     <table class="total">
                         @foreach($orders as $order)
                         <tr>
+                        <td>
+                            <span><b>ค่าขนส่ง </b></span>
+                            </td>
+                            <td>
+                                <span><b>&nbsp;&nbsp;{{$order->oShipCost}}</b></span>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>
                                 <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
                             </td>
                             <td>
                                 <span><b>&nbsp;&nbsp;{{$order->oAmount}}</b></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span><b>ค่าขนส่ง </b></span>
-                            </td>
-                            <td>
-                                <span><b>&nbsp;&nbsp;{{$order->oShipCost}}</b></span>
                             </td>
                         </tr>
                         <tr>
@@ -173,7 +173,7 @@
                        <span><b><u>ผู้เสนอราคา</u></b></span><br>
                        <span>{{Auth::user()->name}}</span><br>
                        <span>พนักงานขาย</span><br>
-                       <span style=" line-height: 10px;">วันที่ {{$order->oDate}}</span>
+                       <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
 
                 </div>
 
@@ -184,7 +184,7 @@
                        <span style=" line-height: 13px;">ผู้อนุมัติการสั่งซื้อ</span><br>
                        <!-- <span style=" line-height: 26px;">ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <!-- <span >ผู้อนุมัติการสั่งซื้อ</span><br> -->
-                       <span style=" line-height: 10px;">วันที่ {{$order->oDate}}</span>
+                       <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
                 </div>
                 @endforeach
             </div>
