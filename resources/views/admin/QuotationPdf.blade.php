@@ -154,7 +154,16 @@
             <div>
                 <div class="contentUnder3">
                     <span><b>หมายเหตุ: </b></span><br>
-                    <span>ไปส่งหน้าร้านได้เลย</span><br><br>
+                    @foreach($outOfStock as $out)
+                    <span style=" line-height: 11px;">* {{$out->tName}} ({{$out->pBrand}}) {{$out->pSize}} {{$out->pThick}} 
+                        &nbsp;<b style="color: red;">*สินค้าหมด</b></span><br>
+                    @endforeach
+
+                    @foreach($orders as $order)
+                        @if($order->oNote != null)
+                            <span style=" line-height: 11px;">* {{$order->oNote}}</span>
+                        @endif
+                    @endforeach
                 </div>
             </div>
             
@@ -170,11 +179,11 @@
 
                 <div class="contentUnder5">
                        <span><b><u>สำหรับลูกค้า</u></b></span><br>
-                       <!-- <span>สุขสวัสดิ์</span><br> -->
-                       <br><br>
-                       <hr size=3>
+                       <span style=" line-height: 27px;">__________________</span><br>
+                       <!-- <hr size=3> -->
                        <span style=" line-height: 13px;">ผู้อนุมัติการสั่งซื้อ</span><br>
-                       <!-- <span>ผู้อนุมัติการสั่งซื้อ</span><br> -->
+                       <!-- <span style=" line-height: 26px;">ผู้อนุมัติการสั่งซื้อ</span><br> -->
+                       <!-- <span >ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <span style=" line-height: 10px;">วันที่ {{$order->oDate}}</span>
                 </div>
                 @endforeach

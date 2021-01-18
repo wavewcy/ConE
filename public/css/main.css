@@ -2811,7 +2811,8 @@ div.center p {
   padding-left: 10px;
   float: left;
   width: 53%;
-  font-size:18px;
+  height: 160px;
+  font-size:17px;
 }
 
 .contentUnder4{
