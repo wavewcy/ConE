@@ -40,7 +40,7 @@ Route::get('/admin','App\Http\Controllers\adminController@adminMenu');
 Route::get('/adminQuotation','App\Http\Controllers\adminController@quotation');
 Route::get('/adminQuotation/created','App\Http\Controllers\adminController@createQuotation');
 // pdf
-Route::get('/pdf','App\Http\Controllers\adminController@generatePdf');
+Route::get('/pdf','App\Http\Controllers\adminController@ViewPdf');
 // Route::get('/pdf', function () {
     // return view('admin/QuotationPdf');
 // });

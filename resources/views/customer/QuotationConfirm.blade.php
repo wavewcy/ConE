@@ -155,8 +155,9 @@
 							</ol>
 						</div>
 						<div class="contentCard contentCardStatus col-md-3 center">
-							<p class="head-card">{{$order[0]->oStatus}}<br><a href="#"  role="button" class="btn btn-success" style="margin-left: 12px; margin-top:8px;" >ดูใบเสนอราคา</a></p>							
-						
+							<p class="head-card">{{$order[0]->oStatus}}<br>
+							<input id="oID" type="hidden" value="{{$order[0]->oID}}">
+							<a id="pdf" href="#" class="btn btn-success" style="margin-left: 12px; margin-top:8px;" >ดูใบเสนอราคา</a></p>
 						</div>
 						<br>
 					</div>
@@ -344,6 +345,11 @@
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
+		});
+
+		$("#pdf").on('click', function() {
+    		oID = document.getElementById("oID").value;
+			window.location.assign("{{URL::to('/pdf?oID=')}}"+oID);
 		});
 	</script>
 <!--===============================================================================================-->

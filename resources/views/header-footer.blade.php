@@ -105,6 +105,9 @@
 								@if( Auth::user()->status == 'ลูกค้า')
 									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
 								@endif
+								@if( Auth::user()->status == 'admin')
+									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+								@endif
 									<li><a href="#">manu 1</a></li>
 									<li><a href="#">manu 2</a></li>
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -225,6 +228,9 @@
 								<ul class="sub_menu">
 								@if( Auth::user()->status == 'ลูกค้า')
 									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+								@endif
+								@if( Auth::user()->status == 'admin')
+									<li><a href="#">ใบเสนอราคา</a></li>
 								@endif
 									<li><a href="#">manu 1</a></li>
 									<li><a href="#">manu 2</a></li>
