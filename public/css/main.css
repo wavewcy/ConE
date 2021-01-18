@@ -2725,6 +2725,13 @@ input.num-product::-webkit-inner-spin-button {
   padding-right:10px;
 }
 
+.contentCard2{
+  padding-top:30px;
+  padding-bottom:30px;
+  padding-left:50px;
+  padding-right:50px;
+}
+
 .contentCardStatus{
   box-align:center;
   background-color:  #bdbaba;

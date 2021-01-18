@@ -120,7 +120,13 @@
 									<input id="check" class="w3-check" type="checkbox"  value='1' name='inStock[{{$index}}]'>
 								</div>
 								<div class="cell100" data-title="dPrice">
+									@if($haveCost==1)
 									<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction1({{$detail->dQuantity}},{{$index}})">
+									@endif
+									@if($haveCost==0)
+									<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction3({{$detail->dQuantity}},{{$index}})">
+									<input type="hidden" id="cost" name="cost" value=0>
+									@endif
 									<input type="hidden" id="pID" name="pID[]" value="{{$detail->pID}}">
 									<input type="hidden" id="qty" name="qty[]" value="{{$detail->dQuantity}}">
 								</div>
@@ -142,6 +148,7 @@
 							}
 						</script>
 
+						@if($haveCost == 1)
 						<div class="row100">
 							<div class="cell100" data-title="number"></div>
 							<div class="cell100" data-title="tName"></div>
@@ -159,6 +166,7 @@
 								
 							</div>
 						</div>
+						@endif
 
 						<input type="hidden" id="oID" name="oID" value="{{$order[0]->oID}}">
 						
@@ -167,8 +175,10 @@
 				
 				
 				<div class="row col-md-12">
-					<div class="col-md-7"></div>
-					<div class="contentCard col-md-5 card2" style="margin-bottom:40px;">
+					<div class=" col-md-7 ">
+							<textarea rows="6" class="m-text2 p-b-7 contentCard2 card2"cols="65" name="note" placeholder="หมายเหตุ"></textarea>
+					</div>
+					<div class="contentCard col-md-5 card2" style="padding-top:47px;padding-bottom:40px;margin-bottom:40px;">
 						<div class="row">
 							<div class="row col-md-12">
 								<h4 class="m-text2 p-b-7 col-md-5">
@@ -263,6 +273,33 @@
 				amountVat += cost;
 				console.log(cost+1);
 				console.log(amountVat);
+			}	
+			document.getElementById("amountVat").innerHTML = amountVat.toFixed(2);
+			var vat = (amountVat*7)/107;
+			document.getElementById("vat").innerHTML = vat.toFixed(2);
+			var amount = amountVat-vat;
+			document.getElementById("amount").innerHTML = amount.toFixed(2);
+		}
+
+		function fncAction3(qty,n){
+			var price = document.getElementById("price"+n).value;
+			totalInner = parseInt(price)*parseInt(qty);
+			document.getElementById("total"+n).innerHTML = totalInner;
+		
+			var listTotal = document.getElementsByClassName("total");
+			var amountVat = 0;
+			for (var i = 0; i < listTotal.length; i++) {
+				var element = parseInt((document.getElementById("total"+(i)).textContent).trim());				
+				
+				if(Number.isNaN(element)){
+					console.log(amountVat);
+					console.log(i);
+				}
+				else {							
+					amountVat += element
+					console.log(amountVat);
+					console.log(i);
+				}			
 			}	
 			document.getElementById("amountVat").innerHTML = amountVat.toFixed(2);
 			var vat = (amountVat*7)/107;

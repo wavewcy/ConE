@@ -32,13 +32,19 @@ class adminController extends Controller
             $items_in_cart = 0 ;
         }
         //$oID=$request->input('oID');
-        $oID="QT0002";
+        $oID="QT0003";
         //$customer=DB::table('orders')->join('customers','orders.cID','=','customers.cID')->where('oID','=',$oID)->get();
         $order=DB::table('orders')->where('oID','=',$oID)->get();
+        $oShipAddress=DB::table('orders')->where('oID','=',$oID)->value('oShipAddress');
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
+        if($oShipAddress=="รับเอง"){
+            $haveCost=0;
+        }else{
+            $haveCost=1;
+        }
         //print_r($order);
 
-        return view('admin/quotation',['items_in_cart'=>$items_in_cart,'details'=>$details,'order'=>$order]);
+        return view('admin/quotation',['items_in_cart'=>$items_in_cart,'details'=>$details,'order'=>$order,'haveCost'=>$haveCost]);
           
     }
 
@@ -49,7 +55,8 @@ class adminController extends Controller
         $pID = $request->input('pID');
         $qty = $request->input('qty');
         $cost = $request->input('cost');
-        $inStock = $request->input('inStock');   
+        $inStock = $request->input('inStock'); 
+        $note = $request->input('note'); 
         $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
         $amountVat = 0;
         
@@ -60,32 +67,18 @@ class adminController extends Controller
         $amountVat += $cost;
         $vat = ($amountVat*7)/107;
         $amount = $amountVat-$vat;
-        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat]);
+        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat,'oNote'=>$note]);
         
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
-        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
+        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',1)->get();
+        $outOfStock = DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',0)->get();
         $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
-        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders]);
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders, 'outOfStock'=>$outOfStock]);
 
         return $pdf->stream();
         
           
-    }
-
-    public function generatePdf(request $request)
-    {
-        // จะใส่หมายเหตุ??
-        // จะเพิ่มเบอร์คนขาย??
-        // วันที่ในใบเสนอราคาเหมือนกันหมด??
-        
-        // $oID=$request->input('oID');
-        $oID = "QT0005";
-        $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
-                    ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
-        $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
-        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders]);
-
-        return $pdf->stream();
     }
 
 }
