@@ -74,9 +74,11 @@ class adminController extends Controller
         // $oID=$request->input('oID');
         $oID = "QT0005";
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
-                    ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
+                    ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=','1')->get();
+        $outOfStock=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+                    ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=','0')->get();
         $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
-        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders]);
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders, 'outOfStock'=>$outOfStock]);
 
         return $pdf->stream();
     }
