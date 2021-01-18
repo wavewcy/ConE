@@ -52,8 +52,6 @@ class adminController extends Controller
         $inStock = $request->input('inStock');   
         $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
         $amountVat = 0;
-
-        print_r($inStock);
         
         for($i = 0; $i < count($pID); $i++){
             DB::table('details')->where('pID', $pID[$i])->where('oID',$oID)->update(['dPrice' => $price[$i], 'dInStock'=>$inStock[$i]]);
@@ -63,6 +61,13 @@ class adminController extends Controller
         $vat = ($amountVat*7)/107;
         $amount = $amountVat-$vat;
         DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat]);
+        
+        $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->get();
+        $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders]);
+
+        return $pdf->stream();
         
           
     }
