@@ -78,7 +78,7 @@
                 <div class="contentPdfDate">
                     <span><b>วันที่/Date: </b>&nbsp;&nbsp;{{$order->oDateQ}}</span><br>
                     <span><b>เลขที่เอกสาร/No: </b>&nbsp;&nbsp;{{$order->oID}}</span><br>
-                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{Auth::user()->name}}</span>
+                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{$order->oAdmin}}</span>
                 </div>
             </div>
             @endforeach
@@ -171,7 +171,7 @@
                 @foreach($orders as $order)
                 <div class="contentUnder4">
                        <span><b><u>ผู้เสนอราคา</u></b></span><br>
-                       <span>{{Auth::user()->name}}</span><br>
+                       <span>{{$order->oAdmin}}</span><br>
                        <span>พนักงานขาย</span><br>
                        <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
 

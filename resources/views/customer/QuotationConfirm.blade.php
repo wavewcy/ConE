@@ -2,6 +2,12 @@
 
 @section('header')
 
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
+		<h2 class="l-text3 t-center" style="color:#888888">
+			CHIANGMAI CENTER STEEL
+		</h2>
+	</section>
+	<br><br>
 	<h2 class="l-text3 t-center">
 		ใบเสนอราคา
 	</h2>
@@ -133,14 +139,21 @@
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการรอยืนยันใบเสนอราคาทั้งหมด &nbsp;&nbsp;{{$count2}}&nbsp;&nbsp;รายการ<br><br>
 		</h4>
 		<div class="container">
+
+		<?php $i=0 ?>
 		@if($count2 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'รอยืนยันใบเสนอราคา')
+				<?php $i+=1 ?>
 				<div class="card col-md-12">
+					
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p>{{$order[0]->oDate}}</p><br>
+
+							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -153,12 +166,27 @@
 								@endforeach
 							@endforeach
 							</ol>
+							<p align=right style="padding-right: 30px;">
+								
+								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
+								
+								<input id="<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="<?=$i?>" href="#" class="btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
+								
+								
+								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="confirm<?=$i?>" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
+							</p>
 						</div>
-						<div class="contentCard contentCardStatus col-md-3 center">
-							<p class="head-card">{{$order[0]->oStatus}}<br>
-							<input id="oID" type="hidden" value="{{$order[0]->oID}}">
-							<a id="pdf" href="#" class="btn btn-success" style="margin-left: 12px; margin-top:8px;" >ดูใบเสนอราคา</a></p>
+						
+						<div class="contentCardStatus contentCard center col-md-3">
+
+							<p class="head-card" align=center>{{$order[0]->oStatus}}<br>
+							</p>
+
 						</div>
+						
 						<br>
 					</div>
 				</div>
@@ -263,9 +291,12 @@
 								@endforeach
 							@endforeach
 							</ol>
+							<p align=right style="padding-right: 30px;">
+								<a href="#"  role="button" class="btn btn-success" style="margin-left: 12px;margin-top:8px;" >ส่งหลักฐานการชำระเงิน</a>
+							</p>
 						</div>
 						<div class="contentCard contentCardStatus col-md-3 center">
-							<p class="head-card " style="text-align:center;">{{$order[0]->oStatus}}<br><a href="#"  role="button" class="btn btn-success" style="margin-left: 12px;margin-top:8px;" >ส่งหลักฐานการชำระเงิน</a></p>
+							<p class="head-card " style="text-align:center;">{{$order[0]->oStatus}}</p>
 						</div>
 					</div>
 				</div>
@@ -336,6 +367,7 @@
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -347,11 +379,63 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 
-		$("#pdf").on('click', function() {
-    		oID = document.getElementById("oID").value;
+		$(".pdf").on('click', function() {
+			oID = document.getElementById(this.id).value;
 			window.location.assign("{{URL::to('/pdf?oID=')}}"+oID);
 		});
+
+		$(".confirm").on('click', function() {
+
+			Swal.fire({
+				title: 'ต้องการยืนยันใบเสนอราคานี้?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'ยืนยันสำเร็จ!',
+					'กรุณาชำระเงินและส่งหลักฐาน',
+					'success'
+					)
+					oID = document.getElementById(this.id).value;
+					window.location.assign("{{URL::to('/confirm?oID=')}}"+oID);
+				}
+			});
+			
+		});
+
+		$(".cancel").on('click', function() {
+
+			Swal.fire({
+				title: 'ต้องการปฏิเสธใบเสนอราคานี้?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'ปฏิเสธแล้ว!',
+					'',
+					'success'
+					)
+					oID = document.getElementById(this.id).value;
+					window.location.assign("{{URL::to('/cancel?oID=')}}"+oID);
+				}
+			});
+
+		});
+
+		
+
 	</script>
+	
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
 	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>

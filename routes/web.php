@@ -51,3 +51,5 @@ Route::get('/test', function () {
 });
 // customer
 Route::get('/customer','App\Http\Controllers\QuotationController@Qconfirm');
+Route::get('/confirm','App\Http\Controllers\QuotationController@QuotationConfirm');
+Route::get('/cancel','App\Http\Controllers\QuotationController@QuotationCancel');
