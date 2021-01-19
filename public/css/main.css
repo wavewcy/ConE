@@ -118,6 +118,14 @@ a:hover {
 	color: #fcc404;
 }
 
+.trash:hover{
+  color: red;
+  cursor:pointer;
+}
+
+/* .trash{
+  align: right;
+} */
 /* ------------------------------------ */
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
@@ -2695,7 +2703,7 @@ input.num-product::-webkit-inner-spin-button {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: .25rem;  
   margin-bottom:25px;  
-  margin-top:25px;
+  /* margin-top:25px; */
 }
 
 .card:hover {
@@ -2731,6 +2739,10 @@ input.num-product::-webkit-inner-spin-button {
   padding-bottom:30px;
   padding-left:50px;
   padding-right:50px;
+}
+
+.contentCard3{
+  padding-bottom:30px;
 }
 
 .contentCardStatus{

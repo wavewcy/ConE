@@ -65,8 +65,6 @@
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
                         <select class="input100 selection" name="status">
                             <option>Admin</option>
-                            <option>พนักงานขาย</option>
-                            <option>พนักงานบัญชี</option>
                         </select>
 					</div>
 

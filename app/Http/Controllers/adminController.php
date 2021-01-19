@@ -104,4 +104,18 @@ class adminController extends Controller
           
     }
 
+    public function ViewPdf(request $request){
+
+        //เพิ่มตารางเก็บค่าชื่อ Admin ที่สร้างใบเสนอราคานั้นๆ 
+        $oID=$request->input('oID');
+        $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',1)->get();
+        $outOfStock = DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
+        ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',0)->get();
+        $orders =  DB::table('orders')->where('oID', '=', $oID)->get();
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders, 'outOfStock'=>$outOfStock]);
+
+        return $pdf->stream();
+    }
+
 }

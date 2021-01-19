@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use SebastianBergmann\Environment\Console;
 
 class QuotationController extends Controller
 {
@@ -37,10 +38,25 @@ class QuotationController extends Controller
         $count5 =  DB::table('orders')->where('orders.cID','=',$idCustomer)
                     ->Where('orders.oStatus','=','กำลังตรวจสอบการชำระเงิน')->count();
         $count = $count4 + $count5;
-                    // print($count4);
 
         return view('customer/QuotationConfirm',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'details'=>$details, 'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
                     'count3'=>$count3, 'count'=>$count]);
+    }
+
+    public function QuotationConfirm(request $request){
+
+        $oID = $request->input('oID');
+        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
+
+        return redirect()->back();
+    }
+
+    public function QuotationCancel(request $request){
+
+        $oID = $request->input('oID');
+        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'ยกเลิกคำสั่งซื้อ']);
+        
+        return redirect()->back();
     }
 }
