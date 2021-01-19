@@ -21,7 +21,28 @@ class adminController extends Controller
         }else {
             $items_in_cart = 0 ;
         }
-        return view('admin/admin',['items_in_cart'=>$items_in_cart]);
+        $idCustomer = Auth::id();
+        $details =  DB::table('orders')->join('details','orders.oID','=','details.oID')
+                    ->where(['orders.cID'=>$idCustomer])->get();
+        $orders = $details->groupBy('oID');
+        $products =  DB::table('products')->join('type','products.tID','=','type.tID')->get();
+
+        $count1 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'อยู่ในระหว่างการขอใบเสนอราคา'])->count();
+        $count2 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'รอยืนยันใบเสนอราคา'])->count();
+        $count3 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'อยู่ในระหว่างการต่อรองราคา'])->count();
+        $count4 =  DB::table('orders')->where('orders.cID','=',$idCustomer)
+                    ->Where('orders.oStatus','=','รอชำระเงิน')->count();
+        $count5 =  DB::table('orders')->where('orders.cID','=',$idCustomer)
+                    ->Where('orders.oStatus','=','กำลังตรวจสอบการชำระเงิน')->count();
+        $count = $count4 + $count5;
+                    // print($count4);
+
+        return view('admin/admin',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
+                    'details'=>$details, 'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
+                    'count3'=>$count3, 'count'=>$count]);
     }
 
     public function quotation(request $request)
@@ -60,6 +81,7 @@ class adminController extends Controller
         $today = Carbon::today();    
         $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
         $amountVat = 0;
+        $saler = Auth::name();
         
         for($i = 0; $i < count($pID); $i++){
             DB::table('details')->where('pID', $pID[$i])->where('oID',$oID)->update(['dPrice' => $price[$i], 'dInStock'=>$inStock[$i]]);
@@ -68,7 +90,7 @@ class adminController extends Controller
         $amountVat += $cost;
         $vat = ($amountVat*7)/107;
         $amount = $amountVat-$vat;
-        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat,'oNote'=>$note,'oDateQ'=>$today]);
+        DB::table('orders')->where('oID',$oID)->update(['oShipCost'=>$cost,'oAmountVat'=>$amountVat,'oStatus'=>$oStatus,'oAmount'=>$amount,'oVat'=>$vat,'oNote'=>$note,'oDateQ'=>$today,'oAdmin'=>$saler]);
         
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
         ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',1)->get();

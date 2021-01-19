@@ -1,10 +1,5 @@
 @extends('header-footer')
-<script src="sweetalert2.all.min.js"></script>
-<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 @section('header')
 	<!-- Title Page -->
@@ -21,6 +16,7 @@
 			@if(session('cart'))
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
+					<form action="{{ URL::to('/cart/update') }}">
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<th class="column-1" colspan="2">รายการสินค้าในตะกร้าทั้งหมด &nbsp;&nbsp;{{$items_in_cart}} &nbsp;&nbsp;รายการ</th>
@@ -37,7 +33,7 @@
 								<td class="column-2">
 									<p class="head-cart">{{$product['pName']}}</p>
 									<p>รหัสสินค้า : {{$product['pID']}}</p>
-									<p>แบรนด์ : {{$product['pBrand']}}</p>
+									<p>ยี่ห้อ : {{$product['pBrand']}}</p>
 									<p>ขนาด : {{$product['pSize']}}</p>
 									<p>ความหนา : {{$product['pThick']}}</p>
 								</td>
@@ -46,9 +42,10 @@
 										<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
 											<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 										</button>
-										<input class="size8 m-text18 t-center num-product" type="number" id="qty" name="qty" value="{{$product['quantity']}}">
+										
+										<input class="size8 m-text18 t-center num-product" type="number" id="qty[]" name="qty[]" value="{{$product['quantity']}}" >
 
-										<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+										<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2" >
 											<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 										</button>
 									</div>
@@ -59,10 +56,23 @@
 										<p>{{$product['pUnit']}}</p>
 									</div>
 								</td>
-								<td class="column-5 hov9" ><a onClick="fncAction1({{$product['pID']}})" class="fa fa-trash fa-2x "></a></td>
+								<td class="column-5 hov9" ><a onclick="fncAction3({{$product['pID']}})" class="fa fa-trash fa-2x "></a></td>
 							</tr>
-						@endforeach				
-					</table>					
+							
+							<input type="hidden" name="pID[]" value="{{$product['pID']}}">
+						@endforeach									
+					</table>
+
+					<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
+						<div class="flex-w flex-m w-full-sm"></div>
+						<div class="size10 trans-0-4 m-t-10 m-b-10">
+							<!-- Button -->
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								อัพเดท
+							</button>
+						</div>
+					</div>
+					</form>						
 				</div>
 			</div>
 			<!-- Total -->
@@ -75,15 +85,15 @@
 					<form action="{{ URL::to('/cart/delivery') }}" id="จัดส่ง">
 						<div class="input-field">
 							<label for="name">ชื่อ</label>
-							<input type="text" name="name" required />
+							<input type="text" name="name" value="{{$customer[0]->cFname}} {{$customer[0]->cLname}}" required />
 							<label for="addr">ที่อยู่</label> 
-							<input type="text" name="addr" required/>
+							<input type="text" name="addr" value="{{$customer[0]->cAddress}}" required/>
 							<label for="phone">เบอร์โทร</label> 
-							<input type="tel" name="phone" required/>
+							<input type="tel" name="phone" value="{{$customer[0]->cPhone}}" required/>
 							
 							<div style="margin-top:30px;" class="size15 trans-0-4">				
 								<!-- Button -->
-								<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" id="btn-submit" name="btn-submit">
+								<button type="submit" class="flex-c-m sizefull bg0 bo-rad-23 hov7 s-text2 trans-0-4" id="btn-submit" name="btn-submit">
 									ยืนยันขอใบเสนอราคา
 								</button>
 							</div>
@@ -92,12 +102,12 @@
 					<form action="{{ URL::to('/cart/self') }}" id="รับเอง">
 						<div class="input-field">
 							<label for="name">ชื่อ</label>
-							<input type="text" name="name" required />
+							<input type="text" name="name" value="{{$customer[0]->cFname}} {{$customer[0]->cLname}}" required />
 							<label for="phone">เบอร์โทร</label> 
-							<input type="tel" name="phone" required/>
+							<input type="tel" name="phone" value="{{$customer[0]->cPhone}}" required/>
 							<div style="margin-top:30px;" class="size15 trans-0-4">				
 								<!-- Button -->
-								<button type="submit" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<button type="submit" class="flex-c-m sizefull bg0 bo-rad-23 hov7 s-text2 trans-0-4 " id="btn-submit2" name="btn-submit2">
 									ยืนยันขอใบเสนอราคา
 								</button>
 							</div>
@@ -162,6 +172,8 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 
+		
+
 		$("#btn-submit").on('click',function(e){ //also can use on submit
 			e.preventDefault(); //prevent submit
 			Swal.fire({
@@ -172,55 +184,89 @@
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'ยืนยัน',
-				cancelButtonText: 'ยกเลิก',
-				closeOnConfirm: true
-				})
-				// .then(function(value) {
-				// 	if (value) {
-				// 		Swal.fire(
-				// 		'สำเร็จ!',
-				// 		'ขอใบเสนอราคาเรียบร้อยแล้ว',
-				// 		'success'
-				// 		)
-				// 		$('#จัดส่ง').submit();
-				// 	}
-				// }
-			);
-				
-			
-			// swal({
-			// 	title: "ยืนยันขอใบเสนอราคา",
-			// 	type: "warning",
-			// 	showCancelButton: true,
-			// 	confirmButtonColor: "#DD6B55",
-			// 	confirmButtonText: "ยืนยัน",
-			// 	cancelButtonColor: "#000000",
-			// 	cancelButtonText: "ยกเลิก",
-			// 	closeOnConfirm: true
-			
-			// }).then(function(value) {
-			// 	if (value) {
-			// 	$('#จัดส่ง').submit();
-			// 	}});
+				cancelButtonText: 'ยกเลิก'
+				}).then((result) => {
+					if(result.isConfirmed){
+						Swal.fire(
+							'สำเร็จ!',
+							'ขอใบเสนอราคาเรียบร้อยแล้ว',
+							'success'
+						)
+						$('#รับเอง').submit();
+					}
+				});
 		});
 
-		function fncAction1(pID){
-		swal({
-			title: "ยืนยันการลบสินค้า",
-			text: "คุณต้องการลบสินค้าออกจากตะกร้าใช่หรือไม่",
-			icon: "warning",
-			buttons: true,
-			successMode: true,
-			})
-			.then((willDelete) => {
-			if (willDelete) {
-				swal("ลบสินค้าเรียบร้อยแล้ว", {icon: "success"});
-				setTimeout(function(){
-					window.location.assign("{{URL::to('/cart/delete?pID=')}}"+pID);
-				},2000);
-			}
+		$("#btn-submit2").on('click',function(e){ //also can use on submit
+			e.preventDefault(); //prevent submit
+			Swal.fire({
+				title: 'ยืนยันขอใบเสนอราคา',
+				text: "คุณต้องการขอใบเสนอราคาใช่หรือไม่",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน',
+				cancelButtonText: 'ยกเลิก'
+				}).then((result) => {
+					if(result.isConfirmed){
+						Swal.fire(
+							'สำเร็จ!',
+							'ขอใบเสนอราคาเรียบร้อยแล้ว',
+							'success'
+						)
+						$('#จัดส่ง').submit();
+					}
+				});
 		});
+
+		$(".confirm").on('click', function() {
+
+			Swal.fire({
+				title: 'ต้องการลบสินค้านี้?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'ลบ!',
+					'ลบสินค้าเรียบร้อยแล้ว',
+					'success'
+					)
+					oID = document.getElementById(this.id).value;
+					window.location.assign("{{URL::to('/confirm?oID=')}}"+oID);
+				}
+			});
+
+		});
+
+
+		function fncAction3(pID){
+			Swal.fire({
+				title: 'ต้องการลบสินค้านี้?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'ลบ!',
+					'ลบสินค้าเรียบร้อยแล้ว',
+					'success'
+					)
+					window.location.assign("{{URL::to('/cart/delete?pID=')}}"+pID);
+				}
+			});
 		}
+
+
 
 	</script>
 <!--===============================================================================================-->

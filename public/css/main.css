@@ -2093,12 +2093,13 @@ li.sale-noti > a {
 
 .table-shopping-cart .column-1 {
   width: 225px;
-  padding-left: 50px;
+  padding-left: 100px;
 }
 
 .table-shopping-cart .column-2 {
-  width: 300px;
+  width: 350px;
   padding-right: 30px;
+  padding-left: 30px;
 }
 .table-shopping-cart .column-3 {
   width: 200px;

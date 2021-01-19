@@ -44,7 +44,8 @@ class ordersController extends Controller
         }else {
             $items_in_cart = 0 ;
         }
-        return view('cart',['items_in_cart'=>$items_in_cart]);
+        $customer =  DB::table('customers')->where(['cID'=>$cID])->get();
+        return view('cart',['items_in_cart'=>$items_in_cart,'customer'=>$customer]);
     }
 
     public function cartDelete(request $request)
@@ -133,8 +134,7 @@ class ordersController extends Controller
         $cID=DB::table('customers')->where('cID', '=', $cID)->value('cID');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
-        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
-        
+
         DB::table('orders')->insert(
             ['oID' =>$oID,
             'cID' =>$cID,
@@ -195,7 +195,20 @@ class ordersController extends Controller
         return redirect('/product');
     }
 
+    public function cartUpdate(request $request)
+    {
+        
+        $pID = $request->input('pID');
+        $qty = $request->input('qty');        
+        $cart = session()->get('cart');
 
+        for($i = 0; $i < count($pID); $i++){
+            $cart[$pID[$i]]['quantity'] = (int)$qty[$i];
+            session()->put('cart', $cart);
+        }
+        return redirect('/cart');
+
+    }
 
 
 }
