@@ -78,10 +78,10 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'thsarabunnew' => array(
-    'normal' => $fontDir . '/thsarabunnew_normal_b15315b6a32fb9766fccf70aa330f5d6',
-    'bold' => $fontDir . '/thsarabunnew_bold_dc8906120e715cb9e2151c038fe478d9',
-    'italic' => $fontDir . '/thsarabunnew_italic_e99c99c89080ee031966f86d6458f245',
-    'bold_italic' => $fontDir . '/thsarabunnew_bold_italic_0a55c88727a1d22b7f4e46b3c26371f0',
+    'normal' => $fontDir . '/thsarabunnew_normal_b39c7a3776b28fcba93fdf5aba5ed280',
+    'bold' => $fontDir . '/thsarabunnew_bold_524a8982162b09521e1d055b821df0f9',
+    'italic' => $fontDir . '/thsarabunnew_italic_97725163e36cf7dbb28565ed377bf86c',
+    'bold_italic' => $fontDir . '/thsarabunnew_bold_italic_0e18f9b251d30db15b35636810067f26',
   ),
   'sarabun' => array(
     '100_italic' => $fontDir . '/sarabun_100_italic_7cb9cc3af37e30bff2e701bcbe0baec7',
@@ -111,24 +111,24 @@
     'normal' => $fontDir . '/eleganticons_normal_249945e3ddac0ea01929cd104748a591',
   ),
   'kanit-regular' => array(
-    'normal' => $fontDir . '/kanit_regular_normal_46d7f0c0ad26e3173466597b140cae7f',
+    'normal' => $fontDir . '/kanit_regular_normal_edd2c3aa49f5a723e7b3521c06f52430',
   ),
   'kanit-medium' => array(
-    'normal' => $fontDir . '/kanit_medium_normal_f7831efbf2e450214f13a67b561431e3',
+    'normal' => $fontDir . '/kanit_medium_normal_63aeb68df446959867e0e544d069003c',
   ),
   'kanit-bold' => array(
-    'normal' => $fontDir . '/kanit_bold_normal_ab107051a7db1dc9c58df5b1438f36f9',
+    'normal' => $fontDir . '/kanit_bold_normal_4210749fa4fb3cf057e5c4c82d15913d',
   ),
   'kanit-italic' => array(
-    'normal' => $fontDir . '/kanit_italic_normal_0db458e4f81b65fb7d29e00fb3366e00',
+    'normal' => $fontDir . '/kanit_italic_normal_fb2c69b76081b4feee1609de957695b2',
   ),
   'kanit-black' => array(
-    'normal' => $fontDir . '/kanit_black_normal_01cf246457ce38305ac371a3985562c1',
+    'normal' => $fontDir . '/kanit_black_normal_e315fe13a9f8cdb18734395f8bc63a1e',
   ),
   'linearicons' => array(
-    'normal' => $fontDir . '/linearicons_normal_455e1115054abc7f2d7905bf149d6496',
+    'normal' => $fontDir . '/linearicons_normal_143bee0c56372a2c620e9a442f6da025',
   ),
   'poppins-black' => array(
-    'normal' => $fontDir . '/poppins_black_normal_1e7f2d124be32cdda771f00008e1a438',
+    'normal' => $fontDir . '/poppins_black_normal_f28431a5f68d21c19e47f0bcb44fa604',
   ),
 ) ?>
