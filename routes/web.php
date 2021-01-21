@@ -53,3 +53,5 @@ Route::get('/test', function () {
 Route::get('/customer','App\Http\Controllers\QuotationController@Qconfirm');
 Route::get('/confirm','App\Http\Controllers\QuotationController@QuotationConfirm');
 Route::get('/cancel','App\Http\Controllers\QuotationController@QuotationCancel');
+Route::get('/evidence','App\Http\Controllers\QuotationController@ViewEvi');
+Route::post('/upload','App\Http\Controllers\QuotationController@UploadFile');
