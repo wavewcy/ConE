@@ -37,6 +37,9 @@ class QuotationController extends Controller
                     ->Where('orders.oStatus','=','รอชำระเงิน')->count();
         $count5 =  DB::table('orders')->where('orders.cID','=',$idCustomer)
                     ->Where('orders.oStatus','=','กำลังตรวจสอบการชำระเงิน')->count();
+        $count6 =  DB::table('orders')->where('orders.cID','=',$idCustomer)
+                    ->Where('orders.oStatus','=','รอยืนยันการต่อรองราคา')->count();
+        $count2 = $count2 + $count6;
         $count = $count4 + $count5;
 
         return view('customer/QuotationConfirm',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,

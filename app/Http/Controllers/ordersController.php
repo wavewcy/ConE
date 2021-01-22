@@ -134,11 +134,13 @@ class ordersController extends Controller
         $cID=DB::table('customers')->where('cID', '=', $cID)->value('cID');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
+        $exp = Carbon::parse($today)->addMonth();
 
         DB::table('orders')->insert(
             ['oID' =>$oID,
             'cID' =>$cID,
             'oDate' =>$today,
+            'oExp' =>$exp,
             'oShipName' =>$oShipName,
             'oShipAddress' =>$oShipAddress,
             'oShipPhone' =>$oShipPhone,
