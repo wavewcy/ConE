@@ -1,6 +1,8 @@
 @extends('header-footer')
 
 @section('header')
+<!-- csrf-token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
 		<h2 class="l-text3 t-center" style="color:#888888">
@@ -246,6 +248,7 @@
 		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการรอชำระเงินทั้งหมด &nbsp;&nbsp;{{$count}}&nbsp;&nbsp;รายการ<br><br>
 	</h4>
 	<div class="container">
+		<?php $i=0 ?>
 		@if($count > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
@@ -273,7 +276,9 @@
 					</div>
 				</div>
 				@endif
+				
 				@if($order[0]->oStatus == 'รอชำระเงิน')
+				<?php $i+=1?>
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
@@ -291,9 +296,12 @@
 								@endforeach
 							@endforeach
 							</ol>
+
 							<p align=right style="padding-right: 30px;">
-								<a href="#"  role="button" class="btn btn-success" style="margin-left: 12px;margin-top:8px;" >ส่งหลักฐานการชำระเงิน</a>
+								<input id="file<?=$i?>" name="oID" type="hidden" value="{{$order[0]->oID}}">
+								<a id="file<?=$i?>" class="file btn btn-success" style="margin-left: 12px;margin-top:8px; color:white; cursor:pointer;" >ส่งหลักฐานการชำระเงิน</a>
 							</p>
+
 						</div>
 						<div class="contentCard contentCardStatus col-md-3 center">
 							<p class="head-card " style="text-align:center;">{{$order[0]->oStatus}}</p>
@@ -367,7 +375,13 @@
 	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
 	<script type="text/javascript">
 		$(".selection-1").select2({
 			minimumResultsForSearch: 20,
@@ -432,8 +446,13 @@
 
 		});
 
-		
+		$(".file").on('click', function(e) {
 
+			 oID = document.getElementById(this.id).value;
+			 window.location.assign("{{URL::to('/evidence?oID=')}}"+oID);
+		});
+	
+		
 	</script>
 	
 <!--===============================================================================================-->

@@ -2726,6 +2726,9 @@ input.num-product::-webkit-inner-spin-button {
   text-transform: uppercase;
 }
 
+.card3 { 
+  margin:25px;
+}
 
 .contentCard{
   padding-top:30px;
@@ -2890,3 +2893,16 @@ table.total{
 .total td {
   text-align: right;
 } 
+
+.cardImg{
+  padding: 20px;
+  padding-bottom: 20px;
+}
+
+table.evidence{
+  width: 100%;
+}
+
+table.evidence td{
+  text-align: center;
+}

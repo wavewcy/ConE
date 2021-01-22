@@ -4016,6 +4016,11 @@ EFFECT   EFFECT   EFFECT   EFFECT   EFFECT   EFFECT  EFFECT
 .hov9:hover {
   	color: #fca504;
 }
+
+.hov10:hover {
+    background-color: black;
+  	color: white;
+}
 /*[ Active ]
 ///////////////////////////////////////////////////////////
 */
