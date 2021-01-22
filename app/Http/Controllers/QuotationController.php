@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use FontLib\Table\Type\name;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use SebastianBergmann\Environment\Console;
 
 class QuotationController extends Controller
@@ -13,6 +15,18 @@ class QuotationController extends Controller
     {
         $this->middleware('auth');
     }
+
+    function Eid() {
+        $evidences = DB::select('SELECT * FROM evidences');
+        $num = count($evidences);
+        ++$num; // add 1;
+        $len = strlen($num);
+        for($i=$len; $i< 4; ++$i) {
+            $num = '0'.$num;
+        }
+        $eID = 'EV'.$num;
+        return $eID;
+    }    
 
     public function Qconfirm(){
         if(session()->has('cart')){
@@ -53,10 +67,47 @@ class QuotationController extends Controller
     }
 
     public function QuotationCancel(request $request){
-
+        
         $oID = $request->input('oID');
         DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'ยกเลิกคำสั่งซื้อ']);
         
         return redirect()->back();
+    }
+
+    public function ViewEvi(request $request)
+    {
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
+
+        $oID=$request->input('oID');
+        $orders= DB::table('orders')->where('oID',$oID)->get();
+
+        return view('customer/evidence',['items_in_cart'=>$items_in_cart, 'oID'=>$oID, 'orders'=>$orders]);
+    }
+
+    public function UploadFile(request $request){
+
+        // $evidence=$request->input('evidence');
+        $oID=$request->input('oID');
+        $cID = Auth::id();
+        $eID = $this->Eid();
+        if($file = $request->file('evidence') ){
+            $file_name = $file-> getClientOriginalName();
+            $file -> move('images/evidence',$file_name);
+        }
+        
+        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'กำลังตรวจสอบการชำระเงิน']);
+        DB::table('evidences')->insert([
+            'eID' => $eID,
+            'oID' => $oID,
+            'cID' => $cID,
+            'eImg' => $file_name
+        ]);
+
+        return redirect('/customer?รอชำระเงิน=');
+
     }
 }
