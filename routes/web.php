@@ -60,3 +60,4 @@ Route::get('/confirm','App\Http\Controllers\QuotationController@QuotationConfirm
 Route::get('/cancel','App\Http\Controllers\QuotationController@QuotationCancel');
 Route::get('/evidence','App\Http\Controllers\QuotationController@ViewEvi');
 Route::post('/upload','App\Http\Controllers\QuotationController@UploadFile');
+Route::get('/history','App\Http\Controllers\ordersController@history');
