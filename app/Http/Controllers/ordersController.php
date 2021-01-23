@@ -210,5 +210,16 @@ class ordersController extends Controller
 
     }
 
+    public function history(){
+
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
+
+        return view('customer/history', ['items_in_cart'=>$items_in_cart]);
+    }
+
 
 }

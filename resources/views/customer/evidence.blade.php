@@ -84,11 +84,6 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
-
-		$("#create").on('click', function() {
-    		oID = document.getElementById("oID").value;
-			window.location.assign("{{URL::to('/adminQuotation?oID=')}}"+oID);
-        });
         
         function readURL(input) {
             if (input.files && input.files[0]) {
