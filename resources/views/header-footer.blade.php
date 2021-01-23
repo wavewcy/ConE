@@ -192,11 +192,9 @@
 	<div class="container-menu-header-v2 p-t-26">
 		<div class="topbar2">
 			<div class="topbar-social">
+				<a href="#" class="topbar-social-item fa fa-phone"></a>
+				<a href="#" class="topbar-social-item fa fa-envelope"></a>
 				<a href="#" class="topbar-social-item fa fa-facebook"></a>
-				<a href="#" class="topbar-social-item fa fa-instagram"></a>
-				<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-				<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-				<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 			</div>
 
 			<!-- Logo2 -->
@@ -314,36 +312,16 @@
 				<nav class="menu">
 					<ul class="main_menu">
 						<li>
-							<a href="index.html">Home</a>
-							<ul class="sub_menu">
-								<li><a href="index.html">Homepage V1</a></li>
-								<li><a href="home-02.html">Homepage V2</a></li>
-								<li><a href="home-03.html">Homepage V3</a></li>
-							</ul>
+							<a href="{{ url('/product') }}">หน้าหลัก</a>
+						</li>
+
+
+						<li>
+							<a href="#">เกี่ยวกับเรา</a>
 						</li>
 
 						<li>
-							<a href="product.html">Shop</a>
-						</li>
-
-						<li class="sale-noti">
-							<a href="product.html">Sale</a>
-						</li>
-
-						<li>
-							<a href="cart.html">Features</a>
-						</li>
-
-						<li>
-							<a href="blog.html">Blog</a>
-						</li>
-
-						<li>
-							<a href="about.html">About</a>
-						</li>
-
-						<li>
-							<a href="contact.html">Contact</a>
+							<a href="#">ติดต่อเรา</a>
 						</li>
 					</ul>
 				</nav>
@@ -364,123 +342,72 @@
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					เกี่ยวกับเรา
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด มีทั้งขายส่งและขายปลีก และมีบริการส่งสินค้าถึงหน้างานทั่วเขตภาคเหนทอตอนบน ทั้งหมด 8 จังหวัด ได้แก่ เชียงใหม่ เชียงราย พะเยา ลำพูน ลำปาง แม่ฮ่องสอน แพร่ น่าน
 					</p>
 
-					<div class="flex-m p-t-30">
+					<!-- <div class="flex-m p-t-30">
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
 						<a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+			
+			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					ติดต่อเรา
 				</h4>
 
 				<ul>
-					<li class="p-b-9">
+					<div class="p-b-9">
 						<a href="#" class="s-text7">
-							Men
+							<i class="fa fa-building fa-lg"></i></i> &nbsp;&nbsp;&nbsp;บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด
 						</a>
-					</li>
+					</div>
 
-					<li class="p-b-9">
+					<div class="p-b-9">
 						<a href="#" class="s-text7">
-							Women
+							<i class="fa fa-map-marker fa-lg"></i> &nbsp;&nbsp;&nbsp;&nbsp;176 ม.8 ต.หนองจ๊อม อ.สันทราย จ.เชียงใหม่ 50210
 						</a>
-					</li>
+					</div>
 
-					<li class="p-b-9">
+					<div class="p-b-9">
 						<a href="#" class="s-text7">
-							Dresses
+							<i class="fa fa-phone fa-lg"></i> &nbsp;&nbsp;&nbsp;053-345436
 						</a>
-					</li>
+					</div>
 
-					<li class="p-b-9">
+					<div class="p-b-9">
 						<a href="#" class="s-text7">
-							Sunglasses
+							<i class="fa fa-fax fa-lg"></i> &nbsp;&nbsp;053-345437
 						</a>
-					</li>
+					</div>
+
+					<div class="p-b-9">
+						<a href="#" class="s-text7">
+							<i class="fa fa-envelope fa-lg"></i> &nbsp;&nbsp;chiangmaicentersteel@hotmail.co.th
+						</a>
+					</div>
+
+					<div class="p-b-9">
+						<a href="#" class="s-text7">
+							<i class="fa fa-facebook fa-lg"></i> &nbsp;&nbsp;&nbsp;&nbsp;https://www.facebook.com.chiangmaicenter.steel
+						</a>
+					</div>
 				</ul>
 			</div>
 
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Links
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Search
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							About Us
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Contact Us
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					Help
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Track Order
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Returns
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Shipping
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							FAQs
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
-				<h4 class="s-text12 p-b-30">
-					Newsletter
+					จดหมายข่าวสาร
 				</h4>
 
 				<form>
@@ -492,7 +419,7 @@
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
+							ติดตาม
 						</button>
 					</div>
 
@@ -500,31 +427,6 @@
 			</div>
 		</div>
 
-		<div class="t-center p-l-15 p-r-15">
-			<a href="#">
-				<img class="h-size2" src="images/icons/paypal.png" alt="IMG-PAYPAL">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/visa.png" alt="IMG-VISA">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/mastercard.png" alt="IMG-MASTERCARD">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/express.png" alt="IMG-EXPRESS">
-			</a>
-
-			<a href="#">
-				<img class="h-size2" src="images/icons/discover.png" alt="IMG-DISCOVER">
-			</a>
-
-			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-			</div>
-		</div>
 	</footer>
 
 

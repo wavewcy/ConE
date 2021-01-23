@@ -3,10 +3,10 @@
 @section('header')
 
 <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
-		<h2 class="l-text3 t-center" style="color:#ffffff">
+		<h2 class="l-text0 t-center" style="color:#3d3d3d;padding:30px;padding-left:100px;padding-right:100px;background-color: #cccccc;opacity: 0.85;">
 			คำสั่งซื้อ
 		</h2>
-</section>
+	</section>
 
     <div class="wrap_menu">
 	    <nav class="menu">

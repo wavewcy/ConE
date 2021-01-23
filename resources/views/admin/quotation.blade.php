@@ -3,11 +3,11 @@
 @section('header')
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
-		<h2 class="l-text3 t-center" style="color:#ffffff">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
+		<h2 class="l-text0 t-center" style="color:#3d3d3d;padding:30px;padding-left:100px;padding-right:100px;background-color: #cccccc;opacity: 0.85;">
 			สร้างใบเสนอราคา
 		</h2>
-</section>
+	</section>
 
 <div class="limiter">
 		
