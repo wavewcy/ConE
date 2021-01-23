@@ -104,7 +104,7 @@
 								<ul class="sub_menu">
 								@if( Auth::user()->status == 'ลูกค้า')
 									<li><a href="{{URL::to('/customer')}}">รายการคำสั่งซื้อ</a></li>
-									<li><a href="{{URL::to('/history')}}">ประวัติ</a></li>
+									<li><a href="{{URL::to('/history')}}">ประวัติคำสั่งซื้อ</a></li>
 								@endif
 								@if( Auth::user()->status == 'admin')
 									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>
@@ -227,7 +227,7 @@
 								<ul class="sub_menu">
 								@if( Auth::user()->status == 'ลูกค้า')
 									<li><a href="{{URL::to('/customer')}}">รายการคำสั่งซื้อ</a></li>
-									<li><a href="{{URL::to('/history')}}">ประวัติ</a></li>
+									<li><a href="{{URL::to('/history')}}">ประวัติคำสั่งซื้อ</a></li>
 								@endif
 								@if( Auth::user()->status == 'admin')
 									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>

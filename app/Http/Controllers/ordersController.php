@@ -220,7 +220,23 @@ class ordersController extends Controller
             $items_in_cart = 0 ;
         }
 
-        return view('customer/history', ['items_in_cart'=>$items_in_cart]);
+        $idCustomer = Auth::id();
+        $details =  DB::table('orders')->join('details','orders.oID','=','details.oID')
+                    ->where(['orders.cID'=>$idCustomer])->get();
+        $orders = $details->groupBy('oID');
+        $products =  DB::table('products')->join('type','products.tID','=','type.tID')->get();
+
+        $count1 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'คำสั่งซื้อสำเร็จแล้ว'])->count();
+        $count2 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'ยกเลิกคำสั่งซื้อ'])->count();
+        $count3 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
+                     'orders.oStatus'=>'หมดอายุ'])->count();
+
+        $count = $count1 + $count2 + $count3;
+
+        return view('customer/history', ['items_in_cart'=>$items_in_cart, 'details'=>$details, 'products'=>$products,
+                     'orders'=>$orders, 'count'=>$count]);
     }
 
 
