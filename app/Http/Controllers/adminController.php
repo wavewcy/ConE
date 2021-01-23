@@ -172,7 +172,8 @@ class adminController extends Controller
                     'bPrice' => $price[$i]
                 ]);
                 DB::table('orders')->where('oID',$oID)->update([
-                    'oStatus'=>$oStatus
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
                 ]);
             }
 
@@ -191,7 +192,8 @@ class adminController extends Controller
                     'bPrice' => $price[$i]
                 ]);
                 DB::table('orders')->where('oID',$oID)->update([
-                    'oStatus'=>$oStatus
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
                 ]);
             }
         }
@@ -209,7 +211,8 @@ class adminController extends Controller
                     'bPrice' => $price[$i]
                 ]);
                 DB::table('orders')->where('oID',$oID)->update([
-                    'oStatus'=>$oStatus
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
                 ]);
             }
         }
@@ -355,8 +358,10 @@ class adminController extends Controller
     public function paymentConfirm(request $request){
         $oID = $request->input('oID');
         $oStatus=DB::table('status')->where('status', '=', "คำสั่งซื้อสำเร็จแล้ว")->value('status');
+        $today = Carbon::today();  
         DB::table('orders')->where('oID','=',$oID)->update([
-            'oStatus'=>$oStatus
+            'oStatus'=>$oStatus,
+            'oDateQ'=>$today
         ]);
 
         return redirect()->back();

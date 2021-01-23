@@ -14,13 +14,19 @@
     <div class="container">
 
     @if($count > 0)
-        @foreach($orders as $order)
+        @foreach($orders as $index => $order)
             @if($order[0]->oStatus == 'คำสั่งซื้อสำเร็จแล้ว' || $order[0]->oStatus == 'ยกเลิกคำสั่งซื้อ' || $order[0]->oStatus == 'หมดอายุ')
             <div class="card col-md-12 ">
                 <div class="row">
                     <div class="contentCard contentCardOrder col-md-3">
                         <p class="head-cart">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-                        <p>{{$order[0]->oDate}}</p>
+                        <p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+                        <p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+                        <p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}}</p><br>
+                        @if($order[0]->oStatus == 'คำสั่งซื้อสำเร็จแล้ว')
+                            <input id="pdf{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="pdf{{$index}}"  href="#" class="pdf btn btn-warning" style="margin-top:8px;">ดูใบเสร็จรับเงิน</a>
+                        @endif
                     </div>
                     <div class="contentCard col-md-6">
                         <p class="head-cart">รายการสินค้า</p>
@@ -70,6 +76,10 @@
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
+		});
+        $(".pdf").on('click', function() {
+			oID = document.getElementById(this.id).value;
+			window.location.assign("{{URL::to('/pdf?oID=')}}"+oID);
 		});
 	</script>
 <!--===============================================================================================-->
