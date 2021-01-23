@@ -39,6 +39,11 @@ Route::get('/cart/self','App\Http\Controllers\ordersController@cartSelf');
 Route::get('/admin','App\Http\Controllers\adminController@adminMenu');
 Route::get('/adminQuotation','App\Http\Controllers\adminController@quotation');
 Route::get('/adminQuotation/created','App\Http\Controllers\adminController@createQuotation');
+Route::get('/adminQuotation/cancel','App\Http\Controllers\adminController@cancel');
+Route::get('/adminQuotation/confirm','App\Http\Controllers\adminController@confirm');
+Route::get('/adminQuotation/bargain','App\Http\Controllers\adminController@bargain');
+Route::get('/adminQuotation/paymentCancel','App\Http\Controllers\adminController@paymentCancel');
+Route::get('/adminQuotation/paymentConfirm','App\Http\Controllers\adminController@paymentConfirm');
 // pdf
 Route::get('/pdf','App\Http\Controllers\adminController@ViewPdf');
 // Route::get('/pdf', function () {

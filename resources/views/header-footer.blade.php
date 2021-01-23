@@ -103,11 +103,11 @@
 							</a>
 								<ul class="sub_menu">
 								@if( Auth::user()->status == 'ลูกค้า')
-									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+									<li><a href="{{URL::to('/customer')}}">รายการคำสั่งซื้อ</a></li>
 									<li><a href="{{URL::to('/history')}}">ประวัติ</a></li>
 								@endif
 								@if( Auth::user()->status == 'admin')
-									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>
@@ -149,7 +149,7 @@
 										</a>
 										<span class="header-cart-item-info">
 											รหัสสินค้า : {{$product['pID']}}
-											แบรนด์ : {{$product['pBrand']}}
+											ยี่ห้อ : {{$product['pBrand']}}
 											ขนาด : {{$product['pSize']}}
 											ความหนา : {{$product['pThick']}}
 											จำนวน : {{$product['quantity']}}
@@ -226,11 +226,11 @@
 							</a>
 								<ul class="sub_menu">
 								@if( Auth::user()->status == 'ลูกค้า')
-									<li><a href="{{URL::to('/customer')}}">ใบเสนอราคา</a></li>
+									<li><a href="{{URL::to('/customer')}}">รายการคำสั่งซื้อ</a></li>
 									<li><a href="{{URL::to('/history')}}">ประวัติ</a></li>
 								@endif
 								@if( Auth::user()->status == 'admin')
-									<li><a href="#">ใบเสนอราคา</a></li>
+									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>

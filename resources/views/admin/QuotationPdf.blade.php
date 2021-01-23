@@ -78,7 +78,7 @@
                 <div class="contentPdfDate">
                     <span><b>วันที่/Date: </b>&nbsp;&nbsp;{{$order->oDateQ}}</span><br>
                     <span><b>เลขที่เอกสาร/No: </b>&nbsp;&nbsp;{{$order->oID}}</span><br>
-                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{$order->oAdmin}}</span>
+                    <span><b>พนักงานขาย: </b>&nbsp;&nbsp;{{$saler}}</span>
                 </div>
             </div>
             @endforeach
@@ -98,8 +98,19 @@
                     <td>{{$detail->tName}} ({{$detail->pBrand}}) {{$detail->pSize}} {{$detail->pThick}}</td>
                     <td style="text-align: center;">{{$detail->dQuantity}}</td>
                     <td style="text-align: center;">{{$detail->pUnit}}</td>
-                    <td style="text-align: right;">{{$detail->dPrice}}</td>
-                    <td style="text-align: right;">{{($detail->dQuantity)*($detail->dPrice)}}</td>
+
+                    @if((Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา'))
+                        <td style="text-align: right;">{{$detail->dPrice}}</td>
+                        <td style="text-align: right;">{{($detail->dQuantity)*($detail->dPrice)}}</td>
+                    @endif
+                    @if(Auth::user()->status=='admin' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา' or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน')  )
+                        @foreach($bargains as $bargain)
+                            @if($bargain->dID == $detail->dID)
+                                <td style="text-align: right;">{{$bargain->bPrice}}</td>
+                                <td style="text-align: right;">{{($detail->dQuantity)*($bargain->bPrice)}}</td>
+                            @endif
+                        @endforeach
+                    @endif     
                 </tr>
                 @endforeach
             </table>
@@ -113,13 +124,13 @@
 
                 <div class="contentUnder2">
                     <table class="total">
-                        @foreach($orders as $order)
                         <tr>
+                        @if((Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา'))
                         <td>
                             <span><b>ค่าขนส่ง </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$order->oShipCost}}</b></span>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]->oShipCost}}</b></span>
                             </td>
                         </tr>
                         <tr>
@@ -127,7 +138,7 @@
                                 <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$order->oAmount}}</b></span>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]>oAmount}}</b></span>
                             </td>
                         </tr>
                         <tr>
@@ -135,7 +146,7 @@
                                <span><b>VAT 7% </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$order->oVat}}</b></span>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]->oVat}}</b></span>
                             </td>
                         </tr>
                         <tr>
@@ -143,10 +154,43 @@
                                 <span><b>จำนวนเงินรวมทั้งสิ้น </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$order->oAmountVat}}</b></span>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]->oAmountVat}}</b></span>
                             </td>
                         </tr>
-                        @endforeach
+                        @endif
+                        @if(Auth::user()->status=='admin' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา' or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน')  )
+                        <td>
+                            <span><b>ค่าขนส่ง </b></span>
+                            </td>
+                            <td>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]->oShipCost}}</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
+                            </td>
+                            <td>
+                                <span><b>&nbsp;&nbsp;{{$amount}}</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                               <span><b>VAT 7% </b></span>
+                            </td>
+                            <td>
+                                <span><b>&nbsp;&nbsp;{{$vat}}</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span><b>จำนวนเงินรวมทั้งสิ้น </b></span>
+                            </td>
+                            <td>
+                                <span><b>&nbsp;&nbsp;{{$amountVat}}</b></span>
+                            </td>
+                        </tr>
+                        @endif
                     </table>
                 </div>
             </div><br><br><br><br>
@@ -171,7 +215,7 @@
                 @foreach($orders as $order)
                 <div class="contentUnder4">
                        <span><b><u>ผู้เสนอราคา</u></b></span><br>
-                       <span>{{$order->oAdmin}}</span><br>
+                       <span>{{$saler}}</span><br>
                        <span>พนักงานขาย</span><br>
                        <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
 
