@@ -148,7 +148,7 @@
 									</div>
 								@endif
 
-								@if(Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา')
+								@if(Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา' )
 									<div class="cell100" data-title=""></div>	
 									<div class="cell100" data-title="dPrice">
 										<input id="check" type="hidden" value='1' name='inStock[{{$index}}]'>	
@@ -291,7 +291,9 @@
 					}							
 				</script>
 				@endif
-				@if((Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา') or (Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'))
+				@if(($haveCost==1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') 
+				or ($haveCost==1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา') 
+				or ($haveCost==1 and Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'))
 				<script>
 					var listTotal = document.getElementsByClassName("total");
 					var listPrice = document.getElementsByClassName("price");							
@@ -315,6 +317,30 @@
 					document.getElementById("amount").innerHTML = amount.toFixed(2);							
 				</script>
 				@endif
+				@if(($haveCost==0 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') 
+				or ($haveCost==0 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา') 
+				or ($haveCost==0 and Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'))
+				<script>
+					var listTotal = document.getElementsByClassName("total");
+					var listPrice = document.getElementsByClassName("price");							
+					var listQty = document.getElementsByClassName("qnty");
+					var amountVat = 0;
+					for (var i = 0; i < listTotal.length; i++) {
+						listTotal[i].setAttribute("id", "total"+ i);
+						listPrice[i].setAttribute("id", "price" + i);
+						listQty[i].setAttribute("id", "qnty" + i);
+						totalInner = parseInt(listPrice[i].value)*parseInt(listQty[i].textContent);
+						document.getElementById("total"+i).innerHTML = totalInner;
+						amountVat += totalInner;								
+					}
+					document.getElementById("amountVat").innerHTML = amountVat.toFixed(2);
+					var vat = (amountVat*7)/107;
+					document.getElementById("vat").innerHTML = vat.toFixed(2);
+					var amount = amountVat-vat;
+					document.getElementById("amount").innerHTML = amount.toFixed(2);							
+				</script>
+				@endif
+				
 
 				<div class="row col-md-12">
 					<div class="col-md-6">

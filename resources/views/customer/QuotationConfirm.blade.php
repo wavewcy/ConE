@@ -106,7 +106,15 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-cart">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-cart">รายการสินค้า</p>
@@ -151,9 +159,15 @@
 					
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
-							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p><br>
-
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p><p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
 							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
 							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
@@ -173,8 +187,8 @@
 								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
 								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
 								
-								<input id="<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="<?=$i?>" href="#" class="btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
+								<input id="bargain<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="bargain<?=$i?>" href="#" class="bargain btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
 								
 								
 								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
@@ -193,6 +207,55 @@
 					</div>
 				</div>
 				@endif
+				@if($order[0]->oStatus == 'รอยืนยันการต่อรองราคา')
+				<div class="card col-md-12">
+					<div class="row">
+						<div class="contentCard contentCardOrder col-md-3">
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
+							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
+						</div>
+						<div class="contentCard col-md-6">
+							<p class="head-card">รายการสินค้า</p>
+							<ol>
+							@foreach($order as $product)
+								@foreach($products as $pro)
+									@if($product->pID == $pro->pID)
+										<li> {{$pro->tName}} ({{$pro->pBrand}}) {{$pro->pSize}} {{$pro->pThick}} &nbsp;&nbsp; (จำนวน : {{$product->dQuantity}} {{$pro->pUnit}}) </li>
+									@endif
+								@endforeach
+							@endforeach
+							</ol>
+							<p align=right style="padding-right: 30px;">
+								
+								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
+								
+								<input id="bargain<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="bargain<?=$i?>" href="#" class="bargain btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
+								
+								
+								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+								<a id="confirm<?=$i?>" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
+							</p>
+						</div>
+						<div class="contentCard contentCardStatus col-md-3 center">
+							<p class="head-card">{{$order[0]->oStatus}}</p>							
+						
+						</div>
+						<br>
+					</div>
+				</div>
+				@endif
 			@endforeach
 		@else
 			<br>
@@ -207,14 +270,26 @@
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการต่อรองราคาทั้งหมด &nbsp;&nbsp;{{$count3}}&nbsp;&nbsp;รายการ<br><br>
 		</h4>
 		<div class="container">
+		<?php $i=0 ?>
 		@if($count3 > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการต่อรองราคา')
+				<?php $i+=1 ?>
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
+							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -252,11 +327,30 @@
 		@if($count > 0)
 			@foreach($orders as $order)
 				@if($order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
+				<?php $i+=1 ?>
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
+							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID<?=$i?>" href="#" class="pdf btn btn-outline-warning" style="margin-top:8px; ">ดูใบเสนอราคา</a></p>
+							@foreach($evidences as $evidence)
+								@if($evidence->oID == $order[0]->oID)
+									
+								<input id="evi<?=$i?>" type="hidden" value="{{$evidence->eImg}}">								
+								<a id="evi<?=$i?>" href="#"  class="evi btn btn-warning" style="margin-top:8px;">ดูหลักฐานการชำระเงิน</a>								
+
+								@endif
+							@endforeach
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -283,7 +377,17 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
+							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -331,7 +435,15 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p>{{$order[0]->oDate}}</p>
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
+							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
+							<?php
+								$ts1 = strtotime($order[0]->oExp);
+								$ts2 = strtotime(date("Y-m-d"));
+								$diff = ($ts1 - $ts2)/3600/24;
+								echo "( เหลือ : $diff วัน )"
+							?></p><br>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -451,6 +563,22 @@
 			 oID = document.getElementById(this.id).value;
 			 window.location.assign("{{URL::to('/evidence?oID=')}}"+oID);
 		});
+
+		$(".evi").on('click', function() {
+			img = document.getElementById(this.id).value;
+			path = "images/evidence/" + img;
+			console.log(path);
+			Swal.fire({
+			title: "หลักฐานการชำระเงิน",
+			imageUrl: path
+			});
+		});
+
+		$(".bargain").on('click', function() {
+			oID = document.getElementById(this.id).value;
+			window.location.assign("{{URL::to('/adminQuotation?oID=')}}"+oID);
+		});
+
 	
 		
 	</script>
