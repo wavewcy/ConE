@@ -48,9 +48,10 @@ class productController extends Controller
         $data = DB::table('type')->where(['type.tID'=>$tID])->get();
 
         $products = DB::table('products')->where(['products.tID'=>$tID])->get();
+        $details = DB::table('details')->get();
         $proSize = $products->groupBy('pSize');
 
         return view('product/product-detail',['manu' => $manu, 'data' => $data, 'proSize' => $proSize,
-        'tID'=>$tID, 'items_in_cart'=>$items_in_cart, 'products'=>$products]);
+        'tID'=>$tID, 'items_in_cart'=>$items_in_cart, 'products'=>$products, 'details'=>$details]);
     }
 }

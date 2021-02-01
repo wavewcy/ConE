@@ -54,6 +54,75 @@
 				@csrf
 				<div class="p-t-33 p-b-60">
 
+				<!-- product detail-->
+				@if($info->tHavePrice == 1)
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							ขนาด
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<select class="selection-2 form-control dynamic" name="size" id="size" 
+								data-dependent="thick" onchange="FunctionSize(this)">
+							<option value="" selected disabled>กรุณาเลือกขนาด</option>
+								@foreach($proSize as $size)
+								<option value="{{$size[0]->pSize}}">{{$size[0]->pSize}}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							ความหนา
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<select class="selection-2 form-control dynamic" name="thick" id="thick" 
+							data-dependent="unit" onchange="FunctionThick(this)">
+							</select>
+						</div>
+					</div>
+
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							หน่วย
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<select class="selection-2 form-control" name="unit" id="unit"
+							data-dependent="unit" onchange="FunctionUnit(this)">
+							</select>
+						</div>
+					</div>
+					
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							ยี่ห้อ
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<select class="selection-2 form-control dynamic" name="brand" id="brand" 
+							data-dependent="brand" onchange="FunctionBrand(this)">
+							</select>
+						</div>
+					</div>
+
+					<div class="flex-m flex-w p-b-10">
+						<div class="s-text15 w-size15 t-center">
+							ราคา
+						</div>
+
+						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+							<!-- <select class="selection-2 form-control dynamic" name="price" id="price" 
+							data-dependent="price" disabled="true">
+							</select> -->
+							<div type="text" class="form-control dynamic" style="height: 42px;" name="price" id="price" 
+							data-dependent="price" disabled="true">
+							</div>
+						</div>
+					</div>
+				@else
 					<div class="flex-m flex-w p-b-10">
 						<div class="s-text15 w-size15 t-center">
 							ขนาด
@@ -105,7 +174,7 @@
 							</select>
 						</div>
 					</div>
-
+				@endif
 					
 					<div class="flex-r-m flex-w p-t-10">
 						<div class="w-size16 flex-m flex-w">
@@ -262,6 +331,35 @@
 		for (b of r_brand){
 			document.getElementById("brand").innerHTML += '<option value="' + b +'">' + b + '</option>';
 		}
+	}
+
+	function FunctionBrand(obj){
+		var select = obj.value;
+		var I_size = document.getElementById("size").value;
+		var I_thick = document.getElementById("thick").value;
+		var I_unit = document.getElementById("unit").value;
+		var I_brand = document.getElementById("brand").value;
+		var products = <?php echo json_encode($products); ?>;
+		var details = <?php echo json_encode($details); ?>;
+		var resul;
+		var unit = [];
+
+		for(var i=0;i< products.length; i++){
+			unit.push(products[i].pUnit+" (จำนวนต่อหน่วย :"+products[i].pPerUnit+")");
+		}
+
+		for(var i=0;i< products.length; i++){
+			if(I_size == products[i].pSize){
+				if(I_thick == products[i].pThick){
+					if(I_unit == unit[i]){
+						if(select == products[i].pBrand){
+							resul = products[i].pPrice;
+						}
+					}
+				}
+			}
+		}
+		document.getElementById("price").innerHTML = resul;
 	}
 
 </script>
