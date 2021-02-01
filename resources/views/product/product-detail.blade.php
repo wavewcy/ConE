@@ -1,6 +1,7 @@
 @extends('header-footer')
 
 @section('header')
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<!-- breadcrumb -->

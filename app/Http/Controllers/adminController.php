@@ -45,6 +45,9 @@ class adminController extends Controller
         
         $products =  DB::table('products')->join('type','products.tID','=','type.tID')->get();
 
+        $evidences = DB::table('evidences')->groupby('oID')->get();
+
+
         $count1 =  DB::table('orders')->where(['orders.oStatus'=>'อยู่ในระหว่างการขอใบเสนอราคา'])->count();
         $count2 =  DB::table('orders')->where(['orders.oAdmin'=>$idAdmin,
                      'orders.oStatus'=>'รอยืนยันใบเสนอราคา'])->count();
@@ -74,7 +77,7 @@ class adminController extends Controller
         
         return view('admin/admin',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'allOrders'=>$allOrders,'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
-                    'count3'=>$count3, 'count'=>$count]);
+                    'count3'=>$count3, 'count'=>$count, 'evidences'=>$evidences]);
     }
 
     public function quotation(request $request)
@@ -139,9 +142,9 @@ class adminController extends Controller
                     'dInStock'=>$inStock[$i]]);
                 $amountVat += $qty[$i]*$price[$i];
             }
-            $amountVat += $cost;
-            $vat = ($amountVat*7)/107;
-            $amount = $amountVat-$vat;    
+            $amountVat = round($amountVat, 2); 
+            $vat = round(($amountVat*7)/107, 2); 
+            $amount = round($amountVat-$vat, 2);  
             
             DB::table('orders')->where('oID','=',$oID)->update([
                 'oShipCost'=>$cost,
@@ -169,7 +172,8 @@ class adminController extends Controller
                     'bPrice' => $price[$i]
                 ]);
                 DB::table('orders')->where('oID',$oID)->update([
-                    'oStatus'=>$oStatus
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
                 ]);
             }
 
@@ -187,6 +191,10 @@ class adminController extends Controller
                     'oID' => $oID,
                     'bPrice' => $price[$i]
                 ]);
+                DB::table('orders')->where('oID',$oID)->update([
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
+                ]);
             }
         }
         elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันการต่อรองราคา'){
@@ -201,6 +209,10 @@ class adminController extends Controller
                     'dID' => $dID,
                     'oID' => $oID,
                     'bPrice' => $price[$i]
+                ]);
+                DB::table('orders')->where('oID',$oID)->update([
+                    'oStatus'=>$oStatus,
+                    'oDateQ'=>$today
                 ]);
             }
         }
@@ -339,14 +351,20 @@ class adminController extends Controller
         DB::table('orders')->where('oID','=',$oID)->update([
             'oStatus'=>$oStatus
         ]);
+
+        return redirect()->back();
     }
 
     public function paymentConfirm(request $request){
         $oID = $request->input('oID');
         $oStatus=DB::table('status')->where('status', '=', "คำสั่งซื้อสำเร็จแล้ว")->value('status');
+        $today = Carbon::today();  
         DB::table('orders')->where('oID','=',$oID)->update([
-            'oStatus'=>$oStatus
+            'oStatus'=>$oStatus,
+            'oDateQ'=>$today
         ]);
+
+        return redirect()->back();
     }
     
 }

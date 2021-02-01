@@ -3,10 +3,10 @@
 @section('header')
 
 <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
-		<h2 class="l-text3 t-center" style="color:#ffffff">
+		<h2 class="l-text0 t-center" style="color:#3d3d3d;padding:30px;padding-left:100px;padding-right:100px;background-color: #cccccc;opacity: 0.85;">
 			คำสั่งซื้อ
 		</h2>
-</section>
+	</section>
 
     <div class="wrap_menu">
 	    <nav class="menu">
@@ -316,8 +316,14 @@
 							?></p><br>
 							<input id="pdf{{$index}}" type="hidden" value="{{$order[0]->oID}}">
 							<a id="pdf{{$index}}" href="#" class="pdf btn btn-outline-warning" style="margin-top:8px;">ดูใบเสนอราคา</a>
-							<input id="payment{{$index}}" type="hidden" value="{{$order[0]->oID}}">
-							<a id="payment{{$index}}" href="#" class="payment btn btn-warning" style="margin-top:8px;">ดูหลักฐานการชำระเงิน</a>
+							@foreach($evidences as $evidence)
+								@if($evidence->oID == $order[0]->oID)
+
+								<input id="evi{{$index}}" type="hidden" value="{{$evidence->eImg}}">								
+								<a id="evi{{$index}}" href="#"  class="evi btn btn-warning" style="margin-top:8px;">ดูหลักฐานการชำระเงิน</a>								
+
+								@endif
+							@endforeach
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -572,6 +578,16 @@
 		$(".pdf").on('click', function() {
 			oID = document.getElementById(this.id).value;
 			window.location.assign("{{URL::to('/pdf?oID=')}}"+oID);
+		});
+
+		$(".evi").on('click', function() {
+			img = document.getElementById(this.id).value;
+			path = "images/evidence/" + img;
+			console.log(path);
+			Swal.fire({
+			title: "หลักฐานการชำระเงิน",
+			imageUrl: path
+			});
 		});
 	</script>
 <!--===============================================================================================-->

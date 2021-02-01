@@ -59,10 +59,17 @@
                     </td>
 
                     <td valign="middle">
+                        @if($orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว') 
+                        <div style="margin-left: 80px; text-align:center;">
+                            <h1 style="background-color: #bdbaba;" ><b>ใบเสร็จรับเงิน</b></h1>
+                            <h3><b>RECEIPT</b></h3>
+                        </div>
+                        @else
                         <div style="margin-left: 80px; text-align:center;">
                             <h1 style="background-color: #bdbaba;" ><b>ใบเสนอราคา</b></h1>
                             <h3><b>QUOTATION</b></h3>
                         </div>
+                        @endif
                     </td>
                 </tr>
             </table>
@@ -99,11 +106,15 @@
                     <td style="text-align: center;">{{$detail->dQuantity}}</td>
                     <td style="text-align: center;">{{$detail->pUnit}}</td>
 
-                    @if((Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา'))
+                    @if($orders[0]->oStatus=='รอยืนยันใบเสนอราคา' 
+                    or $orders[0]->oStatus=='รอชำระเงิน' 
+                    or $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน'
+                    or $orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว')
                         <td style="text-align: right;">{{$detail->dPrice}}</td>
                         <td style="text-align: right;">{{($detail->dQuantity)*($detail->dPrice)}}</td>
                     @endif
-                    @if(Auth::user()->status=='admin' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา' or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน')  )
+                    @if($orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'
+                     or ($orders[0]->oStatus=='รอยืนยันการต่อรองราคา') )
                         @foreach($bargains as $bargain)
                             @if($bargain->dID == $detail->dID)
                                 <td style="text-align: right;">{{$bargain->bPrice}}</td>
@@ -125,7 +136,10 @@
                 <div class="contentUnder2">
                     <table class="total">
                         <tr>
-                        @if((Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='admin' and $orders[0]->oStatus=='รอยืนยันใบเสนอราคา'))
+                        @if($orders[0]->oStatus=='รอยืนยันใบเสนอราคา' 
+                        or $orders[0]->oStatus=='รอชำระเงิน' 
+                        or $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน'
+                        or $orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว')
                         <td>
                             <span><b>ค่าขนส่ง </b></span>
                             </td>
@@ -138,7 +152,7 @@
                                 <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$orders[0]>oAmount}}</b></span>
+                                <span><b>&nbsp;&nbsp;{{$orders[0]->oAmount}}</b></span>
                             </td>
                         </tr>
                         <tr>
@@ -158,7 +172,8 @@
                             </td>
                         </tr>
                         @endif
-                        @if(Auth::user()->status=='admin' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา' or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='รอชำระเงิน') or (Auth::user()->status=='ลูกค้า' and $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน')  )
+                        @if($orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา' 
+                        or $orders[0]->oStatus=='รอยืนยันการต่อรองราคา')
                         <td>
                             <span><b>ค่าขนส่ง </b></span>
                             </td>
@@ -214,7 +229,11 @@
             <div>
                 @foreach($orders as $order)
                 <div class="contentUnder4">
-                       <span><b><u>ผู้เสนอราคา</u></b></span><br>
+                    @if($orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว') 
+                        <span><b><u>ผู้รับเงิน</u></b></span><br>
+                    @else
+                        <span><b><u>ผู้เสนอราคา</u></b></span><br>
+                    @endif
                        <span>{{$saler}}</span><br>
                        <span>พนักงานขาย</span><br>
                        <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
@@ -223,9 +242,15 @@
 
                 <div class="contentUnder5">
                        <span><b><u>สำหรับลูกค้า</u></b></span><br>
+                       @if($orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว') 
+                       <span>{{$orders[0]->oShipName}}</span><br>
+                       <!-- <hr size=3> -->
+                       <span>ผู้ชำระเงิน</span><br>
+                       @else
                        <span style=" line-height: 27px;">__________________</span><br>
                        <!-- <hr size=3> -->
                        <span style=" line-height: 13px;">ผู้อนุมัติการสั่งซื้อ</span><br>
+                       @endif
                        <!-- <span style=" line-height: 26px;">ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <!-- <span >ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>

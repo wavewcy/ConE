@@ -172,11 +172,13 @@ class ordersController extends Controller
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
         $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
+        $exp = Carbon::parse($today)->addMonth();
         
         DB::table('orders')->insert(
             ['oID' =>$oID,
             'cID' =>$cID,
             'oDate' =>$today,
+            'oExp' =>$exp,
             'oShipName' =>$oShipName,
             'oShipAddress' =>$oShipAddress,
             'oShipPhone' =>$oShipPhone,

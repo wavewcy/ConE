@@ -3401,6 +3401,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	text-transform: uppercase;
 }
 
+.l-text0 {
+	font-family: Kanit-Regular;
+	font-size: 40px;
+	color: #111111;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
 /*[ XL-Text >= 51 ]
 ///////////////////////////////////////////////////////////
 */
@@ -3423,7 +3431,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .xl-text3 {
-	font-family: Poppins-Bold;
+	font-family: Kanit-Bold;
 	font-size: 60px;
 	color: #111111;
 	line-height: 1.2;
@@ -3700,6 +3708,7 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 .w-size28 {
 	max-width: 570px;
 }
+
 
 /*[ Height Size ]
 ///////////////////////////////////////////////////////////
@@ -4101,7 +4110,7 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
 	}
 
 	.respon4 {
-		width: 33.333333%;
+		width: 50%;
 	}
 
 	footer {

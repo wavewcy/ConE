@@ -8,6 +8,7 @@ use Auth;
 use FontLib\Table\Type\name;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use SebastianBergmann\Environment\Console;
+use Carbon\Carbon;
 
 class QuotationController extends Controller
 {
@@ -41,6 +42,8 @@ class QuotationController extends Controller
         $orders = $details->groupBy('oID');
         $products =  DB::table('products')->join('type','products.tID','=','type.tID')->get();
 
+        $evidences = DB::table('evidences')->groupby('oID')->get();
+
         $count1 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
                      'orders.oStatus'=>'อยู่ในระหว่างการขอใบเสนอราคา'])->count();
         $count2 =  DB::table('orders')->where(['orders.cID'=>$idCustomer,
@@ -56,9 +59,22 @@ class QuotationController extends Controller
         $count2 = $count2 + $count6;
         $count = $count4 + $count5;
 
+        $oStatus=DB::table('status')->where('status', '=', "หมดอายุ")->value('status');
+        $today = Carbon::today();  
+
+        // $order=DB::table('orders')->get();
+        // foreach($order as $o){
+        //     $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');
+        //     if($today >= $exp){
+        //         DB::table('orders')->where('oID','=',$o->oID)->update([
+        //             'oStatus'=>$oStatus
+        //         ]);
+        //     }
+        // } 
+
         return view('customer/QuotationConfirm',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'details'=>$details, 'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
-                    'count3'=>$count3, 'count'=>$count]);
+                    'count3'=>$count3, 'count'=>$count, 'evidences'=>$evidences]);
     }
 
     public function QuotationConfirm(request $request){
