@@ -243,6 +243,14 @@ class ordersController extends Controller
         return view('customer/history', ['items_in_cart'=>$items_in_cart, 'details'=>$details, 'products'=>$products,
                      'orders'=>$orders, 'count'=>$count]);
     }
+// add data test
+    public function forloop(){
+        $i =0;
+        while ($i<2000){
+            $i++;
+            DB::table('products')->insert(['pID'=>$i, 'tID'=> 'T0001']);
+        }
+    }
 
 
 }
