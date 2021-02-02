@@ -18,6 +18,7 @@ class productController extends Controller
             $items_in_cart = 0 ;
         }
         $caID = null;
+
         return view('product/product',['products' => $products, 
             'groups' => $groups, 'catagories' => $catagories, 'caID' => $caID, 'items_in_cart'=>$items_in_cart]);
     }
