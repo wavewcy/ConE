@@ -104,6 +104,26 @@
 								@while($row = mysqli_fetch_assoc($result))
 									@foreach($products as $pro)
 										@if($row['tID'] == $pro->tID)
+										<?php
+											$servername = "localhost";
+											$username = "root";
+											$password = "";
+											$dbname = "cone";
+											$id = $pro->tID;
+					
+											// Create connection
+											$conn = new mysqli($servername, $username, $password, $dbname);
+											// Check connection
+											if ($conn->connect_error) {
+											die("Connection failed: " . $conn->connect_error);
+											}
+
+											$sql1 = "SELECT MAX(pPrice) as priceMax , MIN(pPrice) as priceMin
+													FROM products
+													WHERE tID = '$id'";
+											$result1 = mysqli_query($conn, $sql1);
+											
+										?>
 										<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 											<!-- Block2 -->
 											<!-- block2-labelnew block2-labelsale -->
@@ -128,6 +148,15 @@
 													<a class="block2-name dis-block s-text3 m-text8 p-b-5">
 														{{$pro->tName}}
 													</a>
+													<p style="color: #444444; font-size:16px;">
+													@while($row1 = mysqli_fetch_assoc($result1))
+														@if($row1['priceMin'] != $row1['priceMax'])
+															{{$row1['priceMin']}} ~ {{$row1['priceMax']}} บาท
+														@elseif($row1['priceMin'] != null)
+															{{$row1['priceMin']}} บาท
+														@endif
+													@endwhile
+													</p>
 												</div>
 											</div>
 										</div>
@@ -206,6 +235,26 @@
 							@else
 								@foreach($products as $pro)
 								@if($caID == $pro->caID)
+								<?php
+									$servername = "localhost";
+									$username = "root";
+									$password = "";
+									$dbname = "cone";
+									$id = $pro->tID;
+			
+									// Create connection
+									$conn = new mysqli($servername, $username, $password, $dbname);
+									// Check connection
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+
+									$sql1 = "SELECT MAX(pPrice) as priceMax , MIN(pPrice) as priceMin
+											FROM products
+											WHERE tID = '$id'";
+									$result1 = mysqli_query($conn, $sql1);
+									
+								?>
 								<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 									<!-- Block2 -->
 									<!-- block2-labelnew block2-labelsale -->
@@ -230,6 +279,15 @@
 											<a class="block2-name dis-block s-text3 p-b-5">
 												{{$pro->tName}}
 											</a>
+											<p style="color: #444444; font-size:16px;">
+											@while($row1 = mysqli_fetch_assoc($result1))
+												@if($row1['priceMin'] != $row1['priceMax'])
+													{{$row1['priceMin']}} ~ {{$row1['priceMax']}} บาท
+												@elseif($row1['priceMin'] != null)
+													{{$row1['priceMin']}} บาท
+												@endif
+											@endwhile
+											</p>
 										</div>
 									</div>
 								</div>
