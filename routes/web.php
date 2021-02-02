@@ -61,3 +61,5 @@ Route::get('/cancel','App\Http\Controllers\QuotationController@QuotationCancel')
 Route::get('/evidence','App\Http\Controllers\QuotationController@ViewEvi');
 Route::post('/upload','App\Http\Controllers\QuotationController@UploadFile');
 Route::get('/history','App\Http\Controllers\ordersController@history');
+
+Route::get('/forloop','App\Http\Controllers\ordersController@forloop');
