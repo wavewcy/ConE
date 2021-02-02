@@ -82,7 +82,7 @@
 									มีของ
 								</div>
 							@endif
-							@if((Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา'))
+							@if((Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') )
 								<div class="cell100"></div>								
 							@endif
 							@if(Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา')
@@ -130,11 +130,22 @@
 									</div>							
 									<div class="cell100" data-title="dPrice">
 										@if($haveCost==1)
-										<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction1({{$detail->dQuantity}},{{$index}})">
+											@if($detail->tHavePrice == 0)
+												<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction1({{$detail->dQuantity}},{{$index}})">
+											@else
+												{{$detail->dPrice}}
+												<input type="hidden" class='price' id=''  name="price[]" value={{$detail->dPrice}}>
+											@endif
+											
 										@endif
 										@if($haveCost==0)
-										<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction3({{$detail->dQuantity}},{{$index}})">
-										<input type="hidden" id="cost" name="cost" value=0>
+											@if($detail->tHavePrice == 0)
+												<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' onchange="fncAction3({{$detail->dQuantity}},{{$index}})">
+											@else
+												{{$detail->dPrice}}
+												<input type="hidden" class='price' id=''  name="price[]" value={{$detail->dPrice}}>
+											@endif
+											<input type="hidden" id="cost" name="cost" value=0>
 										@endif
 									</div>								
 								@endif
@@ -142,21 +153,18 @@
 								@if(Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา')
 									<div class="cell100" data-title=""></div>	
 									<div class="cell100" data-title="dPrice">
+										@if($detail->tHavePrice == 0)
+											<?php 
+												$min =  (int)((float)($detail->dPrice)-((float)($detail->dPrice)*0.05));	
+												$max =  (int)($detail->dPrice);
+																												
+												echo "<input type='number' class='price w3-input w3-border w3-round' name='price[]' id='' min='$min' max='$max' value='$detail->dPrice' onchange='fncAction3($detail->dQuantity,$index)'>"		
+											?>											
+										@else
+											{{$detail->dPrice}}
+											<input type="hidden" class='price' id=''  name="price[]" value={{$detail->dPrice}}>											
+										@endif
 										<input id="check" type="hidden" value='1' name='inStock[{{$index}}]'>
-										<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' value="{{$detail->dPrice}}" onchange="fncAction3({{$detail->dQuantity}},{{$index}})">		
-
-									</div>
-								@endif
-
-								@if(Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา' )
-									<div class="cell100" data-title=""></div>	
-									<div class="cell100" data-title="dPrice">
-										<input id="check" type="hidden" value='1' name='inStock[{{$index}}]'>	
-										@foreach($bargains as $bargain)
-											@if($bargain->dID == $detail->dID)
-												<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' value="{{$bargain->bPrice}}" onchange="fncAction3({{$detail->dQuantity}},{{$index}})">		
-											@endif
-										@endforeach
 									</div>
 								@endif
 
@@ -166,7 +174,17 @@
 										<input id="check" type="hidden" value='1' name='inStock[{{$index}}]'>	
 										@foreach($bargains as $bargain)
 											@if($bargain->dID == $detail->dID)
-												<input type='number' class='price w3-input w3-border w3-round' min='0' name='price[]' id='' value="{{$bargain->bPrice}}" onchange="fncAction3({{$detail->dQuantity}},{{$index}})">		
+												@if($detail->tHavePrice == 0)
+													<?php 
+														$min =  (int)($bargain->bPrice);	
+														$max =  (int)($detail->dPrice);
+																					
+														echo "<input type='number' class='price w3-input w3-border w3-round' name='price[]' id=''  min='$min' max='$max' value='$bargain->bPrice' onchange='fncAction3({{$detail->dQuantity}},{{$index}})'>"		
+													?>
+												@else
+													{{$detail->dPrice}}	
+													<input type="hidden" class='price' id=''  name="price[]" value={{$detail->dPrice}}>											
+												@endif
 											@endif
 										@endforeach
 									</div>
@@ -200,7 +218,7 @@
 								</div>
 							</div>
 						@endif
-						@if(($haveCost == 1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') or ( $haveCost == 1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา'))
+						@if(($haveCost == 1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') )
 							<div class="row100">
 								<div class="cell100" data-title="number"></div>
 								<div class="cell100" data-title="tName"></div>
@@ -249,7 +267,7 @@
 								<textarea rows="6" class="m-text2 p-b-7 contentCard2 card2"cols="65" name="note" placeholder="หมายเหตุ"></textarea>
 						</div>
 					@endif
-					@if((Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') or (Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา'))
+					@if((Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') )
 						<div class=" col-md-7 "></div>
 						<input type="hidden" id="note" name="note" value="{{$order[0]->oNote}}">
 					@endif
@@ -284,15 +302,28 @@
 				@if(Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการขอใบเสนอราคา')
 				<script>
 					var listTotal = document.getElementsByClassName("total");
-					var listPrice = document.getElementsByClassName("price");		
+					var listPrice = document.getElementsByClassName("price");	
+					var listQty = document.getElementsByClassName("qnty");	
+					var amountVat = 0;
 					for (var i = 0; i < listTotal.length; i++) {
 						listTotal[i].setAttribute("id", "total"+ i);
-						listPrice[i].setAttribute("id", "price" + i);				
-					}							
+						listPrice[i].setAttribute("id", "price" + i);
+						if(listPrice[i].value == ''){
+							totalInner = null;												
+						}else{
+							totalInner = parseInt(listPrice[i].value)*parseInt(listQty[i].textContent);
+						}
+						document.getElementById("total"+i).innerHTML = totalInner;
+						amountVat += totalInner;				
+					}		
+					document.getElementById("amountVat").innerHTML = amountVat.toFixed(2);
+					var vat = (amountVat*7)/107;
+					document.getElementById("vat").innerHTML = vat.toFixed(2);
+					var amount = amountVat-vat;
+					document.getElementById("amount").innerHTML = amount.toFixed(2);						
 				</script>
 				@endif
 				@if(($haveCost==1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') 
-				or ($haveCost==1 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา') 
 				or ($haveCost==1 and Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'))
 				<script>
 					var listTotal = document.getElementsByClassName("total");
@@ -318,7 +349,6 @@
 				</script>
 				@endif
 				@if(($haveCost==0 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันใบเสนอราคา') 
-				or ($haveCost==0 and Auth::user()->status=='ลูกค้า' and $order[0]->oStatus=='รอยืนยันการต่อรองราคา') 
 				or ($haveCost==0 and Auth::user()->status=='admin' and $order[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'))
 				<script>
 					var listTotal = document.getElementsByClassName("total");
@@ -383,28 +413,28 @@
 		});
 
 		
-		$("#btn-submit").on('click',function(e){ //also can use on submit
-			e.preventDefault(); //prevent submit
-			Swal.fire({
-				title: 'ยืนยันการสร้าง',
-				text: "คุณต้องการสร้างใบเสนอราคานี้ใช่หรือไม่",
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'ยืนยัน',
-				cancelButtonText: 'ยกเลิก'
-				}).then((result) => {
-					if(result.isConfirmed){
-						Swal.fire(
-							'สำเร็จ!',
-							'สร้างใบเสนอราคาเรียบร้อยแล้ว',
-							'success'
-						)
-						$('#create').submit();
-					}
-				});
-		});
+		// $("#btn-submit").on('click',function(e){ //also can use on submit
+		// 	e.preventDefault(); //prevent submit
+		// 	Swal.fire({
+		// 		title: 'ยืนยันการสร้าง',
+		// 		text: "คุณต้องการสร้างใบเสนอราคานี้ใช่หรือไม่",
+		// 		icon: 'warning',
+		// 		showCancelButton: true,
+		// 		confirmButtonColor: '#3085d6',
+		// 		cancelButtonColor: '#d33',
+		// 		confirmButtonText: 'ยืนยัน',
+		// 		cancelButtonText: 'ยกเลิก'
+		// 		}).then((result) => {
+		// 			if(result.isConfirmed){
+		// 				Swal.fire(
+		// 					'สำเร็จ!',
+		// 					'สร้างใบเสนอราคาเรียบร้อยแล้ว',
+		// 					'success'
+		// 				)
+		// 				$('#create').submit();
+		// 			}
+		// 		});
+		// });
 
 		function fncAction1(qty,n){
 			var price = document.getElementById("price"+n).value;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home 02</title>
+	<title>เชียงใหม่เซ็นเตอร์สตีล</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -51,36 +51,16 @@
 			<nav class="menu">
 				<ul class="main_menu">
 					<li>
-						<a href="index.html">Home</a>
-						<ul class="sub_menu">
-							<li><a href="index.html">Homepage V1</a></li>
-							<li><a href="home-02.html">Homepage V2</a></li>
-							<li><a href="home-03.html">Homepage V3</a></li>
-						</ul>
+						<a href="{{ url('/product') }}">หน้าหลัก</a>
+					</li>
+
+
+					<li>
+						<a href="#">เกี่ยวกับเรา</a>
 					</li>
 
 					<li>
-						<a href="product.html">Shop</a>
-					</li>
-
-					<li class="sale-noti">
-						<a href="product.html">Sale</a>
-					</li>
-
-					<li>
-						<a href="cart.html">Features</a>
-					</li>
-
-					<li>
-						<a href="blog.html">Blog</a>
-					</li>
-
-					<li>
-						<a href="about.html">About</a>
-					</li>
-
-					<li>
-						<a href="contact.html">Contact</a>
+						<a href="#">ติดต่อเรา</a>
 					</li>
 				</ul>
 			</nav>
@@ -167,18 +147,10 @@
 							</li>	
 						@endif
 						<div class="header-cart-buttons">
-							<div class="header-cart-wrapbtn">
 								<!-- Button -->
-								<a href="{{ url('/cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+								<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 									ดูตะกร้า
 								</a>
-							</div>
-							<div class="header-cart-wrapbtn">
-								<!-- Button -->
-								<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									Check Out
-								</a>
-							</div>
 						</div>	
 					</ul>	
 				</div>	
@@ -286,18 +258,10 @@
 								</li>	
 							@endif
 							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="{{ url('/cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										ดูตะกร้า
 									</a>
-								</div>
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
 							</div>	
 						</ul>	
 					</div>

@@ -93,7 +93,7 @@
             <table class="quotation" >
                 <tr>
                     <th style="width: 5%;">ลำดับ</th>
-                    <th style="width: 60%;">รายการสินค้า</th>
+                    <th style="width: 65%;">รายการสินค้า</th>
                     <th>จำนวน</th>
                     <th>หน่วย</th>
                     <th>ราคาขาย</th>

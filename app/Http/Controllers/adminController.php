@@ -137,10 +137,17 @@ class adminController extends Controller
             $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
 
             for($i = 0; $i < count($pID); $i++){
-                DB::table('details')->where('pID','=', $pID[$i])->where('oID','=',$oID)->update([
-                    'dPrice' => $price[$i], 
-                    'dInStock'=>$inStock[$i]]);
-                $amountVat += $qty[$i]*$price[$i];
+                if($inStock[$i] == 1){
+                    DB::table('details')->where('pID','=', $pID[$i])->where('oID','=',$oID)->update([
+                        'dPrice' => $price[$i], 
+                        'dInStock'=>$inStock[$i]]);
+                    $amountVat += $qty[$i]*$price[$i];
+                }else{
+                    DB::table('details')->where('pID','=', $pID[$i])->where('oID','=',$oID)->update([
+                        'dPrice' => 0, 
+                        'dInStock'=>$inStock[$i]]);
+                }
+                
             }
             $amountVat = round($amountVat, 2); 
             $vat = round(($amountVat*7)/107, 2); 
@@ -156,6 +163,7 @@ class adminController extends Controller
                 'oDateQ'=>$today,
                 'oAdmin'=>$saler
             ]);
+            print_r($price);
         }
 
         elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันใบเสนอราคา'){
@@ -176,6 +184,7 @@ class adminController extends Controller
                     'oDateQ'=>$today
                 ]);
             }
+            print_r($price);
 
         }
         elseif(Auth::user()->status=='admin' && $status == 'อยู่ในระหว่างการต่อรองราคา'){
@@ -289,10 +298,28 @@ class adminController extends Controller
     public function cancel(request $request){
 
         $oID = $request->input('oID');
-        $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
+        $oStatus=DB::table('status')->where('status', '=', "รอยืนยันการต่อรองราคา")->value('status');
         DB::table('orders')->where('oID','=',$oID)->update([
             'oStatus'=>$oStatus
         ]);
+        $today = Carbon::today();   
+
+        $details=DB::table('details')->where('oID', '=', $oID)->get();
+
+        foreach($details as $detail){
+            $bID=$this->getTotalBargains();
+
+            DB::table('bargains')->insert([
+                'bID' => $bID,
+                'dID' => $detail->dID,
+                'oID' => $oID,
+                'bPrice' => $detail->dPrice
+            ]);
+            DB::table('orders')->where('oID',$oID)->update([
+                'oStatus'=>$oStatus,
+                'oDateQ'=>$today
+            ]);
+        }
         
         return redirect()->back();
     }

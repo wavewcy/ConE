@@ -3,9 +3,9 @@
 
 @section('header')
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
-		<h2 class="l-text2 t-center">
-			Cart
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
+		<h2 class="l-text0 t-center" style="color:#3d3d3d;padding:30px;padding-left:100px;padding-right:100px;background-color: #cccccc;opacity: 0.85;">
+			ตะกร้าสินค้า
 		</h2>
 	</section>
 
@@ -56,7 +56,10 @@
 										<p>{{$product['pUnit']}}</p>
 									</div>
 								</td>
-								<td class="column-5 hov9" ><a onclick="fncAction3({{$product['pID']}})" class="fa fa-trash fa-2x "></a></td>
+								<td class="column-5 hov9" >
+									<input type="hidden" id="delete{{$id}}" value="{{$product['pID']}}">
+									<a id="delete{{$id}}" href="#" class="delete fa fa-trash fa-2x "></a>
+								</td>
 							</tr>
 							
 							<input type="hidden" name="pID[]" value="{{$product['pID']}}">
@@ -192,7 +195,7 @@
 							'ขอใบเสนอราคาเรียบร้อยแล้ว',
 							'success'
 						)
-						$('#รับเอง').submit();
+						$('#จัดส่ง').submit();
 					}
 				});
 		});
@@ -215,7 +218,7 @@
 							'ขอใบเสนอราคาเรียบร้อยแล้ว',
 							'success'
 						)
-						$('#จัดส่ง').submit();
+						$('#จัดส่งรับเอง').submit();
 					}
 				});
 		});
@@ -245,7 +248,8 @@
 		});
 
 
-		function fncAction3(pID){
+		$(".delete").on('click', function() {
+			console.log('5555');
 			Swal.fire({
 				title: 'ต้องการลบสินค้านี้?',
 				icon: 'warning',
@@ -261,10 +265,11 @@
 					'ลบสินค้าเรียบร้อยแล้ว',
 					'success'
 					)
+					pID = document.getElementById(this.id).value;
 					window.location.assign("{{URL::to('/cart/delete?pID=')}}"+pID);
 				}
 			});
-		}
+		});
 
 
 

@@ -132,6 +132,7 @@ class ordersController extends Controller
         $cart = session()->get('cart');
         $cID=Auth::id();
         $cID=DB::table('customers')->where('cID', '=', $cID)->value('cID');
+        $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
         $exp = Carbon::parse($today)->addMonth();
@@ -149,11 +150,13 @@ class ordersController extends Controller
 
         foreach($cart as $item){
             $dID=$this->getTotalOrdersDetails();
+            $pPrice = DB::table('products')->where('pID', '=', $item['pID'])->value('pPrice');
             DB::table('details')->insert(
                 ['dID' =>$dID,
                 'oID' =>$oID,
                 'pID' =>$item['pID'],
                 'dQuantity' =>$item['quantity'],
+                'dPrice' =>$pPrice,
                 'dInStock'=>1]
             );
         }

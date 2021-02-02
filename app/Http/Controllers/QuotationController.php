@@ -62,15 +62,15 @@ class QuotationController extends Controller
         $oStatus=DB::table('status')->where('status', '=', "หมดอายุ")->value('status');
         $today = Carbon::today();  
 
-        // $order=DB::table('orders')->get();
-        // foreach($order as $o){
-        //     $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');
-        //     if($today >= $exp){
-        //         DB::table('orders')->where('oID','=',$o->oID)->update([
-        //             'oStatus'=>$oStatus
-        //         ]);
-        //     }
-        // } 
+        $order=DB::table('orders')->get();
+        foreach($order as $o){
+            $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');
+            if($today >= $exp){
+                DB::table('orders')->where('oID','=',$o->oID)->update([
+                    'oStatus'=>$oStatus
+                ]);
+            }
+        } 
 
         return view('customer/QuotationConfirm',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'details'=>$details, 'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,

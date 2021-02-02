@@ -235,10 +235,7 @@
 							<p align=right style="padding-right: 30px;">
 								
 								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
-								
-								<input id="bargain<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="bargain<?=$i?>" href="#" class="bargain btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
+								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>				
 								
 								
 								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
@@ -485,8 +482,6 @@
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/select2/select2.min.js"></script>
 	<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<script src="sweetalert2.min.js"></script>
