@@ -123,6 +123,65 @@ class ordersController extends Controller
         return redirect('/product');
 
     }
+
+    public function reorder(request $request)
+    {
+        $oID = $request->input('oID');
+        $details = DB::table('details')
+        ->join('products','products.pID','=','details.pID')
+        ->join('type','products.tID','=','type.tID')
+        ->where(['oID'=>$oID])->get();        
+
+        foreach($details as $detail){
+            $pSize = $detail->pSize;
+            $pThick = $detail->pThick;
+            $pBrand = $detail->pBrand;
+            $pUnit = $detail->pUnit;
+            $qty = $detail->dQuantity;            
+            $pID = $detail->pID;
+            $pName = $detail->tName;
+            $pImg = $detail->tImg;
+            $tID = $detail->tID;
+
+            $cart = session()->get('cart');
+            $request->session()->forget('cart');
+
+            if(!$cart) {
+                $cart = [
+                        $pID => [
+                            "tID" => $tID,
+                            "pID" => $pID,
+                            "pName" => $pName,
+                            "quantity" => $qty,
+                            "pBrand" => $pBrand,
+                            "pSize" => $pSize,
+                            "pThick" => $pThick,
+                            "pImg" => $pImg,
+                            "pUnit" => $pUnit
+                        ]
+                ];
+                session()->put('cart', $cart);
+            }
+            if(isset($cart[$pID])) {
+                $cart[$pID]['quantity'] = $cart[$pID]['quantity']+$qty;
+                session()->put('cart', $cart);
+            }
+            $cart[$pID] = [
+                "pID" => $pID,
+                "pName" => $pName,
+                "quantity" => $qty,
+                "pBrand" => $pBrand,
+                "pSize" => $pSize,
+                "pThick" => $pThick,
+                "pImg" => $pImg,
+                "pUnit" => $pUnit
+            ];
+            session()->put('cart', $cart);
+        }
+        
+        return redirect('/cart');
+       
+    }
     
     public function cartDelivery(request $request)
     {

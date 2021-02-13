@@ -88,6 +88,7 @@
 								@endif
 								@if( Auth::user()->status == 'admin')
 									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>
+									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>
@@ -201,6 +202,7 @@
 								@endif
 								@if( Auth::user()->status == 'admin')
 									<li><a href="{{URL::to('/admin')}}">จัดการคำสั่งซื้อ</a></li>
+									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      		document.getElementById('logout-form').submit();">Logout</a>

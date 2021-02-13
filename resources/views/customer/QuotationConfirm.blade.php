@@ -10,7 +10,8 @@
 		</h2>
 	</section>
 	<br>
-
+	<div>	
+	
     <div class="wrap_menu">
 	    <nav class="menu">
 			<ul class="main_menu">
@@ -85,16 +86,28 @@
 						</div>
 					</form>
                 </li>
-            </ul>
+            </ul>			
         </nav>
+		
 	</div>
-
+	<div class="card sticky t-center">
+		ยอดสะสม : {{$sum}} บาท
+		<br>
+		<p>{{$sum}} / 500,000</p>
+		<div class="progress t-center">
+			<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;background-color:#fcc404;color:black;"></div>
+			
+		</div>
+		@if($percent == 100)
+			<p style="color:green;">ยินดีด้วย !! &nbsp;คุณมีสิทธิ์ได้รับทอง <i class="fa fa-gift"></i></p> 		
+		@endif
+	</div>
 	<!---------------------------status------------------------------------------------->
 	@if (isset($_GET['กำลังขอ']))
 	<h4 class="l-text10 t-left">
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการขอใบเสนอราคาทั้งหมด &nbsp;&nbsp;{{$count1}}&nbsp;&nbsp;รายการ<br><br>
-		</h4>
-		<div class="container">
+	</h4>	
+	<div class="container">
 
 		@if($count1 > 0)
 			@foreach($orders as $order)
@@ -466,7 +479,7 @@
 		</div>
 	@endif
     
-
+	</div>
     
 
 @endsection

@@ -37,16 +37,21 @@ class adminController extends Controller
         $idAdmin = Auth::id();
 
         $details =  DB::table('orders')->join('details','orders.oID','=','details.oID')
+        ->join('customers','customers.cID','=','orders.cID')
+        ->join('tier','tier.tierID','=','customers.tierID')
         ->where(['orders.oAdmin'=>$idAdmin])->get();
+
         $orders = $details->groupBy('oID');
 
-        $allDetails =  DB::table('orders')->join('details','orders.oID','=','details.oID')->get();
+        $allDetails =  DB::table('orders')->join('details','orders.oID','=','details.oID')
+        ->join('customers','customers.cID','=','orders.cID')
+        ->join('tier','tier.tierID','=','customers.tierID')
+        ->get();
         $allOrders = $allDetails->groupBy('oID');
         
         $products =  DB::table('products')->join('type','products.tID','=','type.tID')->get();
 
         $evidences = DB::table('evidences')->groupby('oID')->get();
-
 
         $count1 =  DB::table('orders')->where(['orders.oStatus'=>'อยู่ในระหว่างการขอใบเสนอราคา'])->count();
         $count2 =  DB::table('orders')->where(['orders.oAdmin'=>$idAdmin,
@@ -62,9 +67,9 @@ class adminController extends Controller
         $count2 = $count2 + $count6;
         $count = $count4 + $count5;
 
+        //check exp
         $oStatus=DB::table('status')->where('status', '=', "หมดอายุ")->value('status');
-        $today = Carbon::today();  
-
+        $today = Carbon::today();          
         $order=DB::table('orders')->get();
         foreach($order as $o){
             $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');
@@ -74,10 +79,39 @@ class adminController extends Controller
                 ]);
             }
         } 
+
+        //check tier customer
+        $countOrder = DB::select("SELECT cID,sum(oAmountVat) as sum,count(oID) as countOrder FROM orders where oStatus = 'คำสั่งซื้อสำเร็จแล้ว' group by (cID) ");
+        foreach($countOrder as $co){
+            if($co->countOrder >= 15 and $co->sum > 500000){
+                DB::table('customers')->where('cID','=', $co->cID)->update([
+                    'tierID' => 1]);
+            }elseif($co->countOrder >= 15){
+                DB::table('customers')->where('cID','=', $co->cID)->update([
+                    'tierID' => 2]);
+            }elseif($co->countOrder >= 2){
+                DB::table('customers')->where('cID','=', $co->cID)->update([
+                    'tierID' => 4]);
+            }
+        }
         
         return view('admin/admin',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'allOrders'=>$allOrders,'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
                     'count3'=>$count3, 'count'=>$count, 'evidences'=>$evidences]);
+    }
+
+    public function customerList(request $request)
+    { 
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
+
+        $orders = DB::select("SELECT cID,sum(oAmountVat) as sum, count(oID) as countOrder, cFname, cLname, cAddress,cCompany, cPhone, tierName FROM orders join customers using(cID) join tier using (tierID) where oStatus = 'คำสั่งซื้อสำเร็จแล้ว' group by (cID) ");
+        $customers = DB::table('customers')->join('tier', 'tier.tierID', '=', 'customers.tierID')->reorder('customers.tierID', 'ASC')->get();
+
+        return view('admin/customerList',['items_in_cart'=>$items_in_cart, 'orders'=>$orders, 'customers'=>$customers]);
     }
 
     public function quotation(request $request)

@@ -110,15 +110,15 @@
                     or $orders[0]->oStatus=='รอชำระเงิน' 
                     or $orders[0]->oStatus=='กำลังตรวจสอบการชำระเงิน'
                     or $orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว')
-                        <td style="text-align: right;">{{$detail->dPrice}}</td>
-                        <td style="text-align: right;">{{($detail->dQuantity)*($detail->dPrice)}}</td>
+                        <td style="text-align: right;"><?php echo (number_format($detail->dPrice)); ?></td>
+                        <td style="text-align: right;"><?php echo (number_format(($detail->dQuantity)*($detail->dPrice))); ?></td>
                     @endif
                     @if($orders[0]->oStatus=='อยู่ในระหว่างการต่อรองราคา'
                      or ($orders[0]->oStatus=='รอยืนยันการต่อรองราคา') )
                         @foreach($bargains as $bargain)
                             @if($bargain->dID == $detail->dID)
-                                <td style="text-align: right;">{{$bargain->bPrice}}</td>
-                                <td style="text-align: right;">{{($detail->dQuantity)*($bargain->bPrice)}}</td>
+                                <td style="text-align: right;"><?php echo (number_format($bargain->bPrice)); ?></td>
+                                <td style="text-align: right;"><?php echo (number_format(($detail->dQuantity)*($bargain->bPrice))); ?></td>
                             @endif
                         @endforeach
                     @endif     
@@ -152,7 +152,7 @@
                                 <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$orders[0]->oAmount}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($orders[0]->oAmount)); ?></b></span>
                             </td>
                         </tr>
                         <tr>
@@ -160,7 +160,7 @@
                                <span><b>VAT 7% </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$orders[0]->oVat}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($orders[0]->oVat)); ?></b></span>
                             </td>
                         </tr>
                         <tr>
@@ -168,7 +168,7 @@
                                 <span><b>จำนวนเงินรวมทั้งสิ้น </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$orders[0]->oAmountVat}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($orders[0]->oAmountVat)); ?></b></span>
                             </td>
                         </tr>
                         @endif
@@ -186,7 +186,7 @@
                                 <span><b>จำนวนเงินรวมก่อนภาษี </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$amount}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($amount)); ?></b></span>
                             </td>
                         </tr>
                         <tr>
@@ -194,7 +194,7 @@
                                <span><b>VAT 7% </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$vat}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($vat)); ?></b></span>
                             </td>
                         </tr>
                         <tr>
@@ -202,7 +202,7 @@
                                 <span><b>จำนวนเงินรวมทั้งสิ้น </b></span>
                             </td>
                             <td>
-                                <span><b>&nbsp;&nbsp;{{$amountVat}}</b></span>
+                                <span><b>&nbsp;&nbsp;<?php echo (number_format($amountVat)); ?></b></span>
                             </td>
                         </tr>
                         @endif

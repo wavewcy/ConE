@@ -72,9 +72,18 @@ class QuotationController extends Controller
             }
         } 
 
+        //ยอดสะสม
+        $sum = DB::select("SELECT sum(oAmountVat) as sum FROM orders where cID = ? and oStatus = 'คำสั่งซื้อสำเร็จแล้ว",[$idCustomer]);
+        $percent = (int)(($sum[0]->sum*100)/500000);
+        if($percent>100){
+            $percent = 100;
+        }
+        $sum = (number_format($sum[0]->sum));
+        
+               
         return view('customer/QuotationConfirm',['items_in_cart'=>$items_in_cart, 'count1'=>$count1,
                     'details'=>$details, 'products'=>$products, 'orders'=>$orders, 'count2'=>$count2,
-                    'count3'=>$count3, 'count'=>$count, 'evidences'=>$evidences]);
+                    'count3'=>$count3, 'count'=>$count, 'evidences'=>$evidences, 'sum'=>$sum, 'percent'=>$percent]);
     }
 
     public function QuotationConfirm(request $request){

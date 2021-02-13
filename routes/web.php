@@ -35,8 +35,10 @@ Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');
 Route::get('/cart/update','App\Http\Controllers\ordersController@cartUpdate');
 Route::get('/cart/delivery','App\Http\Controllers\ordersController@cartDelivery');
 Route::get('/cart/self','App\Http\Controllers\ordersController@cartSelf');
+Route::get('/reorder','App\Http\Controllers\ordersController@reorder');
 //admin
 Route::get('/admin','App\Http\Controllers\adminController@adminMenu');
+Route::get('/customerList','App\Http\Controllers\adminController@customerList');
 Route::get('/adminQuotation','App\Http\Controllers\adminController@quotation');
 Route::get('/adminQuotation/created','App\Http\Controllers\adminController@createQuotation');
 Route::get('/adminQuotation/cancel','App\Http\Controllers\adminController@cancel');

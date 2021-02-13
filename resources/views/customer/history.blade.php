@@ -1,5 +1,5 @@
 @extends('header-footer')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @section('header')
 
     <section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/product.jpg);">
@@ -39,6 +39,10 @@
                             @endforeach
                         @endforeach
                         </ol>
+						<p align=right style="padding-right: 30px;">							
+							<input id="reorder{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="reorder{{$index}}" href="#" class="reorder btn btn-success" style="margin-left: 12px; margin-top:8px;" >สั่งซื้ออีกครั้ง</a>
+						</p>
                     </div>
 
                     <div class="contentCard contentCardStatus col-md-3 center">
@@ -81,6 +85,31 @@
 			oID = document.getElementById(this.id).value;
 			window.location.assign("{{URL::to('/pdf?oID=')}}"+oID);
 		});
+
+		$(".reorder").on('click', function() {
+
+			Swal.fire({
+				title: 'ต้องการสั่งซื้ออีกครั้ง?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'เพิ่มลงในตะกร้าเรียบร้อยแล้ว!',
+					'',
+					'success'
+					)
+					oID = document.getElementById(this.id).value;
+					window.location.assign("{{URL::to('/reorder?oID=')}}"+oID);
+				}
+			});
+
+		});
+
 	</script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>

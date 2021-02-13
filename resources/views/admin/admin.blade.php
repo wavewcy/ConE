@@ -100,7 +100,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-cart">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>							
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -153,7 +181,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -190,7 +246,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -243,7 +327,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -305,7 +417,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -356,7 +496,35 @@
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
@@ -408,8 +576,36 @@
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
-							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
-							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
+							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>				
+							@if($order[0]->cCompany == 'ไม่มีข้อมูล')	
+								@if($order[0]->tierID == 1)		
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								
+							@else
+								@if($order[0]->tierID == 1)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #FFE4E1;">&nbsp;<i class="fa fa-star" style="color:orangered;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif	
+								@if($order[0]->tierID == 2)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #fffcc0;">&nbsp;<i class="fa fa-star" style="color:#FFAE00 ;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 4)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DAF7CB  ;">&nbsp;<i class="fa fa-star" style="color:#008900;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif
+								@if($order[0]->tierID == 3)
+									<p class="m-t-5 m-b-5"><mark style="background-color: #DDEEFF;">&nbsp;<i class="fa fa-star" style="color:#007CFF;"></i> &nbsp;{{$order[0]->tierName}}&nbsp;</mark> </p>
+								@endif									
+							@endif
+							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->cFname}} {{$order[0]->cLname}} </p>
 							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
 							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
 							<?php
