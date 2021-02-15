@@ -73,7 +73,7 @@ class QuotationController extends Controller
         } 
 
         //ยอดสะสม
-        $sum = DB::select("SELECT sum(oAmountVat) as sum FROM orders where cID = ? and oStatus = 'คำสั่งซื้อสำเร็จแล้ว",[$idCustomer]);
+        $sum = DB::select("SELECT sum(oAmountVat) as sum FROM orders where cID = ? and oStatus = 'คำสั่งซื้อสำเร็จแล้ว'",[$idCustomer]);
         $percent = (int)(($sum[0]->sum*100)/500000);
         if($percent>100){
             $percent = 100;
