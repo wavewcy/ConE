@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //home
 Route::get('/', function () {
-    return view('home-02');
+    return view('auth/register');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
