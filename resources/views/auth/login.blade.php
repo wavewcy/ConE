@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="../images/icons/logo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor_login/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -64,9 +64,9 @@
 						รหัสผ่าน
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "โปรดกรอก Password">
-						<!-- <span class="btn-show-pass">
-							<i class="fa fa-eye"></i>
-						</span> -->
+						<span class="btn-show-pass" style="text-align: center; margin-top: 10px;">
+							<i class="fa fa-eye fa-2x"></i>
+						</span>
 						<input class="input100 form-control @error('password') is-invalid @enderror" type="password" name="password" >
 						<span class="focus-input100"></span>
 						@error('password')

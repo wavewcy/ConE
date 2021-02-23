@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="../images/icons/logo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor_login/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -95,6 +95,9 @@
 						Password
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "โปรดกรอก Password">
+						<span class="btn-show-pass" style="text-align: center; margin-top: 3px;">
+							<i class="fa fa-eye fa-2x"></i>
+						</span>
 						<input class="input80 form-control" type="password" name="pass" >
 						<span class="focus-input80"></span>
 					</div>

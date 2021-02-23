@@ -20,7 +20,7 @@ Route::get('/EmployeeReg', function () {
     return view('auth/EmployeeReg');
 });
 Route::get('/register', function () {
-    return view('auth/register');
+    return view('auth/CustomerReg');
 });
 Route::post('/CustomerCheck','App\Http\Controllers\registerController@CustomerReg');
 Route::post('/EmpCheck','App\Http\Controllers\registerController@EmpReg');
