@@ -40,71 +40,71 @@
 				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ URL::to('/CustomerCheck') }}">
 				@csrf	
 					<span class="login100-form-title p-b-32">
-						Customer Register
+						สมัครสมาชิก
                     </span>
                     
                     <span class="txt1 p-b-11">
-						First Name
+						ชื่อ <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="text" name="Fname" >
+						<input class="input100 form-control" type="text" name="Fname" required>
 						<span class="focus-input80"></span>
 					</div>
 
 					<span class="txt1 p-b-11">
-						Last Name
+						นามสกุล <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="text" name="Lname" >
+						<input class="input100 form-control" type="text" name="Lname" required>
 						<span class="focus-input80"></span>
                     </div>
                     
                     <span class="txt1 p-b-11">
-						Company Name (ถ้ามี)
+						ชื่อบริษัท (ถ้ามี)
 					</span>
-					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="text" name="company" >
+					<div class="wrap-input100 m-b-36">
+						<input class="input100 form-control" type="text" name="company" >
 						<span class="focus-input80"></span>
 					</div>
 
 					<span class="txt1 p-b-11">
-						E-mall Address
+						อีเมล <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="email" name="email">
+						<input class="input100 form-control" type="email" name="email" required>
 						<span class="focus-input80"></span>
                     </div>
                     
                     <span class="txt1 p-b-11">
-						Address
+						ที่อยู่ <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="text" name="address" >
+						<input class="input100 form-control" type="text" name="address" required>
 						<span class="focus-input80"></span>
 					</div>
                     
                     <span class="txt1 p-b-11">
-						Phone Number
+						เบอร์โทรศัพท์ <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-36" data-validate = "โปรดกรอก E-mail">
-						<input class="input80 form-control" type="text" name="phone" >
+						<input class="input100 form-control" type="phone" name="phone" maxlength="10" required>
 						<span class="focus-input80"></span>
 					</div>
                     
 					<span class="txt1 p-b-11">
-						Password
+						รหัสผ่าน <span style="color:red;">*</span> 
 					</span>
 					<div class="wrap-input100 validate-input m-b-12" data-validate = "โปรดกรอก Password">
-						<span class="btn-show-pass" style="text-align: center; margin-top: 3px;">
+						<span class="btn-show-pass" style="text-align: center; margin-top: 10px;">
 							<i class="fa fa-eye fa-2x"></i>
 						</span>
-						<input class="input80 form-control" type="password" name="pass" >
+						<input class="input100 form-control" type="password" name="pass" required>
 						<span class="focus-input80"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Register
+							สมัครสมาชิก
 						</button>
 					</div>
 
@@ -132,6 +132,19 @@
 	<script src="vendor_login/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js_login/main.js"></script>
+	@if (Session('success'))
+		<script type="text/javascript">
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'สมัครสมาชิกเรียบร้อยแล้ว',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		</script>
+	@endif
+
+	
 
 </body>
 </html>
