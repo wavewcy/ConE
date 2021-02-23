@@ -75,10 +75,10 @@
 					@if(isset($_GET['search']))
 					<?php
 						$search = $_GET['search'];
-						$servername = "localhost";
-						$username = "root";
-						$password = "";
-						$dbname = "cone";
+						$servername = "us-cdbr-east-03.cleardb.com";
+						$username = "b584ddc6783b50";
+						$password = "7117e2cf";
+						$dbname = "heroku_7f7e161f4166dd8";
 
 						// Create connection
 						$conn = new mysqli($servername, $username, $password, $dbname);
@@ -105,10 +105,10 @@
 									@foreach($products as $pro)
 										@if($row['tID'] == $pro->tID)
 										<?php
-											$servername = "localhost";
-											$username = "root";
-											$password = "";
-											$dbname = "cone";
+											$servername = "us-cdbr-east-03.cleardb.com";
+											$username = "b584ddc6783b50";
+											$password = "7117e2cf";
+											$dbname = "heroku_7f7e161f4166dd8";
 											$id = $pro->tID;
 					
 											// Create connection
@@ -178,10 +178,10 @@
 							@if($caID == null)
 								@foreach($products as $pro)
 								<?php
-									$servername = "localhost";
-									$username = "root";
-									$password = "";
-									$dbname = "cone";
+									$servername = "us-cdbr-east-03.cleardb.com";
+									$username = "b584ddc6783b50";
+									$password = "7117e2cf";
+									$dbname = "heroku_7f7e161f4166dd8";
 									$id = $pro->tID;
 			
 									// Create connection
@@ -236,10 +236,10 @@
 								@foreach($products as $pro)
 								@if($caID == $pro->caID)
 								<?php
-									$servername = "localhost";
-									$username = "root";
-									$password = "";
-									$dbname = "cone";
+									$servername = "us-cdbr-east-03.cleardb.com";
+									$username = "b584ddc6783b50";
+									$password = "7117e2cf";
+									$dbname = "heroku_7f7e161f4166dd8";
 									$id = $pro->tID;
 			
 									// Create connection
