@@ -87,7 +87,7 @@
 						die("Connection failed: " . $conn->connect_error);
 						}
 
-						$sql = "SELECT * FROM type WHERE tName LIKE '%$search%'";
+						$sql = "SELECT * FROM type WHERE tName LIKE '%' + $search + '%'";
 						$result = mysqli_query($conn, $sql);
 						  
 						mysqli_close($conn);
