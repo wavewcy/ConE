@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 //home
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/','App\Http\Controllers\HomeController@home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //login

@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except'=> ['home']]);
     }
 
     /**
@@ -24,5 +24,16 @@ class HomeController extends Controller
     public function index()
     {
         return redirect('/product');
+    }
+
+    public function home()
+    {
+        if(session()->has('cart')){
+            $items_in_cart = count(session()->get('cart'));
+        }else {
+            $items_in_cart = 0 ;
+        }
+
+        return view('home-02',['items_in_cart'=>$items_in_cart]);
     }
 }

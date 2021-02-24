@@ -3414,7 +3414,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ///////////////////////////////////////////////////////////
 */
 .xl-text1 {
-	font-family: Poppins-Bold;
+	font-family: Kanit-Bold;
 	font-size: 60px;
 	color: white;
 	line-height: 1.2;
@@ -3423,7 +3423,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .xl-text2 {
-	font-family: Poppins-Black;
+	font-family: Kanit-Black;
 	font-size: 80px;
 	color: white;
 	line-height: 1.2;
