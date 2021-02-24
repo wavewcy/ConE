@@ -19,6 +19,7 @@
 					<form action="customer" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="กำลังขอ" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count1}}</span>
 							@if(isset($_GET['กำลังขอ']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								กำลังขอ
@@ -40,6 +41,7 @@
 					<form action="customer" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="รอยืนยัน" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count2}}</span>
 							@if(isset($_GET['รอยืนยัน']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								รอยืนยัน
@@ -57,6 +59,7 @@
 					<form action="customer" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="ต่อรองราคา" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count3}}</span>
 							@if(isset($_GET['ต่อรองราคา']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								ต่อรองราคา
@@ -74,6 +77,7 @@
 					<form action="customer" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="รอชำระเงิน" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count}}</span>
 							@if(isset($_GET['รอชำระเงิน']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								รอชำระเงิน

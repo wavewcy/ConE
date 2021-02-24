@@ -46,6 +46,7 @@ class adminController extends Controller
         $allDetails =  DB::table('orders')->join('details','orders.oID','=','details.oID')
         ->join('customers','customers.cID','=','orders.cID')
         ->join('tier','tier.tierID','=','customers.tierID')
+        ->reorder('customers.tierID', 'ASC')
         ->get();
         $allOrders = $allDetails->groupBy('oID');
         
@@ -197,7 +198,7 @@ class adminController extends Controller
                 'oDateQ'=>$today,
                 'oAdmin'=>$saler
             ]);
-            print_r($price);
+            return redirect('/admin')->with('success','Please fill all required field.');
         }
 
         elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันใบเสนอราคา'){
@@ -218,7 +219,7 @@ class adminController extends Controller
                     'oDateQ'=>$today
                 ]);
             }
-            print_r($price);
+            return redirect('/customer')->with('success','Please fill all required field.');
 
         }
         elseif(Auth::user()->status=='admin' && $status == 'อยู่ในระหว่างการต่อรองราคา'){
@@ -263,10 +264,10 @@ class adminController extends Controller
         
         
         if(Auth::user()->status=='admin'){
-            return redirect('/admin')->with('success','Please fill all required field.');
+            return redirect()->back();
         }
         elseif(Auth::user()->status=='ลูกค้า'){
-            return redirect('/customer')->with('success','Please fill all required field.');
+            return redirect('/customer');
         }   
                   
     }
