@@ -1661,6 +1661,7 @@ li.sale-noti > a {
 ///////////////////////////////////////////////////////////
 */
 .block2-labelsale::before,
+.block2-labelhot::before,
 .block2-labelnew::before 
 {
   z-index: 100;
@@ -1684,12 +1685,17 @@ li.sale-noti > a {
 
 .block2-labelsale::before {
   background-color: #fcc404;
-  content: 'Sale';
+  content: 'ลดราคา';
 }
 
 .block2-labelnew::before {
   background-color: #66a8a6;
-  content: 'New';
+  content: 'มาใหม่';
+}
+
+.block2-labelhot::before {
+  background-color: #cf5a5a;
+  content: 'ขายดี';
 }
 
 /* ------------------------------------ */

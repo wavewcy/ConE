@@ -51,10 +51,11 @@
 			<nav class="menu">
 				<ul class="main_menu">
 					<li>
-						<a href="{{ url('/product') }}">หน้าหลัก</a>
+						<a href="{{ url('/') }}">หน้าหลัก</a>
 					</li>
-
-
+					<li>
+						<a href="{{ url('/product') }}">รายการสินค้า</a>
+					</li>
 					<li>
 						<a href="#">เกี่ยวกับเรา</a>
 					</li>
@@ -165,9 +166,9 @@
 	<div class="container-menu-header-v2 p-t-26">
 		<div class="topbar2">
 			<div class="topbar-social">
-				<a href="#" class="topbar-social-item fa fa-phone"></a>
-				<a href="#" class="topbar-social-item fa fa-envelope"></a>
-				<a href="#" class="topbar-social-item fa fa-facebook"></a>
+				<a href="tel:053-345436" class="topbar-social-item fa fa-phone"></a>
+				<a href="mailto:chiangmaicentersteel@hotmail.co.th?subject=หัวข้อ" class="topbar-social-item fa fa-envelope"></a>
+				<a href="https://www.facebook.com/chiangmaicentersteel/" class="topbar-social-item fa fa-facebook"></a>
 			</div>
 
 			<!-- Logo2 -->
@@ -278,10 +279,11 @@
 				<nav class="menu">
 					<ul class="main_menu">
 						<li>
-							<a href="{{ url('/product') }}">หน้าหลัก</a>
+							<a href="{{ url('/') }}">หน้าหลัก</a>
 						</li>
-
-
+						<li>
+							<a href="{{ url('/product') }}">รายการสินค้า</a>
+						</li>
 						<li>
 							<a href="#">เกี่ยวกับเรา</a>
 						</li>
@@ -313,7 +315,7 @@
 
 				<div>
 					<p class="s-text7 w-size27">
-						บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด มีทั้งขายส่งและขายปลีก และมีบริการส่งสินค้าถึงหน้างานทั่วเขตภาคเหนทอตอนบน ทั้งหมด 8 จังหวัด ได้แก่ เชียงใหม่ เชียงราย พะเยา ลำพูน ลำปาง แม่ฮ่องสอน แพร่ น่าน
+						บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด มีทั้งขายส่งและขายปลีก และมีบริการส่งสินค้าถึงหน้างานทั่วเขตภาคเหนือตอนบน ทั้งหมด 8 จังหวัด ได้แก่ เชียงใหม่ เชียงราย พะเยา ลำพูน ลำปาง แม่ฮ่องสอน แพร่ น่าน
 					</p>
 
 					<!-- <div class="flex-m p-t-30">
@@ -365,7 +367,7 @@
 
 					<div class="p-b-9">
 						<a href="#" class="s-text7">
-							<i class="fa fa-facebook fa-lg"></i> &nbsp;&nbsp;&nbsp;&nbsp;https://www.facebook.com.chiangmaicenter.steel
+							<i class="fa fa-facebook fa-lg"></i> &nbsp;&nbsp;&nbsp;&nbsp;https://www.facebook.com/chiangmaicentersteel/
 						</a>
 					</div>
 				</ul>
@@ -417,7 +419,7 @@
 			<div class="wrap-video-mo-01">
 				<div class="w-full wrap-pic-w op-0-0"><img src="images/icons/video-16-9.jpg" alt="IMG"></div>
 				<div class="video-mo-01">
-					<iframe src="https://www.youtube.com/embed/Nt8ZrWY2Cmk?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+					<iframe src="https://video-amt2-1.xx.fbcdn.net/v/t42.1790-2/47063193_280704982790236_3225585825878114304_n.mp4?_nc_cat=101&vs=fc9f4c1c08bc1ec3&_nc_vs=HBksFQAYJEdKa2d6Z0pjTU1tNFRQOEFBQUFBQUFBNGxjTXNidjRHQUFBRhUAAsgBABUAGCRHSVd1emdLRXJrQlI2d0VCQUFBQUFBQzBGOFZoYnY0R0FBQUYVAgLIAQBLAogScHJvZ3Jlc3NpdmVfcmVjaXBlATEgbWVhc3VyZV9vcmlnaW5hbF9yZXNvbHV0aW9uX3NzaW0AFQAlABwAACb6yLW307z5BhUCKAJDMxgLdnRzX3ByZXZpZXccF0BDdLxqfvnbGBhkYXNoX3Y0X2hxMl9mcmFnXzJfdmlkZW8SABgYdmlkZW9zLnZ0cy5jYWxsYmFjay5wcm9kOBJWSURFT19WSUVXX1JFUVVFU1QbCIgVb2VtX3RhcmdldF9lbmNvZGVfdGFnBm9lcF9oZBNvZW1fcmVxdWVzdF90aW1lX21zDTE2MTQxNDI2NDA5ODgMb2VtX2NmZ19ydWxlB3VubXV0ZWQTb2VtX3JvaV9yZWFjaF9jb3VudAQxMzM0DG9lbV92aWRlb19pZBAxOTU1OTczNjc0NTE4NzE2Em9lbV92aWRlb19hc3NldF9pZBAxOTU1OTczNjY3ODUyMDUwFW9lbV92aWRlb19yZXNvdXJjZV9pZBAxOTU1OTczNjY0NTE4NzE3HG9lbV9zb3VyY2VfdmlkZW9fZW5jb2RpbmdfaWQPMjgwNzA0OTc5NDU2OTAzJQIcAAA%3D&ccb=3&_nc_sid=a6057a&efg=eyJ2ZW5jb2RlX3RhZyI6Im9lcF9oZCJ9&_nc_ohc=O0Bjo7Oqy3cAX--rKsE&_nc_ht=video-amt2-1.xx&oh=0acb03643b4b6ad9ce54b537ebb41fd5&oe=6035FD1B&_nc_rid=dabc8e409f0c4e3" allowfullscreen></iframe>
 				</div>
 			</div>
 		</div>
