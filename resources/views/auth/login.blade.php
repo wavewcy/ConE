@@ -125,6 +125,17 @@
 	<script src="vendor_login/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js_login/main.js"></script>
+	@if (Session('success'))
+		<script type="text/javascript">
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'สมัครสมาชิกเรียบร้อยแล้ว',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		</script>
+	@endif
 
 </body>
 </html>

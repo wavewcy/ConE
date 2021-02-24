@@ -69,7 +69,7 @@ class registerController extends Controller
                 'cPhone' => $phone,]);
         }
         
-        return redirect()->back()->with('success','Please fill all required field.');;
+        return redirect('/login')->with('success','Please fill all required field.');
     }
     
 }

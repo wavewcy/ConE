@@ -103,9 +103,9 @@
 				@else
 				
 					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
-						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						<a href="{{URL::to('/login')}}" class="">เข้าสู่ระบบ</a>
 						/
-						<a href="{{URL::to('/register')}}" class="">Register</a>
+						<a href="{{URL::to('/register')}}" class="">สมัครสมาชิก</a>
 					</span>
 				@endif
 
@@ -217,9 +217,9 @@
 				@else
 				
 					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
-						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						<a href="{{URL::to('/login')}}" class="">เข้าสู่ระบบ</a>
 						/
-						<a href="{{URL::to('/register')}}" class="">Register</a>
+						<a href="{{URL::to('/register')}}" class="">สมัครสมาชิก</a>
 					</span>
 				@endif
 				</div>
@@ -313,7 +313,7 @@
 
 				<div>
 					<p class="s-text7 w-size27">
-						บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด มีทั้งขายส่งและขายปลีก และมีบริการส่งสินค้าถึงหน้างานทั่วเขตภาคเหนทอตอนบน ทั้งหมด 8 จังหวัด ได้แก่ เชียงใหม่ เชียงราย พะเยา ลำพูน ลำปาง แม่ฮ่องสอน แพร่ น่าน
+						บริษัท เชียงใหม่เซ็นเตอร์สตีล จำกัด มีทั้งขายส่งและขายปลีก และมีบริการส่งสินค้าถึงหน้างานทั่วเขตภาคเหนือตอนบน ทั้งหมด 8 จังหวัด ได้แก่ เชียงใหม่ เชียงราย พะเยา ลำพูน ลำปาง แม่ฮ่องสอน แพร่ น่าน
 					</p>
 
 					<!-- <div class="flex-m p-t-30">
