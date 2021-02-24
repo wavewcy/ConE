@@ -263,10 +263,10 @@ class adminController extends Controller
         
         
         if(Auth::user()->status=='admin'){
-            return redirect('/admin');
+            return redirect('/admin')->with('success','Please fill all required field.');
         }
         elseif(Auth::user()->status=='ลูกค้า'){
-            return redirect('/customer');
+            return redirect('/customer')->with('success','Please fill all required field.');
         }   
                   
     }
