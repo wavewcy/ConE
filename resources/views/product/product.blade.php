@@ -177,7 +177,7 @@
 						@endif  
 					@else
 						<div class="row">
-							@if($caID == null)
+							@if($caID == null && $gID == "no")
 								@foreach($products as $pro)
 								<?php
 									$servername = "us-cdbr-east-03.cleardb.com";
@@ -234,7 +234,7 @@
 									</div>
 								</div>
 								@endforeach
-							@else
+							@elseif($caID != null && $gID == "no")
 								@foreach($products as $pro)
 								@if($caID == $pro->caID)
 								<?php
@@ -295,8 +295,67 @@
 								</div>
 								@endif
 								@endforeach
+
+							@else
+								@foreach($products_search as $pro)
+									<?php
+										$servername = "us-cdbr-east-03.cleardb.com";
+										$username = "b584ddc6783b50";
+										$password = "7117e2cf";
+										$dbname = "heroku_7f7e161f4166dd8";
+										$id = $pro->tID;
+				
+										// Create connection
+										$conn = new mysqli($servername, $username, $password, $dbname);
+										// Check connection
+										if ($conn->connect_error) {
+										die("Connection failed: " . $conn->connect_error);
+										}
+
+										$sql1 = "SELECT MAX(pPrice) as priceMax , MIN(pPrice) as priceMin
+												FROM products
+												WHERE tID = '$id'";
+										$result1 = mysqli_query($conn, $sql1);
+										
+									?>
+									<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+										<!-- Block2 -->
+										<!-- block2-labelnew block2-labelsale -->
+										<!-- photo size 720x960 -->
+										<div class="block2">
+											<div class="block2-img wrap-pic-w of-hidden pos-relative">
+												<img src="images/{{$pro->tImg}}" alt="IMG-PRODUCT" width="400" height="300">
+
+												<div class="block2-overlay trans-0-4">
+													<form action="{{URL::to('/product-detail')}}" method="post" class="block2-btn-addcart w-size1 trans-0-4">
+														<!-- Button -->
+														@csrf
+														<input type="hidden" name="tID" value="{{$pro->tID}}"/>
+														<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+															ดูรายละเอียด
+														</button>
+													</form>
+												</div>
+											</div>
+
+											<div class="block2-txt p-t-20">
+												<a class="block2-name dis-block s-text3 p-b-5">
+													{{$pro->tName}}
+												</a>
+												<p style="color: #444444; font-size:16px;">
+												@while($row1 = mysqli_fetch_assoc($result1))
+													@if($row1['priceMin'] != $row1['priceMax'])
+														{{$row1['priceMin']}} ~ {{$row1['priceMax']}} บาท
+													@elseif($row1['priceMin'] != null)
+														{{$row1['priceMin']}} บาท
+													@endif
+												@endwhile
+												</p>
+											</div>
+										</div>
+									</div>
+								@endforeach
 							@endif
-							
 						</div>
 					@endif
 					

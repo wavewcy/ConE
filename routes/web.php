@@ -28,6 +28,7 @@ Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
 Route::post('/product-detail/addToCart','App\Http\Controllers\ordersController@addToCart');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');
+Route::post('/searchGroup','App\Http\Controllers\productController@searchGroup');
 //order
 Route::get('/cart','App\Http\Controllers\ordersController@cart');
 Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');

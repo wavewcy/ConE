@@ -90,9 +90,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								เหล็กรูป
-							</a>
+							<form action="{{URL::to('/searchGroup')}}" method="post">
+							@csrf
+								<input type="hidden" name="gID" value="G0007"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									เหล็กรูป
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -104,9 +108,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								เหล็กเส้น
-							</a>
+							<form action="{{URL::to('/searchGroup')}}" method="post">
+							@csrf
+								<input type="hidden" name="gID" value="G0006"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									เหล็กเส้น
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -118,9 +126,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								ตะแกรงเหล็ก
-							</a>
+							<form action="{{URL::to('/searchGroup')}}" method="post">
+							@csrf
+								<input type="hidden" name="gID" value="G0005"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									ตะแกรงเหล็ก
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -133,9 +145,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								เกเบี้ยน แมทเทรส
-							</a>
+							<form action="{{URL::to('/searchGroup')}}" method="post">
+							@csrf
+								<input type="hidden" name="gID" value="G0001"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									เกเบี้ยน แมทเทรส
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -147,9 +163,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								PVC
-							</a>
+							<form action="{{URL::to('/searchGroup')}}" method="post">
+							@csrf
+								<input type="hidden" name="gID" value="G0004"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									PVC
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -161,9 +181,13 @@
 
 						<div class="block1-wrapbtn w-size2">
 							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								อื่นๆ
-							</a>
+							<form action="{{URL::to('/product')}}" method="get">
+							@csrf
+								<input type="hidden" name="gID" value="G0004"/>
+								<button href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+									อื่นๆ
+								</button>
+							</form>
 						</div>
 					</div>
 				</div>
