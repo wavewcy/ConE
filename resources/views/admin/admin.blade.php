@@ -15,8 +15,10 @@
 					<form action="admin" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="สร้างใบเสนอราคา" class="form-control">
-							@if(isset($_GET['สร้างใบเสนอราคา']))
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count1}}</span>
+							@if(isset($_GET['สร้างใบเสนอราคา']))							
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
+							
 								สร้างใบเสนอราคา
 							</button>
 							@elseif(isset($_GET['รอยืนยัน']) || isset($_GET['ต่อรองราคา']) || isset($_GET['ชำระเงิน']))
@@ -36,6 +38,7 @@
 					<form action="admin" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="รอยืนยัน" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count2}}</span>
 							@if(isset($_GET['รอยืนยัน']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								รอยืนยัน
@@ -53,6 +56,7 @@
 					<form action="admin" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="ต่อรองราคา" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count3}}</span>
 							@if(isset($_GET['ต่อรองราคา']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								ต่อรองราคา
@@ -70,6 +74,7 @@
 					<form action="admin" method="get">
 						<div class="w-size2 p-t-20">
 							<input type="hidden" name="ชำระเงิน" class="form-control">
+							<span class="header-icons-noti2 m-t-30 m-r-25">{{$count}}</span>
 							@if(isset($_GET['ชำระเงิน']))
 							<button class="manu-noti flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">	
 								ชำระเงิน

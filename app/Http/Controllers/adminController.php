@@ -46,6 +46,7 @@ class adminController extends Controller
         $allDetails =  DB::table('orders')->join('details','orders.oID','=','details.oID')
         ->join('customers','customers.cID','=','orders.cID')
         ->join('tier','tier.tierID','=','customers.tierID')
+        ->reorder('customers.tierID', 'ASC')
         ->get();
         $allOrders = $allDetails->groupBy('oID');
         
@@ -263,7 +264,7 @@ class adminController extends Controller
         
         
         if(Auth::user()->status=='admin'){
-            return redirect('/admin');
+            return redirect()->back();
         }
         elseif(Auth::user()->status=='ลูกค้า'){
             return redirect('/customer');

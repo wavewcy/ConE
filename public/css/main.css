@@ -807,6 +807,27 @@ li.sale-noti > a {
   right: -10px;
 }
 
+.header-icons-noti2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  color: rgb(0, 0, 0);
+  font-family: Kanit-Medium;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+
+
 .linedivide1 {
   display: block;
   height: 20px;
