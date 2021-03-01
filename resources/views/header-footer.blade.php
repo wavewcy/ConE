@@ -92,7 +92,7 @@
 									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     		document.getElementById('logout-form').submit();">Logout</a>
+                                     		document.getElementById('logout-form').submit();">ออกจากระบบ</a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                            @csrf
@@ -206,7 +206,7 @@
 									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     		document.getElementById('logout-form').submit();">Logout</a>
+                                     		document.getElementById('logout-form').submit();">ออกจากระบบ</a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                            @csrf
