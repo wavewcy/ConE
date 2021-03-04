@@ -198,8 +198,15 @@
 								<!-- <a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="{{ url('/product-detail/addToCart/'.$tID) }}" >
 									เพิ่มไปยังตะกร้า
 								</a> -->
-								<input type="hidden" name="tID" value="{{$tID}}">
-								<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
+								@if (Auth::check())
+									@if( Auth::user()->status == 'ลูกค้า')
+									<input type="hidden" name="tID" value="{{$tID}}">
+									<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
+									@endif
+								@else
+									<input type="hidden" name="tID" value="{{$tID}}">
+									<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
+								@endif
 							</div>
 							
 						</div>
