@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 //home
 Route::get('/','App\Http\Controllers\HomeController@home');
@@ -17,7 +18,7 @@ Route::get('/EmployeeReg', function () {
     return view('auth/EmployeeReg');
 });
 Route::get('/register', function () {
-    return view('auth/register');
+    return view('auth/CustomerReg');
 });
 Route::post('/CustomerCheck','App\Http\Controllers\registerController@CustomerReg');
 Route::post('/EmpCheck','App\Http\Controllers\registerController@EmpReg');
@@ -27,6 +28,7 @@ Route::get('/product','App\Http\Controllers\productController@showProduct');
 Route::post('/product-detail','App\Http\Controllers\productController@productDetail');
 Route::post('/product-detail/addToCart','App\Http\Controllers\ordersController@addToCart');
 Route::post('/search','App\Http\Controllers\productController@searchProduct');
+Route::post('/searchGroup','App\Http\Controllers\productController@searchGroup');
 //order
 Route::get('/cart','App\Http\Controllers\ordersController@cart');
 Route::get('/cart/delete','App\Http\Controllers\ordersController@cartDelete');

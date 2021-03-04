@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect('/product');
+        return redirect('/');
     }
 
     public function home()

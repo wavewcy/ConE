@@ -198,7 +198,7 @@ class adminController extends Controller
                 'oDateQ'=>$today,
                 'oAdmin'=>$saler
             ]);
-            print_r($price);
+            return redirect('/admin?=รอยืนยัน')->with('success','Please fill all required field.');
         }
 
         elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันใบเสนอราคา'){
@@ -219,7 +219,7 @@ class adminController extends Controller
                     'oDateQ'=>$today
                 ]);
             }
-            print_r($price);
+            return redirect('/customer?ต่อรองราคา=')->with('success','Please fill all required field.');
 
         }
         elseif(Auth::user()->status=='admin' && $status == 'อยู่ในระหว่างการต่อรองราคา'){
@@ -240,35 +240,8 @@ class adminController extends Controller
                     'oDateQ'=>$today
                 ]);
             }
+            return redirect('/admin?รอยืนยัน=');
         }
-        elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันการต่อรองราคา'){
-            $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการต่อรองราคา")->value('status');
-
-            for($i = 0; $i < count($pID); $i++){
-                $dID = DB::table('details')->where('pID', $pID[$i])->where('oID','=',$oID)->value('dID');
-                $bID=$this->getTotalBargains();
-
-                DB::table('bargains')->insert([
-                    'bID' => $bID,
-                    'dID' => $dID,
-                    'oID' => $oID,
-                    'bPrice' => $price[$i]
-                ]);
-                DB::table('orders')->where('oID',$oID)->update([
-                    'oStatus'=>$oStatus,
-                    'oDateQ'=>$today
-                ]);
-            }
-        }
-        
-        
-        
-        if(Auth::user()->status=='admin'){
-            return redirect()->back();
-        }
-        elseif(Auth::user()->status=='ลูกค้า'){
-            return redirect('/customer');
-        }   
                   
     }
 

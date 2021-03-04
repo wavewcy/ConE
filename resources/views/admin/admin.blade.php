@@ -822,6 +822,17 @@
 	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
 	    });
 	</script>
+	@if (Session('success'))
+		<script type="text/javascript">
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: 'สร้างใบเสนอราคาเรียบร้อยแล้ว',
+				showConfirmButton: false,
+				timer: 1500
+			})
+		</script>
+	@endif
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 @endsection

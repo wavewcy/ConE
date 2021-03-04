@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="../images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="../images/icons/logo.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -92,7 +92,7 @@
 									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     		document.getElementById('logout-form').submit();">Logout</a>
+                                     		document.getElementById('logout-form').submit();">ออกจากระบบ</a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                            @csrf
@@ -104,9 +104,9 @@
 				@else
 				
 					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
-						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						<a href="{{URL::to('/login')}}" class="">เข้าสู่ระบบ</a>
 						/
-						<a href="{{URL::to('/register')}}" class="">Register</a>
+						<a href="{{URL::to('/register')}}" class="">สมัครสมาชิก</a>
 					</span>
 				@endif
 
@@ -206,7 +206,7 @@
 									<li><a href="{{URL::to('/customerList')}}">ข้อมูลลูกค้า</a></li>
 								@endif
 									<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                     		document.getElementById('logout-form').submit();">Logout</a>
+                                     		document.getElementById('logout-form').submit();">ออกจากระบบ</a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                            @csrf
@@ -218,9 +218,9 @@
 				@else
 				
 					<span class="header-wrapicon1 dis-block m-l-30 topbar-email" >
-						<a href="{{URL::to('/login')}}" class="">Log in</a>
+						<a href="{{URL::to('/login')}}" class="">เข้าสู่ระบบ</a>
 						/
-						<a href="{{URL::to('/register')}}" class="">Register</a>
+						<a href="{{URL::to('/register')}}" class="">สมัครสมาชิก</a>
 					</span>
 				@endif
 				</div>

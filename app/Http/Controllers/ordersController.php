@@ -12,6 +12,11 @@ use strtotime;
 
 class ordersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['cart']]);
+    }
+
     function getTotalOrders() {
         $orders = DB::select('SELECT * FROM orders');
         $num = count($orders);

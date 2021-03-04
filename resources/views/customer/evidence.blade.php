@@ -98,26 +98,26 @@
         }
 
         $("#ยืนยัน").on('click',function(e){ //also can use on submit
-			e.preventDefault(); //prevent submit
-			Swal.fire({
-				title: 'ต้องการยืนยันส่งหลักฐานการชำระเงิน?',
-				icon: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				confirmButtonText: 'ยืนยัน',
-				cancelButtonText: 'ยกเลิก'
-				}).then((result) => {
-					if(result.isConfirmed){
-						Swal.fire(
-							'สำเร็จ!',
-							'ส่งหลักฐานการชำระเงินเรียบร้อยแล้ว',
-							'success'
-						)
-						$('#upload').submit();
-					}
-				});
-		});
+				e.preventDefault(); //prevent submit
+				Swal.fire({
+					title: 'ต้องการยืนยันส่งหลักฐานการชำระเงิน?',
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'ยืนยัน',
+					cancelButtonText: 'ยกเลิก'
+					}).then((result) => {
+						if(result.isConfirmed){
+							Swal.fire(
+								'สำเร็จ!',
+								'ส่งหลักฐานการชำระเงินเรียบร้อยแล้ว',
+								'success'
+							)
+							$('#upload').submit();
+						}
+					});
+			});
 	</script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
