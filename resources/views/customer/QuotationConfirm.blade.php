@@ -121,14 +121,7 @@
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-cart">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
 							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
-							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
-							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
-							<?php
-								$ts1 = strtotime($order[0]->oExp);
-								$ts2 = strtotime(date("Y-m-d"));
-								$diff = ($ts1 - $ts2)/3600/24;
-								echo "( เหลือ : $diff วัน )"
-							?></p><br>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p><br>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-cart">รายการสินค้า</p>
@@ -447,14 +440,7 @@
 						<div class="contentCard contentCardOrder col-md-3">
 							<p class="head-card">ออเดอร์เลขที่ : {{$order[0]->oID}}</p>
 							<p><i class="fa fa-user"></i> &nbsp;&nbsp;:&nbsp; {{$order[0]->oShipName}}</p>
-							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p>
-							<p style="color:red;"><i class="fa fa-hourglass-half" ></i></i> &nbsp;:&nbsp; {{$order[0]->oExp}} &nbsp;
-							<?php
-								$ts1 = strtotime($order[0]->oExp);
-								$ts2 = strtotime(date("Y-m-d"));
-								$diff = ($ts1 - $ts2)/3600/24;
-								echo "( เหลือ : $diff วัน )"
-							?></p><br>
+							<p><i class="fa fa-calendar"></i></i> &nbsp;:&nbsp; {{$order[0]->oDate}}</p><br>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>

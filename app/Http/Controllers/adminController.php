@@ -73,7 +73,7 @@ class adminController extends Controller
         $today = Carbon::today();          
         $order=DB::table('orders')->get();
         foreach($order as $o){
-            $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');
+            $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');                        
             if($today >= $exp){
                 DB::table('orders')->where('oID','=',$o->oID)->update([
                     'oStatus'=>$oStatus
@@ -167,6 +167,7 @@ class adminController extends Controller
         $amountVat = 0;
         $saler = Auth::id();
         $status = DB::table('orders')->where('oID','=',$oID)->value('oStatus');
+        $exp = Carbon::parse($today)->addWeek();
         
         if(Auth::user()->status=='admin' && $status == 'อยู่ในระหว่างการขอใบเสนอราคา'){
             $oStatus=DB::table('status')->where('status', '=', "รอยืนยันใบเสนอราคา")->value('status');
@@ -195,7 +196,9 @@ class adminController extends Controller
                 'oAmount'=>$amount,
                 'oVat'=>$vat,
                 'oNote'=>$note,
-                'oDateQ'=>$today,
+                'oDate'=>$today,
+                'oDateQ'=>$today,                
+                'oExp' =>$exp,
                 'oAdmin'=>$saler
             ]);
             return redirect('/admin?=รอยืนยัน')->with('success','Please fill all required field.');
