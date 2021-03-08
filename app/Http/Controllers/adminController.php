@@ -248,6 +248,8 @@ class adminController extends Controller
     public function ViewPdf(request $request){
 
         //เพิ่มตารางเก็บค่าชื่อ Admin ที่สร้างใบเสนอราคานั้นๆ 
+        $today = Carbon::now();
+        $day = $today->toDateString();
         $oID=$request->input('oID');
         $details=DB::table('details')->join('products', 'details.pID', '=', 'products.pID')
         ->join('type', 'type.tID', '=', 'products.tID')->where('oID', '=', $oID)->where('dInStock','=',1)->get();
@@ -283,7 +285,8 @@ class adminController extends Controller
         $amount = round($amountVat-$vat, 2);
         
 
-        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders, 'outOfStock'=>$outOfStock,'saler'=>$saler,'bargains'=>$bargains,'amountVat'=>$amountVat,'vat'=>$vat,'amount'=>$amount]);
+        $pdf = PDF::loadView('admin/QuotationPdf',['details'=>$details, 'orders'=>$orders, 'outOfStock'=>$outOfStock,'saler'=>$saler,'bargains'=>$bargains,'amountVat'=>$amountVat,
+                'vat'=>$vat,'amount'=>$amount, 'day' =>$day]);
 
         return $pdf->stream();
     }

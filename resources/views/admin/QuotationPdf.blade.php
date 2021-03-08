@@ -251,9 +251,13 @@
                        <!-- <hr size=3> -->
                        <span style=" line-height: 13px;">ผู้อนุมัติการสั่งซื้อ</span><br>
                        @endif
+                       @if($orders[0]->oStatus=='คำสั่งซื้อสำเร็จแล้ว')
                        <!-- <span style=" line-height: 26px;">ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <!-- <span >ผู้อนุมัติการสั่งซื้อ</span><br> -->
                        <span style=" line-height: 10px;">วันที่ {{$order->oDateQ}}</span>
+                       @else
+                       <span style=" line-height: 10px;">วันที่ {{$day}}</span>
+                       @endif
                 </div>
                 @endforeach
             </div>
