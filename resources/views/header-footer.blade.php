@@ -112,51 +112,101 @@
 
 			<span class="linedivide1"></span>
 
-			<div class="header-wrapicon2">
-				<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-				<span class="header-icons-noti">{{$items_in_cart}}</span>
+			@if (Auth::check())
+				@if( Auth::user()->status == 'ลูกค้า')
+				<div class="header-wrapicon2">
+					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+					<span class="header-icons-noti">{{$items_in_cart}}</span>
 
-				<!-- Header cart noti -->
-				<div class="header-cart header-dropdown">							
-					<ul class="header-cart-wrapitem">
-						@if(session('cart'))				
-							@foreach(session('cart') as $id => $product)
+					<!-- Header cart noti -->
+					<div class="header-cart header-dropdown">							
+						<ul class="header-cart-wrapitem">
+							@if(session('cart'))				
+								@foreach(session('cart') as $id => $product)
+									<li class="header-cart-item">
+										<div class="header-cart-item-img">
+											<img src="images/{{$product['pImg']}}" alt="IMG">
+										</div>
+										<div class="header-cart-item-txt">
+											<a href="#" class="header-cart-item-name">
+												{{$product['pName']}}
+											</a>
+											<span class="header-cart-item-info">
+												รหัสสินค้า : {{$product['pID']}}
+												ยี่ห้อ : {{$product['pBrand']}}
+												ขนาด : {{$product['pSize']}}
+												ความหนา : {{$product['pThick']}}
+												จำนวน : {{$product['quantity']}}
+											</span>
+										</div>
+									</li>
+								@endforeach							
+							@else							
 								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/{{$product['pImg']}}" alt="IMG">
-									</div>
 									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											{{$product['pName']}}
-										</a>
 										<span class="header-cart-item-info">
-											รหัสสินค้า : {{$product['pID']}}
-											ยี่ห้อ : {{$product['pBrand']}}
-											ขนาด : {{$product['pSize']}}
-											ความหนา : {{$product['pThick']}}
-											จำนวน : {{$product['quantity']}}
+											ยังไม่มีสินค้าในตะกร้า
 										</span>
 									</div>
-								</li>
-							@endforeach							
-						@else							
-							<li class="header-cart-item">
-								<div class="header-cart-item-txt">
-									<span class="header-cart-item-info">
-										ยังไม่มีสินค้าในตะกร้า
-									</span>
-								</div>
-							</li>	
-						@endif
-						<div class="header-cart-buttons">
-								<!-- Button -->
-								<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-									ดูตะกร้า
-								</a>
-						</div>	
-					</ul>	
-				</div>	
-			</div>
+								</li>	
+							@endif
+							<div class="header-cart-buttons">
+									<!-- Button -->
+									<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										ดูตะกร้า
+									</a>
+							</div>	
+						</ul>	
+					</div>	
+				</div>
+				@endif
+			@else
+				<div class="header-wrapicon2">
+					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+					<span class="header-icons-noti">{{$items_in_cart}}</span>
+
+					<!-- Header cart noti -->
+					<div class="header-cart header-dropdown">							
+						<ul class="header-cart-wrapitem">
+							@if(session('cart'))				
+								@foreach(session('cart') as $id => $product)
+									<li class="header-cart-item">
+										<div class="header-cart-item-img">
+											<img src="images/{{$product['pImg']}}" alt="IMG">
+										</div>
+										<div class="header-cart-item-txt">
+											<a href="#" class="header-cart-item-name">
+												{{$product['pName']}}
+											</a>
+											<span class="header-cart-item-info">
+												รหัสสินค้า : {{$product['pID']}}
+												ยี่ห้อ : {{$product['pBrand']}}
+												ขนาด : {{$product['pSize']}}
+												ความหนา : {{$product['pThick']}}
+												จำนวน : {{$product['quantity']}}
+											</span>
+										</div>
+									</li>
+								@endforeach							
+							@else							
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<span class="header-cart-item-info">
+											ยังไม่มีสินค้าในตะกร้า
+										</span>
+									</div>
+								</li>	
+							@endif
+							<div class="header-cart-buttons">
+									<!-- Button -->
+									<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										ดูตะกร้า
+									</a>
+							</div>	
+						</ul>	
+					</div>	
+				</div>
+			@endif
 		</div>
 	</div>
 
@@ -227,7 +277,9 @@
 
 				<span class="linedivide1"></span>
 
-				<div class="header-wrapicon2 m-r-13">
+				@if (Auth::check())
+				@if( Auth::user()->status == 'ลูกค้า')
+				<div class="header-wrapicon2">
 					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 					<span class="header-icons-noti">{{$items_in_cart}}</span>
 
@@ -242,16 +294,19 @@
 										</div>
 										<div class="header-cart-item-txt">
 											<a href="#" class="header-cart-item-name">
-												{{$product['pName']}}<br />												
-												{{$product['pBrand']}} {{$product['pSize']}} {{$product['pThick']}}
+												{{$product['pName']}}
 											</a>
 											<span class="header-cart-item-info">
-												จำนวน : {{$product['quantity']}} {{$product['pUnit']}}<br />
+												รหัสสินค้า : {{$product['pID']}}
+												ยี่ห้อ : {{$product['pBrand']}}
+												ขนาด : {{$product['pSize']}}
+												ความหนา : {{$product['pThick']}}
+												จำนวน : {{$product['quantity']}}
 											</span>
 										</div>
 									</li>
-								@endforeach					
-							@else					
+								@endforeach							
+							@else							
 								<li class="header-cart-item">
 									<div class="header-cart-item-txt">
 										<span class="header-cart-item-info">
@@ -267,8 +322,56 @@
 									</a>
 							</div>	
 						</ul>	
-					</div>
+					</div>	
 				</div>
+				@endif
+			@else
+				<div class="header-wrapicon2">
+					<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+					<span class="header-icons-noti">{{$items_in_cart}}</span>
+
+					<!-- Header cart noti -->
+					<div class="header-cart header-dropdown">							
+						<ul class="header-cart-wrapitem">
+							@if(session('cart'))				
+								@foreach(session('cart') as $id => $product)
+									<li class="header-cart-item">
+										<div class="header-cart-item-img">
+											<img src="images/{{$product['pImg']}}" alt="IMG">
+										</div>
+										<div class="header-cart-item-txt">
+											<a href="#" class="header-cart-item-name">
+												{{$product['pName']}}
+											</a>
+											<span class="header-cart-item-info">
+												รหัสสินค้า : {{$product['pID']}}
+												ยี่ห้อ : {{$product['pBrand']}}
+												ขนาด : {{$product['pSize']}}
+												ความหนา : {{$product['pThick']}}
+												จำนวน : {{$product['quantity']}}
+											</span>
+										</div>
+									</li>
+								@endforeach							
+							@else							
+								<li class="header-cart-item">
+									<div class="header-cart-item-txt">
+										<span class="header-cart-item-info">
+											ยังไม่มีสินค้าในตะกร้า
+										</span>
+									</div>
+								</li>	
+							@endif
+							<div class="header-cart-buttons">
+									<!-- Button -->
+									<a href="{{ url('/cart') }}" class="m-b-10 flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										ดูตะกร้า
+									</a>
+							</div>	
+						</ul>	
+					</div>	
+				</div>
+			@endif
 			</div>
 		</div>
 
