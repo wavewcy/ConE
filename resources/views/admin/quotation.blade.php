@@ -155,7 +155,7 @@
 									<div class="cell100" data-title="dPrice">
 										@if($detail->tHavePrice == 0)
 											<?php 
-												$min =  (int)((float)($detail->dPrice)-((float)($detail->dPrice)*0.05));	
+												$min =  (int)((float)($detail->dPrice)-((float)($detail->dPrice)*0.03));	
 												$max =  (int)($detail->dPrice);
 																												
 												echo "<input type='number' class='price w3-input w3-border w3-round' name='price[]' id='' min='$min' max='$max' value='$detail->dPrice' onchange='fncAction3($detail->dQuantity,$index)'>"		

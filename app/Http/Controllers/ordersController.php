@@ -199,7 +199,7 @@ class ordersController extends Controller
         $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
-        $exp = Carbon::parse($today)->addMonth();
+        $exp = Carbon::parse($today)->addWeek();
 
         DB::table('orders')->insert(
             ['oID' =>$oID,
@@ -239,7 +239,7 @@ class ordersController extends Controller
         $today = Carbon::today();        
         $oID=$this->getTotalOrders();
         $oStatus=DB::table('status')->where('status', '=', "อยู่ในระหว่างการขอใบเสนอราคา")->value('status');
-        $exp = Carbon::parse($today)->addMonth();
+        $exp = Carbon::parse($today)->addWeek();
         
         DB::table('orders')->insert(
             ['oID' =>$oID,
