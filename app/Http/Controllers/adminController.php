@@ -69,12 +69,13 @@ class adminController extends Controller
         $count = $count4 + $count5;
 
         //check exp
-        $oStatus=DB::table('status')->where('status', '=', "หมดอายุ")->value('status');
+        $oStatus=DB::table('status')->where('status', '=', "หมดอายุ")->value('status');        
         $today = Carbon::today();          
         $order=DB::table('orders')->get();
         foreach($order as $o){
-            $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');                        
-            if($today >= $exp){
+            $exp =  DB::table('orders')->where('oID', '=', $o->oID)->value('oExp');   
+            $closedOrder = DB::table('orders')->where('oID', '=', $o->oID)->value('oStatus');                     
+            if($today >= $exp and $closedOrder != "คำสั่งซื้อสำเร็จแล้ว"){
                 DB::table('orders')->where('oID','=',$o->oID)->update([
                     'oStatus'=>$oStatus
                 ]);
