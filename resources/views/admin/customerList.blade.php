@@ -37,32 +37,64 @@
                         ยอดสะสม (บาท)
                     </div>
                 </div>
-                
+                <?php $i=1?>
                 @foreach ($customers as $index => $customer)
-                <div class="row100">
-                    <div class="cell101" data-title="number">{{$index+1}}</div>	
-                    <div class="cell101" data-title="name">คุณ {{$customer->cFname}} {{$customer->cLname}} </div>	
-                    <div class="cell101" data-title="company"> 
-                        @if($customer->cCompany != "ไม่มีข้อมูล")
-                            {{$customer->cCompany}}
-                        @else
-                            -
+                    @if ($customer->tierID != 3)
+                    <div class="row100">
+                        <div class="cell101" data-title="number"><?php echo($i)?></div>	
+                        <div class="cell101" data-title="name">คุณ {{$customer->cFname}} {{$customer->cLname}} </div>	
+                        <div class="cell101" data-title="company"> 
+                            @if($customer->cCompany != "ไม่มีข้อมูล")
+                                {{$customer->cCompany}}
+                            @else
+                                -
+                            @endif
+                        </div>
+                        <div class="cell101" data-title="addr">{{$customer->cAddress}}</div>
+                        <div class="cell101" data-title="phone">{{$customer->cPhone}}</div>	
+                        <div class="cell101" data-title="tier">{{$customer->tierName}}</div>
+                        <?php $have = 0?>	
+                        @foreach($orders as $order)                        
+                            @if($order->cID == $customer->cID and $order->sum != null)
+                                <?php $have = 1?>
+                                <div class="cell101" data-title="amount"><?php echo (number_format($order->sum)); ?></div>	
+                            @endif
+                        @endforeach
+                        @if($have == 0)
+                            <div class="cell101" data-title="amount">0</div>
                         @endif
+                        <?php $i++?>
                     </div>
-                    <div class="cell101" data-title="addr">{{$customer->cAddress}}</div>
-                    <div class="cell101" data-title="phone">{{$customer->cPhone}}</div>	
-                    <div class="cell101" data-title="tier">{{$customer->tierName}}</div>
-                    <?php $have = 0?>	
-                    @foreach($orders as $order)                        
-                        @if($order->cID == $customer->cID and $order->sum != null)
-                            <?php $have = 1?>
-                            <div class="cell101" data-title="amount"><?php echo (number_format($order->sum)); ?></div>	
-                        @endif
-                    @endforeach
-                    @if($have == 0)
-                        <div class="cell101" data-title="amount">0</div>
                     @endif
-                </div>
+                @endforeach
+                @foreach ($customers as $index => $customer)
+                    @if ($customer->tierID == 3)
+                    <div class="row100">
+                        <div class="cell101" data-title="number"><?php echo($i)?></div>	
+                        <div class="cell101" data-title="name">คุณ {{$customer->cFname}} {{$customer->cLname}} </div>	
+                        <div class="cell101" data-title="company"> 
+                            @if($customer->cCompany != "ไม่มีข้อมูล")
+                                {{$customer->cCompany}}
+                            @else
+                                -
+                            @endif
+                        </div>
+                        <div class="cell101" data-title="addr">{{$customer->cAddress}}</div>
+                        <div class="cell101" data-title="phone">{{$customer->cPhone}}</div>	
+                        <div class="cell101" data-title="tier">{{$customer->tierName}}</div>
+                        <?php $have = 0?>	
+                        @foreach($orders as $order)                        
+                            @if($order->cID == $customer->cID and $order->sum != null)
+                                <?php $have = 1?>
+                                <div class="cell101" data-title="amount"><?php echo (number_format($order->sum)); ?></div>	
+                            @endif
+                        @endforeach
+                        @if($have == 0)
+                            <div class="cell101" data-title="amount">0</div>
+                        @endif
+                        <?php $i++?>
+                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
