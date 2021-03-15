@@ -40,7 +40,7 @@
 					<div class="slick1">
 						<div class="item-slick1" >
 							<div class="wrap-pic-w">
-								<img src="images/{{$info->tImg}}" alt="IMG-PRODUCT">
+								<img src="images/{{$info->tImg}}" alt="IMG-PRODUCT" width="500" height="625">
 							</div>
 						</div>
 					</div>
