@@ -225,7 +225,7 @@ class ordersController extends Controller
             );
         }
         $request->session()->forget('cart');
-        return redirect('/product');
+        return redirect('/customer?กำลังขอ=');
     }
 
     public function cartSelf(request $request)
@@ -263,7 +263,7 @@ class ordersController extends Controller
             );
         }
         $request->session()->forget('cart');
-        return redirect('/product');
+        return redirect('/customer?กำลังขอ=');
     }
 
     public function cartUpdate(request $request)

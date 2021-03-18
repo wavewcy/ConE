@@ -202,7 +202,7 @@ class adminController extends Controller
                 'oExp' =>$exp,
                 'oAdmin'=>$saler
             ]);
-            return redirect('/admin?=รอยืนยัน')->with('success','Please fill all required field.');
+            return redirect('/admin?รอยืนยัน=')->with('success','Please fill all required field.');
         }
 
         elseif(Auth::user()->status=='ลูกค้า' && $status == 'รอยืนยันใบเสนอราคา'){
@@ -383,8 +383,12 @@ class adminController extends Controller
             'oAmount'=>$amount,
         ]);
 
-
-        return redirect()->back();
+        if(Auth::user()->status=='ลูกค้า'){
+            return redirect('/customer?รอชำระเงิน=');
+        }
+        if(Auth::user()->status=='admin'){
+            return redirect('/admin?ชำระเงิน=');
+        }
     }
 
     public function paymentCancel(request $request){

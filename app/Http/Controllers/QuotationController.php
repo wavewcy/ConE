@@ -91,7 +91,9 @@ class QuotationController extends Controller
         $oID = $request->input('oID');
         DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
 
-        return redirect()->back();
+        if(Auth::user()->status=='ลูกค้า'){
+            return redirect('/customer?รอชำระเงิน=');
+        }
     }
 
     public function QuotationCancel(request $request){
