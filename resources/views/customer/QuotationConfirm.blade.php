@@ -114,7 +114,7 @@
 	<div class="container">
 
 		@if($count1 > 0)
-			@foreach($orders as $order)
+			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการขอใบเสนอราคา')
 				<div class="card col-md-12 ">
 					<div class="row">
@@ -157,11 +157,9 @@
 		</h4>
 		<div class="container">
 
-		<?php $i=0 ?>
 		@if($count2 > 0)
-			@foreach($orders as $order)
+			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'รอยืนยันใบเสนอราคา')
-				<?php $i+=1 ?>
 				<div class="card col-md-12">
 					
 					<div class="row">
@@ -175,8 +173,8 @@
 								$diff = ($ts1 - $ts2)/3600/24;
 								echo "( เหลือ : $diff วัน )"
 							?></p><br>
-							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
+							<input id="oID{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID{{$index}}" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -191,15 +189,15 @@
 							</ol>
 							<p align=right style="padding-right: 30px;">
 								
-								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
+								<input id="cancel{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="cancel{{$index}}" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>
 								
-								<input id="bargain<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="bargain<?=$i?>" href="#" class="bargain btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
+								<input id="bargain{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="bargain{{$index}}" href="#" class="bargain btn btn-outline-primary" style="margin-left: 12px; margin-top:8px;" >ต่อรองราคา</a>					
 								
 								
-								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="confirm<?=$i?>" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
+								<input id="confirm{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="confirm{{$index}}" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
 							</p>
 						</div>
 						
@@ -228,8 +226,8 @@
 								$diff = ($ts1 - $ts2)/3600/24;
 								echo "( เหลือ : $diff วัน )"
 							?></p><br>
-							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
+							<input id="oID{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID{{$index}}" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -244,12 +242,12 @@
 							</ol>
 							<p align=right style="padding-right: 30px;">
 								
-								<input id="cancel<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="cancel<?=$i?>" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>				
+								<input id="cancel{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="cancel{{$index}}" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>				
 								
 								
-								<input id="confirm<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-								<a id="confirm<?=$i?>" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
+								<input id="confirm{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="confirm{{$index}}" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
 							</p>
 						</div>
 						<div class="contentCard contentCardStatus col-md-3 center">
@@ -274,11 +272,11 @@
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการต่อรองราคาทั้งหมด &nbsp;&nbsp;{{$count3}}&nbsp;&nbsp;รายการ<br><br>
 		</h4>
 		<div class="container">
-		<?php $i=0 ?>
+		
 		@if($count3 > 0)
-			@foreach($orders as $order)
+			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการต่อรองราคา')
-				<?php $i+=1 ?>
+				
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
@@ -292,8 +290,8 @@
 								$diff = ($ts1 - $ts2)/3600/24;
 								echo "( เหลือ : $diff วัน )"
 							?></p><br>
-							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
+							<input id="oID{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID{{$index}}" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -327,11 +325,11 @@
 		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;รายการรอชำระเงินทั้งหมด &nbsp;&nbsp;{{$count}}&nbsp;&nbsp;รายการ<br><br>
 	</h4>
 	<div class="container">
-		<?php $i=0 ?>
+		
 		@if($count > 0)
-			@foreach($orders as $order)
+			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
-				<?php $i+=1 ?>
+				
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
@@ -345,13 +343,13 @@
 								$diff = ($ts1 - $ts2)/3600/24;
 								echo "( เหลือ : $diff วัน )"
 							?></p><br>
-							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-							<a id="oID<?=$i?>" href="#" class="pdf btn btn-outline-warning" style="margin-top:8px; ">ดูใบเสนอราคา</a></p>
+							<input id="oID{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID{{$index}}" href="#" class="pdf btn btn-outline-warning" style="margin-top:8px; ">ดูใบเสนอราคา</a></p>
 							@foreach($evidences as $evidence)
 								@if($evidence->oID == $order[0]->oID)
 									
-								<input id="evi<?=$i?>" type="hidden" value="{{$evidence->eImg}}">								
-								<a id="evi<?=$i?>" href="#"  class="evi btn btn-warning" style="margin-top:8px;">ดูหลักฐานการชำระเงิน</a>								
+								<input id="evi{{$index}}" type="hidden" value="{{$evidence->eImg}}">								
+								<a id="evi{{$index}}" href="#"  class="evi btn btn-warning" style="margin-top:8px;">ดูหลักฐานการชำระเงิน</a>								
 
 								@endif
 							@endforeach
@@ -376,7 +374,6 @@
 				@endif
 				
 				@if($order[0]->oStatus == 'รอชำระเงิน')
-				<?php $i+=1?>
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
@@ -390,8 +387,8 @@
 								$diff = ($ts1 - $ts2)/3600/24;
 								echo "( เหลือ : $diff วัน )"
 							?></p><br>
-							<input id="oID<?=$i?>" type="hidden" value="{{$order[0]->oID}}">
-							<a id="oID<?=$i?>" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
+							<input id="oID{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+							<a id="oID{{$index}}" class="pdf btn btn-warning" style="margin-top:8px; cursor:pointer;">ดูใบเสนอราคา</a></p>
 						</div>
 						<div class="contentCard col-md-6">
 							<p class="head-card">รายการสินค้า</p>
@@ -406,8 +403,8 @@
 							</ol>
 
 							<p align=right style="padding-right: 30px;">
-								<input id="file<?=$i?>" name="oID" type="hidden" value="{{$order[0]->oID}}">
-								<a id="file<?=$i?>" class="file btn btn-success" style="margin-left: 12px;margin-top:8px; color:white; cursor:pointer;" >ส่งหลักฐานการชำระเงิน</a>
+								<input id="file{{$index}}" name="oID" type="hidden" value="{{$order[0]->oID}}">
+								<a id="file{{$index}}" class="file btn btn-success" style="margin-left: 12px;margin-top:8px; color:white; cursor:pointer;" >ส่งหลักฐานการชำระเงิน</a>
 							</p>
 
 						</div>
@@ -433,7 +430,7 @@
 		<div class="container">
 
 		@if($count1 > 0)
-			@foreach($orders as $order)
+			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการขอใบเสนอราคา')
 				<div class="card col-md-12">
 					<div class="row">

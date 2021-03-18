@@ -130,15 +130,15 @@ class QuotationController extends Controller
         if($file = $request->file('evidence') ){
             $file_name = $file-> getClientOriginalName();
             $file -> move('images/evidence',$file_name);
-        }
         
-        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'กำลังตรวจสอบการชำระเงิน']);
-        DB::table('evidences')->insert([
-            'eID' => $eID,
-            'oID' => $oID,
-            'cID' => $cID,
-            'eImg' => $file_name
-        ]);
+            DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'กำลังตรวจสอบการชำระเงิน']);
+            DB::table('evidences')->insert([
+                'eID' => $eID,
+                'oID' => $oID,
+                'cID' => $cID,
+                'eImg' => $file_name
+            ]);
+        }
 
         return redirect('/customer?รอชำระเงิน=');
 
