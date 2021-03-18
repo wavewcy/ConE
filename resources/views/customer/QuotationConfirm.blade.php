@@ -246,8 +246,8 @@
 								<a id="cancel{{$index}}" href="#" class="cancel btn btn-outline-danger" style="margin-left: 12px; margin-top:8px;" >ปฏิเสธ</a>				
 								
 								
-								<input id="confirm{{$index}}" type="hidden" value="{{$order[0]->oID}}">
-								<a id="confirm{{$index}}" class="confirm btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
+								<input id="confirmOrder{{$index}}" type="hidden" value="{{$order[0]->oID}}">
+								<a id="confirmOrder{{$index}}" class="confirmOrder btn btn-success" style=" margin-left: 12px; margin-top:8px; cursor:pointer; color:white" >ยืนยันใบเสนอราคา</a>
 							</p>
 						</div>
 						<div class="contentCard contentCardStatus col-md-3 center">
@@ -524,6 +524,30 @@
 				}
 			});
 			
+		});
+
+		$(".confirmOrder").on('click', function() {
+
+			Swal.fire({
+				title: 'ต้องการยืนยันใบเสนอราคานี้?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonText: 'ยกเลิก',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'ยืนยัน'
+				}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+					'ยืนยันสำเร็จ!',
+					'กรุณาชำระเงินและส่งหลักฐาน',
+					'success'
+					)
+					oID = document.getElementById(this.id).value;
+					window.location.assign("{{URL::to('/adminQuotation/confirm?oID=')}}"+oID);
+				}
+			});
+
 		});
 
 		$(".cancel").on('click', function() {

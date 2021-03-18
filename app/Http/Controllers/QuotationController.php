@@ -89,12 +89,7 @@ class QuotationController extends Controller
     public function QuotationConfirm(request $request){
 
         $oID = $request->input('oID');
-        $status=DB::table('oID')->where('oID', '=', $oID)->value('oStatus');
-        if($status == "รอยืนยันการต่อรองราคา"){
-            echo("555");
-        }
-
-        //DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
+        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
 
         return redirect()->back();
     }
@@ -130,15 +125,15 @@ class QuotationController extends Controller
         if($file = $request->file('evidence') ){
             $file_name = $file-> getClientOriginalName();
             $file -> move('images/evidence',$file_name);
-        
-            DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'กำลังตรวจสอบการชำระเงิน']);
-            DB::table('evidences')->insert([
-                'eID' => $eID,
-                'oID' => $oID,
-                'cID' => $cID,
-                'eImg' => $file_name
-            ]);
         }
+        
+        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'กำลังตรวจสอบการชำระเงิน']);
+        DB::table('evidences')->insert([
+            'eID' => $eID,
+            'oID' => $oID,
+            'cID' => $cID,
+            'eImg' => $file_name
+        ]);
 
         return redirect('/customer?รอชำระเงิน=');
 
