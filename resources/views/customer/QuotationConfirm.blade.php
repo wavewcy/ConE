@@ -276,7 +276,7 @@
 		@if($count3 > 0)
 			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'อยู่ในระหว่างการต่อรองราคา')
-				<?php $i+=1 ?>
+				
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
@@ -329,7 +329,7 @@
 		@if($count > 0)
 			@foreach($orders as $index => $order)
 				@if($order[0]->oStatus == 'กำลังตรวจสอบการชำระเงิน')
-				<?php $i+=1 ?>
+				
 				<div class="card col-md-12">
 					<div class="row">
 						<div class="contentCard contentCardOrder col-md-3">
