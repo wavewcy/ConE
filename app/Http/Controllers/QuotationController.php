@@ -89,7 +89,12 @@ class QuotationController extends Controller
     public function QuotationConfirm(request $request){
 
         $oID = $request->input('oID');
-        DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
+        $status=DB::table('oID')->where('oID', '=', $oID)->value('oStatus');
+        if($status == "รอยืนยันการต่อรองราคา"){
+            echo("555");
+        }
+
+        //DB::table('orders')->where('oID',$oID)->update(['oStatus'=>'รอชำระเงิน']);
 
         return redirect()->back();
     }
