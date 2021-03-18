@@ -7,7 +7,7 @@
 	<!-- breadcrumb -->
 	@foreach($manu as $head)
 	<div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
-		<a href="#" class="s-text16">
+		<a href="{{ url('/') }}" class="s-text16">
 			หน้าหลัก
 			<i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
 		</a>
@@ -193,21 +193,25 @@
 								</button>
 							</div>
 
-							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
+							@if (Auth::check())
+								@if( Auth::user()->status == 'ลูกค้า')
+								<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
 								<!-- <a class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" href="{{ url('/product-detail/addToCart/'.$tID) }}" >
 									เพิ่มไปยังตะกร้า
 								</a> -->
-								@if (Auth::check())
-									@if( Auth::user()->status == 'ลูกค้า')
+								
 									<input type="hidden" name="tID" value="{{$tID}}">
 									<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
-									@endif
-								@else
-									<input type="hidden" name="tID" value="{{$tID}}">
-									<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
+									
+								</div>
 								@endif
+							@else
+							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
+								<input type="hidden" name="tID" value="{{$tID}}">
+								<input class="button flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" type="submit" value="เพิ่มไปยังตะกร้า">
 							</div>
+							@endif
 							
 						</div>
 					</div>
